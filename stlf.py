@@ -21,7 +21,5 @@ st_data = st_folium(m, width=725)
 
 st_data
 
-folium_static(st_data)
-
 st.write('devider')
 folium_static(m)
