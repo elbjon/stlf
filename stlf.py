@@ -1,6 +1,6 @@
 import streamlit as st
 import folium
-import streamlit-folium
+import streamlit‑folium
 
 
 
