@@ -20,7 +20,7 @@ folium_static(m)
 
 
 # call to render Folium map in Streamlit
-st_data = st_folium(m, width=725)
+st_data = folium_static(m, width=725)
 
 st_data
 
