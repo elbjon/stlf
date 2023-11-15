@@ -1,6 +1,6 @@
 import streamlit as st
 import folium
-#import 'streamlit-folium'
+import streamlit_folium
 
 
 
@@ -37,7 +37,8 @@ m
 
 # call to render Folium map in Streamlit
 
-#try:
-#    st_data = st_folium(m, width=725)
-#except:
-#    m
+try:
+    st_data = st_folium(m, width=725)
+except:
+    m
+folium_static(m)
