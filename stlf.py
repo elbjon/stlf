@@ -15,6 +15,9 @@ folium_static(m)
 folium.Marker(
     [52.8, 10.8], popup="HELLO", tooltip="HELLOHELLO"
 ).add_to(m)
+folium_static(m)
+
+
 
 # call to render Folium map in Streamlit
 st_data = st_folium(m, width=725)
