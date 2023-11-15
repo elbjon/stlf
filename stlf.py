@@ -1,7 +1,6 @@
 import streamlit as st
 import folium
-import streamlit_folium
-
+from streamlit_folium import st_folium, folium_static
 
 
 
