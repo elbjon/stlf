@@ -1,6 +1,8 @@
 import streamlit as st
 import folium
-import (streamlit-folium)
+import importlib
+streamlitfolium = importlib.import_module("streamlit-folium")
+
 
 
 
