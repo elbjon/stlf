@@ -1,4 +1,3 @@
 streamlit
 folium
-importlib
-streamlitfolium = importlib.import_module("streamlit-folium")
+streamlit_folium
