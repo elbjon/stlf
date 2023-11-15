@@ -30,14 +30,14 @@ m
 
 
 # center on Liberty Bell, add marker
-m = folium.Map(location=[39.949610, -75.150282], zoom_start=16)
-folium.Marker(
-    [39.949610, -75.150282], popup="HELLO", tooltip="HELLOHELLO"
-).add_to(m)
+#m = folium.Map(location=[39.949610, -75.150282], zoom_start=16)
+#folium.Marker(
+#    [39.949610, -75.150282], popup="HELLO", tooltip="HELLOHELLO"
+#).add_to(m)
 
 # call to render Folium map in Streamlit
 
-try:
-    st_data = st_folium(m, width=725)
-except:
-    m
+#try:
+#    st_data = st_folium(m, width=725)
+#except:
+#    m
