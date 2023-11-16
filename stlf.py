@@ -17,12 +17,12 @@ locations = [
 [[55, 4], [56, 4], [56, 5], [55, 5]]
 ]
 
-
+#For Polygon description etc look into the file from raspberry pi
 folium.Polygon(
     locations=locations,
     color="blue",
     weight=1,
-    fill_color="light blue",
+    fill_color="blue",
     fill_opacity=0.5,
     fill=True,
     popup="First Poly",
