@@ -25,7 +25,7 @@ m = folium.Map(location=[52.8, 10.8], zoom_start=6, tiles="cartodb positron")
 #add polygons
 
 
-
+path = r'https://catalog.archives.gov/id/'
     
 # Iterate through the DataFrame rows
 for index, row in df.iterrows():
@@ -33,12 +33,12 @@ for index, row in df.iterrows():
     polygon_coords = ast.literal_eval(row['Polygon'])
 #    
     folium.Polygon(
-        locations=row['Polygon'], #polygon_coords,
+        locations=polygon_coords,
         color='darkgreen',
         weight=1,
         fill_color='green',
         fill=True,
-        popup=row['Title_short'],  # Use the Title_short column as popup content
+        popup=f"<a href=https://www.dings.lu>https://www.dingsbums.lu</a>", #row['Title_short'],  # Use the Title_short column as popup content
         tooltip=row['Title_short'],
     ).add_to(m)
 
