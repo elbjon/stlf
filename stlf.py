@@ -1,8 +1,11 @@
 import streamlit as st
+import pandas as pd
 import folium
 from streamlit_folium import st_folium, folium_static
+
 st.write('Some Random Square Grids')
 
+df=pd.read_csv('mappingtestPolg_s.csv')
 
 
 
@@ -20,6 +23,21 @@ m = folium.Map(location=[52.8, 10.8], zoom_start=6, tiles="cartodb positron")
 
 #add polygons
 
+base_url = "https://catalog.archives.gov/id/"
+for index, row in df.iterrows():
+    url = f'{base_url}{row['naID']}'
+    folium.Polygon(
+        locations=row['Polygon'],
+        color='darkgreen',
+        weight=1,
+        fill_color='green',
+        #fill_opacity=row['fill_opacity_column'],
+        fill=True,
+        popup=f"<a href='{url}' target='_blank'>{row['popup']}</a>",  # Include the URL in the popup
+        tooltip=row['Title_short'],
+    ).add_to(m)
+
+    
 
 
 
