@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import folium
+import ast
 from streamlit_folium import st_folium, folium_static
 
 st.write('Some Random Square Grids')
@@ -29,7 +30,7 @@ m = folium.Map(location=[52.8, 10.8], zoom_start=6, tiles="cartodb positron")
 # Iterate through the DataFrame rows
 for index, row in df.iterrows():
 #    # Convert the string representation of the list to an actual list of coordinates
-#    polygon_coords = ast.literal_eval(row['Polygon'])
+    polygon_coords = ast.literal_eval(row['Polygon'])
 #    
     folium.Polygon(
         locations=row['Polygon'], #polygon_coords,
