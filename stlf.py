@@ -37,8 +37,9 @@ for index, row in df.iterrows():
         color='darkgreen',
         weight=1,
         fill_color='green',
+        fill_opacity=int(row['Overlay_sheet_ct'])+0.01/30
         fill=True,
-        popup=f"<a href={path}{dest}>To Map Overlays</a>", #row['Title_short'],  # Use the Title_short column as popup content
+        popup=f"<a href={path}{dest}target='_blank'>To Map Overlays</a>", #row['Title_short'],  # Use the Title_short column as popup content
         tooltip=row['Title_short'],
     ).add_to(m)
 
