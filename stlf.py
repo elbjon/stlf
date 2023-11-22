@@ -31,14 +31,14 @@ path = r'https://catalog.archives.gov/id/'
 for index, row in df.iterrows():
 #    # Convert the string representation of the list to an actual list of coordinates
     polygon_coords = ast.literal_eval(row['Polygon'])
-#    
+    dest = row['naId'] 
     folium.Polygon(
         locations=polygon_coords,
         color='darkgreen',
         weight=1,
         fill_color='green',
         fill=True,
-        popup=f"<a href=https://www.dings.lu>https://www.dingsbums.lu</a>", #row['Title_short'],  # Use the Title_short column as popup content
+        popup=f"<a href={path}{dest}>To Map Overlays</a>", #row['Title_short'],  # Use the Title_short column as popup content
         tooltip=row['Title_short'],
     ).add_to(m)
 
