@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import folium
-import ast
 from streamlit_folium import st_folium, folium_static
 
 st.write('Some Random Square Grids')
@@ -25,34 +24,34 @@ m = folium.Map(location=[52.8, 10.8], zoom_start=6, tiles="cartodb positron")
 #add polygons
 
 #base_url = "https://catalog.archives.gov/id/"
-#for index, row in df.iterrows():
-#    #url = base_url+str(row['naId'])   #f'{base_url}{row['naId']}'
-#    folium.Polygon(
-#        locations=row['Polygon'],
-#        color='darkgreen',
-#        weight=1,
-#        fill_color='green',
-#        #fill_opacity=row['fill_opacity_column'],
-#        fill=True,
-#        popup='test', # url,  # Include the URL in the popup
-#        tooltip=row['Title_short'],
-#    ).add_to(m)
-
-    
-# Iterate through the DataFrame rows
 for index, row in df.iterrows():
-    # Convert the string representation of the list to an actual list of coordinates
-    polygon_coords = ast.literal_eval(row['Polygon'])
-    
+#    #url = base_url+str(row['naId'])   #f'{base_url}{row['naId']}'
     folium.Polygon(
-        locations=polygon_coords,
+        locations=row['Polygon'],
         color='darkgreen',
         weight=1,
         fill_color='green',
+        #fill_opacity=row['fill_opacity_column'],
         fill=True,
-        popup=row['Title_short'],  # Use the Title_short column as popup content
+        popup='test', # url,  # Include the URL in the popup
         tooltip=row['Title_short'],
     ).add_to(m)
+
+    
+# Iterate through the DataFrame rows
+#for index, row in df.iterrows():
+#    # Convert the string representation of the list to an actual list of coordinates
+#    polygon_coords = ast.literal_eval(row['Polygon'])
+#    
+#    folium.Polygon(
+#        locations=polygon_coords,
+#        color='darkgreen',
+#        weight=1,
+#       fill_color='green',
+#        fill=True,
+#        popup=row['Title_short'],  # Use the Title_short column as popup content
+#        tooltip=row['Title_short'],
+#    ).add_to(m)
 
 
 #For Polygon description etc look into the file from raspberry pi
