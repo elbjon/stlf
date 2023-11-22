@@ -25,7 +25,7 @@ m = folium.Map(location=[52.8, 10.8], zoom_start=6, tiles="cartodb positron")
 
 base_url = "https://catalog.archives.gov/id/"
 for index, row in df.iterrows():
-    url = base_url+row['naId']   #f'{base_url}{row['naId']}'
+    url = base_url+str(row['naId'])   #f'{base_url}{row['naId']}'
     folium.Polygon(
         locations=row['Polygon'],
         color='darkgreen',
