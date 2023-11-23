@@ -6,7 +6,7 @@ from streamlit_folium import st_folium, folium_static
 
 st.write('Density of Aerial Reconnaissance Flights as documented in NARA\'s Record Group 373')
 urla = r'https://www.archives.gov/findingaid/stat/discovery/373'
-st.write("check out this [link](%s)" % urla)
+st.write("Link to [RG 373](%s)" % urla)
 df=pd.read_csv('base_data.csv')
 
 
@@ -38,7 +38,7 @@ for index, row in df.iterrows():
     folium.Polygon(
         locations=polygon_coords,
         color='green',
-        weight=1,
+        weight=0.5,
         opacity=opac,
         fill_color='green',
         fill_opacity=opac,
