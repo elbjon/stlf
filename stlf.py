@@ -58,20 +58,31 @@ folium.Marker(
     [52.8, 10.8], popup="HELLO", tooltip="HELLOHELLO"
 ).add_to(m)
 
-
+folium.Marker(
+    [45, -124], popup="45,-124", tooltip="HELLOHELLO"
+).add_to(m)
+folium.Marker(
+    [46, -124], popup="46, -124", tooltip="HELLOHELLO"
+).add_to(m)
+folium.Marker(
+    [46, -123], popup="46, -123", tooltip="HELLOHELLO"
+).add_to(m)
+folium.Marker(
+    [45, -124], popup="45, -124", tooltip="HELLOHELLO"
+).add_to(m)
 
 
 Geocoder().add_to(m)
 
 
-lat_interval = 10
-lon_interval = 10
+#lat_interval = 10
+#lon_interval = 10
 
-for lat in range(-90, 91, lat_interval):
-     folium.PolyLine([[lat, -180],[lat, 180]], weight=2).add_to(m)
+#for lat in range(-90, 91, lat_interval):
+#     folium.PolyLine([[lat, -180],[lat, 180]], weight=2).add_to(m)
 
-for lon in range(-180, 181, lon_interval):
-    folium.PolyLine([[-90, lon],[90, lon]], weight=2).add_to(m)
+#for lon in range(-180, 181, lon_interval):
+#    folium.PolyLine([[-90, lon],[90, lon]], weight=2).add_to(m)
 
 folium_static(m)
 
