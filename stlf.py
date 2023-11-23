@@ -16,17 +16,7 @@ df=pd.read_csv('base_data.csv')
 # Create a map using the Map() function and the coordinates for Boulder, CO
 m = folium.Map(location=[54, 13], zoom_start=1, tiles="cartodb positron")
 
-#tile = folium.TileLayer(
-#        tiles = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-#        attr = 'Esri',
-#        name = 'Esri Satellite',
-#        overlay = False,
-#        control = True
-#       ).add_to(m)
-
-
 #add polygons
-
 
 path = r'https://catalog.archives.gov/id/'
     
@@ -45,7 +35,7 @@ for index, row in df.iterrows():
         fill_color='green',
         fill_opacity=opac,
         fill=True,
-        #popup=f"<a href={path}{dest} target='_blank'>To Map Overlays</a>", #row['Title_short'],  # Use the Title_short column as popup content
+        popup=f"<a href={path}{dest} target='_blank'>To Map Overlays</a>", #row['Title_short'],  # Use the Title_short column as popup content
         #tooltip=f'{a}, {b} Overlay sheets' ,
     ).add_to(m)
 
@@ -67,3 +57,12 @@ folium.Marker(
 ).add_to(m)
 Geocoder().add_to(m)
 folium_static(m)
+
+
+#tile = folium.TileLayer(
+#        tiles = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+#        attr = 'Esri',
+#        name = 'Esri Satellite',
+#        overlay = False,
+#        control = True
+#       ).add_to(m)
