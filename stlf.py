@@ -39,8 +39,8 @@ for index, row in df.iterrows():
     folium.Polygon(
         locations=polygon_coords,
         color='green',
-        weight=0.5,
-        opacity=opac,
+        weight=0.1,
+        opacity=opac/2,
         fill_color='green',
         fill_opacity=opac,
         fill=True,
