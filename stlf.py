@@ -4,14 +4,14 @@ import folium
 import ast
 from streamlit_folium import st_folium, folium_static
 
-st.write('Some Random Square Grids')
+st.write('Density of Aerial Reconnaissance Flights')
 
 df=pd.read_csv('base_data.csv')
 
 
 
 # Create a map using the Map() function and the coordinates for Boulder, CO
-m = folium.Map(location=[52.8, 10.8], zoom_start=6, tiles="cartodb positron")
+m = folium.Map(location=[54, 13], zoom_start=10, tiles="cartodb positron")
 
 #tile = folium.TileLayer(
 #        tiles = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
