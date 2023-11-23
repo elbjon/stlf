@@ -6,9 +6,9 @@ from streamlit_folium import st_folium, folium_static
 from folium.plugins import Geocoder
 
 urla = r'https://www.archives.gov/findingaid/stat/discovery/373'
-st.write(f'Density of Aerial Reconnaissance Flights as documented in NARA\'s Record Group 373',"[Record Group 373](%s)" % urla)
+st.write(f'Density of Aerial Reconnaissance Flights as documented in NARA\'s',"[Record Group 373](%s)" % urla)
 
-st.write("Link to [RG 373](%s)" % urla)
+#st.write("Link to [RG 373](%s)" % urla)
 df=pd.read_csv('base_data.csv')
 
 
@@ -68,10 +68,10 @@ lat_interval = 10
 lon_interval = 10
 
 for lat in range(-90, 91, lat_interval):
-     folium.PolyLine([[lat, -180],[lat, 180]], weight=0.5).add_to(m)
+     folium.PolyLine([[lat, -180],[lat, 180]], weight=2).add_to(m)
 
 for lon in range(-180, 181, lon_interval):
-    folium.PolyLine([[-90, lon],[90, lon]], weight=0.5).add_to(m)
+    folium.PolyLine([[-90, lon],[90, lon]], weight=2).add_to(m)
 
 
 
