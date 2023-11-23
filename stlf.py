@@ -62,7 +62,7 @@ folium.Marker(
 
 
 Geocoder().add_to(m)
-folium_static(m)
+
 
 lat_interval = 10
 lon_interval = 10
@@ -73,7 +73,7 @@ for lat in range(-90, 91, lat_interval):
 for lon in range(-180, 181, lon_interval):
     folium.PolyLine([[-90, lon],[90, lon]], weight=2).add_to(m)
 
-
+folium_static(m)
 
 #tile = folium.TileLayer(
 #        tiles = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
