@@ -3,6 +3,7 @@ import pandas as pd
 import folium
 import ast
 from streamlit_folium import st_folium, folium_static
+from folium.plugins import Geocoder
 
 urla = r'https://www.archives.gov/findingaid/stat/discovery/373'
 st.write(f'Density of Aerial Reconnaissance Flights as documented in NARA\'s Record Group 373',"[Record Group 373](%s)" % urla)
@@ -64,5 +65,5 @@ for index, row in df.iterrows():
 folium.Marker(
     [52.8, 10.8], popup="HELLO", tooltip="HELLOHELLO"
 ).add_to(m)
-
+Geocoder().add_to(m)
 folium_static(m)
