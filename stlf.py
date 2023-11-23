@@ -52,11 +52,27 @@ for index, row in df.iterrows():
 #    tooltip="Click me!",
 #).add_to(m)
 
+
+
 folium.Marker(
     [52.8, 10.8], popup="HELLO", tooltip="HELLOHELLO"
 ).add_to(m)
+
+
+
+
 Geocoder().add_to(m)
 folium_static(m)
+
+lat_interval = 10
+lon_interval = 10
+
+for lat in range(-90, 91, lat_interval):
+     folium.PolyLine([[lat, -180],[lat, 180]], weight=0.5).add_to(m)
+
+for lon in range(-180, 181, lon_interval):
+    folium.PolyLine([[-90, lon],[90, lon]], weight=0.5).add_to(m)
+
 
 
 #tile = folium.TileLayer(
