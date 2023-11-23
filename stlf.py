@@ -33,12 +33,12 @@ for index, row in df.iterrows():
     polygon_coords = ast.literal_eval(row['Polygon'])
     a, b = row['Title_short'], row['Overlay_sheet_ct']
     dest = row['naId'] 
-    opac=int(row['Overlay_sheet_ct'])/300 #geht, weil keine 0 vorhanden in diesem Dataset
+    opac=int(row['Overlay_sheet_ct'])/100 #geht, weil keine 0 vorhanden in diesem Dataset
     folium.Polygon(
         locations=polygon_coords,
-        color='darkgreen',
-        weight=1,
-        fill_color='lightgreen',
+        #color='darkgreen',
+        #weight=1,
+        fill_color='green',
         fill_opacity=opac,
         fill=True,
         #popup=f"<a href={path}{dest} target='_blank'>To Map Overlays</a>", #row['Title_short'],  # Use the Title_short column as popup content
