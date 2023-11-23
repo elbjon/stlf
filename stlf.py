@@ -4,8 +4,8 @@ import folium
 import ast
 from streamlit_folium import st_folium, folium_static
 
-st.write('Density of Aerial Reconnaissance Flights')
-
+st.write('Density of Aerial Reconnaissance Flights as documented in NARA\'s Record Group 373')
+https://www.archives.gov/findingaid/stat/discovery/373
 df=pd.read_csv('base_data.csv')
 
 
@@ -36,8 +36,9 @@ for index, row in df.iterrows():
     opac=int(row['Overlay_sheet_ct'])/100 #geht, weil keine 0 vorhanden in diesem Dataset
     folium.Polygon(
         locations=polygon_coords,
-        #color='darkgreen',
-        weight=0,
+        color='green',
+        weight=1,
+        opacity=opac,
         fill_color='green',
         fill_opacity=opac,
         fill=True,
