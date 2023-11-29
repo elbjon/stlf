@@ -27,6 +27,12 @@ st.write(df.head())
 
 
 if choice == 'Overview Map':
+
+    # coord getter function
+    def get_pos(lat, lng):
+        return lat, lng
+
+
     # Create a map using the Map() function and the coordinates for Boulder, CO
     m = folium.Map(location=[54, 13], zoom_start=1, tiles="cartodb positron")
 
@@ -52,6 +58,8 @@ if choice == 'Overview Map':
             popup=f"<a href={path}{dest} target='_blank'>To Map Overlays</a>", #row['Title_short'],  # Use the Title_short column as popup content
             #tooltip=f'{a}, {b} Overlay sheets' ,
         ).add_to(m)
+    
+
 
 
 
@@ -75,39 +83,46 @@ if choice == 'Overview Map':
         [45, -124], popup="45, -124", tooltip="HELLOHELLO")
 
 
+    #add latitude/longitude popup
+    m.add_child(folium.LatLngPopup())
+
+    # add search field
     Geocoder().add_to(m)
 
 
 
 
-    folium_static(m)
+    #folium_static(m)
+    map = st_folium(m, height=350, width=700)
+
+
+
 elif choice == "Detail Map":
     st.map()
 
 
 
 
-def get_pos(lat, lng):
-    return lat, lng
-
-
-m = folium.Map()
-
-m.add_child(folium.LatLngPopup())
-
-map = st_folium(m, height=350, width=700)
-
-data = None
-if map.get("last_clicked"):
-    data = get_pos(map["last_clicked"]["lat"], map["last_clicked"]["lng"])
-
-if data is not None:
-    st.write(data) # Writes to the app
-    print(data) # Writes to terminal
 
 
 
-    
+
+
+
+
+#map = st_folium(m, height=350, width=700)
+
+#data = None
+#if map.get("last_clicked"):
+#    data = get_pos(map["last_clicked"]["lat"], map["last_clicked"]["lng"])
+
+#if data is not None:
+#    st.write(data) # Writes to the app
+#    print(data) # Writes to terminal
+
+
+
+
 
 
 
