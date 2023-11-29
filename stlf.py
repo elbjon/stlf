@@ -80,27 +80,27 @@ if choice == 'Overview Map':
     folium.Marker(
         [45, -124], popup="45, -124", tooltip="HELLOHELLO")
 
-path = r'https://catalog.archives.gov/id/'
+    path = r'https://catalog.archives.gov/id/'
     
 # Iterate through the DataFrame rows
-for index, row in df.iterrows():
-#    # Convert the string representation of the list to an actual list of coordinates
-    polygon_coords = row['Polygon'] #ast.literal_eval(row['Polygon'])
-    a, b = row['Title_short'], row['Overlay_sheet_ct']
-    dest = row['naId'] 
-    opac=int(row['Overlay_sheet_ct'])/100 #geht, weil keine 0 vorhanden in diesem Dataset
-    folium.Polygon(
-        locations=polygon_coords,
-        color='green',
-        weight=0.1,
-        opacity=opac/2,
-        fill_color='green',
-        fill_opacity=opac,
-        fill=True,
-        popup=f"<a href={path}{dest} target='_blank'>To Map Overlays</a>", #row['Title_short'],  # Use the Title_short column as popup content
-        #tooltip=f'{a}, {b} Overlay sheets' ,
+    for index, row in df.iterrows():
+    #    # Convert the string representation of the list to an actual list of coordinates
+        polygon_coords = row['Polygon'] 
+        a, b = row['Title_short'], row['Overlay_sheet_ct']
+        dest = row['naId'] 
+        opac=int(row['Overlay_sheet_ct'])/100 #geht, weil keine 0 vorhanden in diesem Dataset
+        folium.Polygon(
+            locations=polygon_coords,
+            color='green',
+            weight=0.1,
+            opacity=opac/2,
+            fill_color='green',
+            fill_opacity=opac,
+            fill=True,
+            popup=f"<a href={path}{dest} target='_blank'>To Map Overlays</a>", #row['Title_short'],  # Use the Title_short column as popup content
+            #tooltip=f'{a}, {b} Overlay sheets' ,
 
-    ).add_to(m)
+        ).add_to(m)
 
 
     Geocoder().add_to(m)
@@ -116,6 +116,12 @@ for index, row in df.iterrows():
     #    folium.PolyLine([[-90, lon],[90, lon]], weight=2).add_to(m)
 
     folium_static(m)
+elif choice == "Detail Map":
+    st.map()
+
+
+
+
 
     #tile = folium.TileLayer(
     #        tiles = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
@@ -124,32 +130,3 @@ for index, row in df.iterrows():
     #        overlay = False,
     #        control = True
     #       ).add_to(m)
-elif choice == "Detail Map":
-    st.map()
-
-
-
-
-
-
-
-
-#lat_interval = 10
-#lon_interval = 10
-
-#for lat in range(-90, 91, lat_interval):
-#     folium.PolyLine([[lat, -180],[lat, 180]], weight=2).add_to(m)
-
-#for lon in range(-180, 181, lon_interval):
-#    folium.PolyLine([[-90, lon],[90, lon]], weight=2).add_to(m)
-
-folium_static(m)
-
-#tile = folium.TileLayer(
-#        tiles = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-#        attr = 'Esri',
-#        name = 'Esri Satellite',
-#        overlay = False,
-#        control = True
-#       ).add_to(m)
-
