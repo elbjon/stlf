@@ -104,15 +104,16 @@ if choice == 'Overview Map':
         st.write(data) # Writes to the app
         #print(data) # Writes to terminal
         choice = "Detail Map"
+        
 
 elif choice == "Detail Map":
     
-    
+    st.write('data', data)
     data = [52, 10]
-    st.write(data)
+
     m = folium.Map(location=data, zoom_start=12, tiles="cartodb positron")
-    st.write('hello')
-    folium_static(m)
+
+
     st.write(data)
 #create a map at the chosen location
     tile = folium.TileLayer(
@@ -122,6 +123,9 @@ elif choice == "Detail Map":
             overlay = False,
             control = True
            ).add_to(m)
+    folium_static(m)
+
+st.write(' Is this the end?')
 
 
 
