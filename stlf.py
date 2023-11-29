@@ -12,7 +12,6 @@ choice = st.radio(
     index=0,
 )
 
-choice.index[1]=True
 
 st.write("You selected:", choice)
 
