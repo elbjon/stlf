@@ -109,7 +109,9 @@ elif choice == "Detail Map":
     
     
     data = [52, 10]
+    print(data)
     m = folium.Map(location=data, zoom_start=12, tiles="cartodb positron")
+    folium_static(m)
     print(data)
 #create a map at the chosen location
     tile = folium.TileLayer(
