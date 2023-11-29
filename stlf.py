@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import folium
-import ast
+#import ast
 from streamlit_folium import st_folium, folium_static
 from folium.plugins import Geocoder
 
@@ -23,7 +23,7 @@ path = r'https://catalog.archives.gov/id/'
 # Iterate through the DataFrame rows
 for index, row in df.iterrows():
 #    # Convert the string representation of the list to an actual list of coordinates
-    polygon_coords = ast.literal_eval(row['Polygon'])
+    polygon_coords = row['Polygon'] #ast.literal_eval(row['Polygon'])
     a, b = row['Title_short'], row['Overlay_sheet_ct']
     dest = row['naId'] 
     opac=int(row['Overlay_sheet_ct'])/100 #geht, weil keine 0 vorhanden in diesem Dataset
