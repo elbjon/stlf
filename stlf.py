@@ -50,17 +50,6 @@ if choice == 'Overview Map':
 
 
 
-    #For Polygon description etc look into the file from raspberry pi
-    #folium.Polygon(
-    #    locations=locations,
-    #    color="blue",
-    #    weight=1,
-    #    fill_color="blue",
-    #    fill_opacity=0.5,
-    #    fill=True,
-    #    popup="First Poly",
-    #    tooltip="Click me!",
-    #).add_to(m)
 
 
 
@@ -83,27 +72,51 @@ if choice == 'Overview Map':
     path = r'https://catalog.archives.gov/id/'
     
 # Iterate through the DataFrame rows
-    for index, row in df.iterrows():
-    #    # Convert the string representation of the list to an actual list of coordinates
-        polygon_coords = row['Polygon'] 
-        a, b = row['Title_short'], row['Overlay_sheet_ct']
-        dest = row['naId'] 
-        opac=int(row['Overlay_sheet_ct'])/100 #geht, weil keine 0 vorhanden in diesem Dataset
-        folium.Polygon(
-            locations=polygon_coords,
-            color='green',
-            weight=0.1,
-            opacity=opac/2,
-            fill_color='green',
-            fill_opacity=opac,
-            fill=True,
-            popup=f"<a href={path}{dest} target='_blank'>To Map Overlays</a>", #row['Title_short'],  # Use the Title_short column as popup content
-            #tooltip=f'{a}, {b} Overlay sheets' ,
-
-        ).add_to(m)
+#    for index, row in df.iterrows():
+#    #    # Convert the string representation of the list to an actual list of coordinates
+#        polygon_coords = row['Polygon'] 
+#        a, b = row['Title_short'], row['Overlay_sheet_ct']
+#        dest = row['naId'] 
+#        opac=int(row['Overlay_sheet_ct'])/100 #geht, weil keine 0 vorhanden in diesem Dataset
+#        folium.Polygon(
+#            locations=polygon_coords,
+#            color='green',
+#            weight=0.1,
+#            opacity=opac/2,
+#            fill_color='green',
+#            fill_opacity=opac,
+#            fill=True,
+#            popup=f"<a href={path}{dest} target='_blank'>To Map Overlays</a>", #row['Title_short'],  # Use the Title_short column as popup content
+#           #tooltip=f'{a}, {b} Overlay sheets' ,
+#
+#        ).add_to(m)
 
 
     Geocoder().add_to(m)
+
+
+
+
+    folium_static(m)
+elif choice == "Detail Map":
+    st.map()
+
+
+
+
+    #For Polygon description etc look into the file from raspberry pi
+    #folium.Polygon(
+    #    locations=locations,
+    #    color="blue",
+    #    weight=1,
+    #    fill_color="blue",
+    #    fill_opacity=0.5,
+    #    fill=True,
+    #    popup="First Poly",
+    #    tooltip="Click me!",
+    #).add_to(m)
+
+
 
 
     #lat_interval = 10
@@ -114,13 +127,6 @@ if choice == 'Overview Map':
 
     #for lon in range(-180, 181, lon_interval):
     #    folium.PolyLine([[-90, lon],[90, lon]], weight=2).add_to(m)
-
-    folium_static(m)
-elif choice == "Detail Map":
-    st.map()
-
-
-
 
 
     #tile = folium.TileLayer(
