@@ -5,7 +5,7 @@ from ast import literal_eval
 from streamlit_folium import st_folium, folium_static
 from folium.plugins import Geocoder
 
-
+data = [52, 10]
 choice = st.radio(
     "Set scale:",
     ["Overview Map", "Detail Map"],
