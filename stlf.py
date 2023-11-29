@@ -93,14 +93,14 @@ if choice == 'Overview Map':
 
 
     #folium_static(m)
-    map = st_folium(m, height=600, width=900)
+    map = st_folium(m, height=600, width=600)
 
     data = None
     if map.get("last_clicked"):
         data = get_pos(map["last_clicked"]["lat"], map["last_clicked"]["lng"])
 
     if data is not None:
-        #st.write(data) # Writes to the app
+        st.write(data) # Writes to the app
         #print(data) # Writes to terminal
         choice = "Detail Map"
 
@@ -116,7 +116,7 @@ elif choice == "Detail Map":
            )#.add_to(m)
 
     m = folium.Map(location=data, zoom_start=12, tiles=tile)
-
+    print(data)
 
 
 
