@@ -91,12 +91,11 @@ def get_pos(lat, lng):
     return lat, lng
 
 
-o = folium.Map()
+m = folium.Map()
 
-o.add_child(folium.LatLngPopup())
+m.add_child(folium.LatLngPopup())
 
-map = st_folium(o, height=350, width=700)
-folium_static(map)
+map = st_folium(m, height=350, width=700)
 
 data = None
 if map.get("last_clicked"):
@@ -105,6 +104,10 @@ if map.get("last_clicked"):
 if data is not None:
     st.write(data) # Writes to the app
     print(data) # Writes to terminal
+
+
+
+    
 
 
 
