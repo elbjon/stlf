@@ -109,10 +109,11 @@ elif choice == "Detail Map":
     
     
     data = [52, 10]
-    print(data)
+    st.write(data)
     m = folium.Map(location=data, zoom_start=12, tiles="cartodb positron")
+    st.write('hello')
     folium_static(m)
-    print(data)
+    st.write(data)
 #create a map at the chosen location
     tile = folium.TileLayer(
             tiles = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
