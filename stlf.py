@@ -96,6 +96,7 @@ o = folium.Map()
 o.add_child(folium.LatLngPopup())
 
 map = st_folium(o, height=350, width=700)
+folium_static(map)
 
 data = None
 if map.get("last_clicked"):
