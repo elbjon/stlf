@@ -23,7 +23,7 @@ st.write(f'Density of Aerial Reconnaissance Flights as documented in NARA\'s',"[
 #df=pd.read_csv('base_data.csv')
 #df = pd.read_csv('base_data.csv',converters={"Polygon": lambda x: x.strip("[]").split(", ")})
 df = pd.read_csv('base_data.csv',converters={'Polygon': literal_eval})
-st.write(df.head())
+st.write('loading takes a minute or two')
 
 
 if choice == 'Overview Map':
@@ -93,9 +93,15 @@ if choice == 'Overview Map':
 
 
     #folium_static(m)
-    map = st_folium(m, height=350, width=700)
+    map = st_folium(m, height=600, width=900)
 
+    data = None
+    if map.get("last_clicked"):
+        data = get_pos(map["last_clicked"]["lat"], map["last_clicked"]["lng"])
 
+    if data is not None:
+        st.write(data) # Writes to the app
+        print(data) # Writes to terminal
 
 elif choice == "Detail Map":
     st.map()
@@ -112,13 +118,7 @@ elif choice == "Detail Map":
 
 #map = st_folium(m, height=350, width=700)
 
-#data = None
-#if map.get("last_clicked"):
-#    data = get_pos(map["last_clicked"]["lat"], map["last_clicked"]["lng"])
 
-#if data is not None:
-#    st.write(data) # Writes to the app
-#    print(data) # Writes to terminal
 
 
 
