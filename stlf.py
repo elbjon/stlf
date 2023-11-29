@@ -58,25 +58,21 @@ if choice == 'Overview Map':
 
 
 
-#    folium.Marker(
-#        [52.8, 10.8], popup="HELLO", tooltip="HELLOHELLO"#
-#    ).add_to(m)
-#
-#    folium.Marker(
-#        [45, -124], popup="45,-124", tooltip="HELLOHELLO"
-#    ).add_to(m)
-#    folium.Marker(
-#        [46, -124], popup="46, -124", tooltip="HELLOHELLO"
-#    ).add_to(m)
-#    folium.Marker(
-#        [46, -123], popup="46, -123", tooltip="HELLOHELLO"
-#    ).add_to(m)
-#    folium.Marker(
-#        [45, -124], popup="45, -124", tooltip="HELLOHELLO")
+    folium.Marker(
+        [52.8, 10.8], popup="HELLO", tooltip="HELLOHELLO"#
+    ).add_to(m)
 
-#    path = r'https://catalog.archives.gov/id/'
-    
-
+    folium.Marker(
+        [45, -124], popup="45,-124", tooltip="HELLOHELLO"
+    ).add_to(m)
+    folium.Marker(
+        [46, -124], popup="46, -124", tooltip="HELLOHELLO"
+    ).add_to(m)
+    folium.Marker(
+       [46, -123], popup="46, -123", tooltip="HELLOHELLO"
+    ).add_to(m)
+    folium.Marker(
+        [45, -124], popup="45, -124", tooltip="HELLOHELLO")
 
 
     Geocoder().add_to(m)
@@ -87,6 +83,34 @@ if choice == 'Overview Map':
     folium_static(m)
 elif choice == "Detail Map":
     st.map()
+
+
+
+
+def get_pos(lat, lng):
+    return lat, lng
+
+
+o = folium.Map()
+
+o.add_child(folium.LatLngPopup())
+
+map = st_folium(o, height=350, width=700)
+
+data = None
+if map.get("last_clicked"):
+    data = get_pos(map["last_clicked"]["lat"], map["last_clicked"]["lng"])
+
+if data is not None:
+    st.write(data) # Writes to the app
+    print(data) # Writes to terminal
+
+
+
+
+
+
+
 
 
 
