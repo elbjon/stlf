@@ -12,6 +12,8 @@ choice = st.radio(
     index=0,
 )
 
+choice.index[1]=True
+
 st.write("You selected:", choice)
 
 
@@ -106,19 +108,18 @@ if choice == 'Overview Map':
 
 elif choice == "Detail Map":
     
-    #create a map at the chosen location
+    
+
+    m = folium.Map(location=data, zoom_start=12)
+    print(data)
+#create a map at the chosen location
     tile = folium.TileLayer(
             tiles = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
             attr = 'Esri',
             name = 'Esri Satellite',
             overlay = False,
             control = True
-           )#.add_to(m)
-
-    m = folium.Map(location=data, zoom_start=12, tiles=tile)
-    print(data)
-
-
+           ).add_to(m)
 
 
 
