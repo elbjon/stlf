@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import folium
-import ast
+from ast import literal_eval
 from streamlit_folium import st_folium, folium_static
 from folium.plugins import Geocoder
 
@@ -20,9 +20,9 @@ urla = r'https://www.archives.gov/findingaid/stat/discovery/373'
 st.write(f'Density of Aerial Reconnaissance Flights as documented in NARA\'s',"[Record Group 373](%s)" % urla)
 
 #st.write("Link to [RG 373](%s)" % urla)
-df=pd.read_csv('base_data.csv')
+#df=pd.read_csv('base_data.csv')
 #df = pd.read_csv('base_data.csv',converters={"Polygon": lambda x: x.strip("[]").split(", ")})
-
+df = pd.read_csv('base_data.csv',converters={'Polygon': literal_eval})
 st.write(df.head())
 
 
