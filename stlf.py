@@ -5,7 +5,7 @@ from ast import literal_eval
 from streamlit_folium import st_folium, folium_static
 from folium.plugins import Geocoder
 
-
+data = None
 choice = st.radio(
     "Set scale:",
     ["Overview Map", "Detail Map"],
@@ -100,11 +100,22 @@ if choice == 'Overview Map':
         data = get_pos(map["last_clicked"]["lat"], map["last_clicked"]["lng"])
 
     if data is not None:
-        st.write(data) # Writes to the app
-        print(data) # Writes to terminal
+        #st.write(data) # Writes to the app
+        #print(data) # Writes to terminal
+        choice = "Detail Map"
 
 elif choice == "Detail Map":
-    st.map()
+    
+    #create a map at the chosen location
+    tile = folium.TileLayer(
+            tiles = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+            attr = 'Esri',
+            name = 'Esri Satellite',
+            overlay = False,
+            control = True
+           )#.add_to(m)
+
+    m = folium.Map(location=data, zoom_start=12, tiles=tile)
 
 
 
@@ -159,10 +170,3 @@ elif choice == "Detail Map":
     #    folium.PolyLine([[-90, lon],[90, lon]], weight=2).add_to(m)
 
 
-    #tile = folium.TileLayer(
-    #        tiles = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-    #        attr = 'Esri',
-    #        name = 'Esri Satellite',
-    #        overlay = False,
-    #        control = True
-    #       ).add_to(m)
