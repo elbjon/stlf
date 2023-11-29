@@ -5,7 +5,7 @@ from ast import literal_eval
 from streamlit_folium import st_folium, folium_static
 from folium.plugins import Geocoder
 
-data = None
+
 choice = st.radio(
     "Set scale:",
     ["Overview Map", "Detail Map"],
@@ -38,26 +38,26 @@ if choice == 'Overview Map':
 
     #add polygons
 
-    path = r'https://catalog.archives.gov/id/'
+    #path = r'https://catalog.archives.gov/id/'
         
     # Iterate through the DataFrame rows
-    for index, row in df.iterrows():
+    #for index, row in df.iterrows():
     #    # Convert the string representation of the list to an actual list of coordinates
-        polygon_coords = row['Polygon']
-        a, b = row['Title_short'], row['Overlay_sheet_ct']
-        dest = row['naId'] 
-        opac=int(row['Overlay_sheet_ct'])/100 #geht, weil keine 0 vorhanden in diesem Dataset
-        folium.Polygon(
-            locations=polygon_coords,
-            color='green',
-            weight=0.1,
-            opacity=opac/2,
-            fill_color='green',
-            fill_opacity=opac,
-            fill=True,
-            popup=f"<a href={path}{dest} target='_blank'>To Map Overlays</a>", #row['Title_short'],  # Use the Title_short column as popup content
-            #tooltip=f'{a}, {b} Overlay sheets' ,
-        ).add_to(m)
+    #    polygon_coords = row['Polygon']
+    #    a, b = row['Title_short'], row['Overlay_sheet_ct']
+    #    dest = row['naId'] 
+    #    opac=int(row['Overlay_sheet_ct'])/100 #geht, weil keine 0 vorhanden in diesem Dataset
+    #    folium.Polygon(
+    #        locations=polygon_coords,
+    #        color='green',
+    #        weight=0.1,
+    #        opacity=opac/2,
+    #        fill_color='green',
+    #        fill_opacity=opac,
+    #        fill=True,
+    #        popup=f"<a href={path}{dest} target='_blank'>To Map Overlays</a>", #row['Title_short'],  # Use the Title_short column as popup content
+    #        #tooltip=f'{a}, {b} Overlay sheets' ,
+    #    ).add_to(m)
     
 
 
@@ -77,7 +77,7 @@ if choice == 'Overview Map':
         [46, -124], popup="46, -124", tooltip="HELLOHELLO"
     ).add_to(m)
     folium.Marker(
-       [46, -123], popup="46, -123", tooltip="HELLOHELLO"
+        [46, -123], popup="46, -123", tooltip="HELLOHELLO"
     ).add_to(m)
     folium.Marker(
         [45, -124], popup="45, -124", tooltip="HELLOHELLO")
