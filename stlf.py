@@ -42,7 +42,7 @@ if geojson_data:
     # Display the map using Streamlit
     mabb = st_folium(m, height=1000, width=1400,returned_objects=["last_active_drawing"])
     if mabb is not None:
-        st.write(mabb['properties'])
+        st.write(mabb[1])
 else:
     st.warning("No GeoJSON data available.")
 
