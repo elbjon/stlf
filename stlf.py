@@ -225,7 +225,7 @@ folium.TileLayer(
 
 
 # add image
-merc = r'img\1.png' 
+merc = r'\img\1.png' 
 if not os.path.isfile(merc):
     st.write(f"Could not find {merc}")
 
@@ -240,10 +240,11 @@ else:
         cross_origin=False,
         zindex=1,
     )
-    
+    img.add_to(p)
 
-    
-img.add_to(p)
+
+
+
 folium.LayerControl().add_to(p)
 
 folium.Marker(
