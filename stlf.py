@@ -31,14 +31,17 @@ geojson_data = embed_geojson_from_github(github_folder, geojson_file)
 # Create a Folium map
 m = folium.Map(location=[30, 10], zoom_start=2)
 
+# Define hard-coded colors
+colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF', '#FFA500', '#008000']
+
 # Check if GeoJSON data is available
 if geojson_data:
-    # Add GeoJSON layer to the map with custom fill colors based on FID
+    # Add GeoJSON layer to the map with hard-coded fill colors
     folium.GeoJson(
         geojson_data,
         name='geojson',
         style_function=lambda feature: {
-            "fillColor": f"#{feature['properties']['FID'] % 16777215:06X}",  # Use FID for color
+            "fillColor": colors[feature['properties']['FID'] - 1],
             "color": "black",
             "weight": 2,
             "dashArray": "5, 5",
@@ -274,7 +277,7 @@ folium.Marker(
 folium.LayerControl().add_to(p)
 
 
-map = st_folium(p, height=800, width=1400)['map']
+map = st_folium(p, height=800, width=1400)
 st.write(map)
 
 
