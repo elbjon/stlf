@@ -243,7 +243,7 @@ for count, file_name in enumerate(os.listdir(img_folder)):
             image=img_path,
             bounds=[[51.85, 9.6], [53.3, 11.70]],  # Adjust the bounds accordingly
             opacity=0.3,
-            interactive=True,
+            interactive=False,
             cross_origin=False,
             zindex=count + 1,
         )
@@ -271,7 +271,7 @@ for count, file_name in enumerate(os.listdir(img_folder)):
 #        cross_origin=False,
 #        zindex=1,
 #    )
-    img.add_to(p)
+    #img.add_to(p)
 
 
 
