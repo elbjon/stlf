@@ -39,10 +39,17 @@ if geojson_data:
     # Display the map using Streamlit
     mabb = st_folium(m, height=1000, width=1400,returned_objects=["last_active_drawing"])
 
-    st.write(type(mabb),type(mabb['last_active_drawing']))
+    
+    if mabb and 'last_active_drawing' in mabb:
+        continent = mabb['last_active_drawing']['properties']['CONTINENT']
+        fid = mabb['last_active_drawing']['properties']['FID']
+        st.write(continent, fid)
+    else:
+        st.warning("Please use the drawing tool to select a continent.")
 
-    if mabb is not None:
-        st.write(mabb['last_active_drawing']['properties']['CONTINENT'],mabb['last_active_drawing']['properties']['FID'])
+
+    #if mabb is not None:
+    #    st.write(mabb['last_active_drawing']['properties']['CONTINENT'],mabb['last_active_drawing']['properties']['FID'])
 
     #if map.get("last_clicked"):
     #    data = mabb["last_clicked"]["lat"], mabb["last_clicked"]["lng"]
