@@ -173,6 +173,7 @@ if choice == 'Overview Map':
     if map.get("last_clicked"):
         dada = get_pos(map["last_clicked"]["lat"], map["last_clicked"]["lng"])
 
+    st.write('last clicked == None is ', map['last_clicked']==None)
     #if dada is not None:
     st.write(dada) # Writes to the app
         #print(data) # Writes to terminal
@@ -181,7 +182,7 @@ if choice == 'Overview Map':
 
 elif choice == "Detail Map":
     
-    st.write('data', data)
+    #st.write('data', data)
     data = [52, 10]
 
     m = folium.Map(location=data, zoom_start=12, tiles="cartodb positron")
