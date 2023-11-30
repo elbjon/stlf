@@ -40,7 +40,7 @@ if geojson_data:
     folium.GeoJson(geojson_data, name='geojson').add_to(m)
 
     # Display the map using Streamlit
-    mabb = st_folium(m, height=900, width=1200)
+    mabb = st_folium(m, height=1000, width=1400,returned_objects=["last_active_drawing"])
     st.write(mabb)
 else:
     st.warning("No GeoJSON data available.")
