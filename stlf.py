@@ -36,7 +36,7 @@ if choice == 'Overview Map':
 
 
     # Create a map using the Map() function and the coordinates for Boulder, CO
-    m = folium.Map(location=[54, 13], zoom_start=1, tiles="cartodb positron")
+    m = folium.Map(location=[54, 13], zoom_start=1, tiles="cartodb positron",height=900, width=1400)
 
     #add polygons
 
@@ -95,7 +95,7 @@ if choice == 'Overview Map':
 
 
     #folium_static(m)
-    map = st_folium(m, height=600, width=900)
+    map = st_folium(m, height=900, width=1400)
 
     data = None
     if map.get("last_clicked"):
