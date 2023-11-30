@@ -179,8 +179,8 @@ if choice == 'Overview Map':
 
     #folium_static(m)
     map = st_folium(m, height=900, width=1400)
-
-    data = None
+######
+    #data = None
     if map.get("last_clicked"):
         dada = get_pos(map["last_clicked"]["lat"], map["last_clicked"]["lng"])
 
