@@ -9,12 +9,7 @@ st.set_page_config(layout="wide")
 
 
 
-#m = folium.Map([43, -100], zoom_start=4)
-#folium.GeoJson(r"polygons\World_Continents.geojson").add_to(m)
-#st_folium(m, height=900, width=1400)
-
-
-
+st.write('Choose your continent of interest by clicking')
 #########################
 # Function to embed GeoJSON data
 def embed_geojson_from_github(folder, file_name):
@@ -161,10 +156,10 @@ if choice == 'Overview Map':
 
     data = None
     if map.get("last_clicked"):
-        data = get_pos(map["last_clicked"]["lat"], map["last_clicked"]["lng"])
+        dada = get_pos(map["last_clicked"]["lat"], map["last_clicked"]["lng"])
 
     if data is not None:
-        st.write(data) # Writes to the app
+        st.write(dada) # Writes to the app
         #print(data) # Writes to terminal
         choice = "Detail Map"
         
