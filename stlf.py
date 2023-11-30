@@ -235,7 +235,7 @@ for count, file_name in enumerate(os.listdir(img_folder)):
 
     # Check if the file is an image (you may want to refine this check based on your specific image types)
     if os.path.isfile(img_path) and img_path.lower().endswith(('.png', '.jpg', '.jpeg')):
-        st.write(f'{img_path} found')
+        #st.write(f'{img_path} found')
 
         # Create ImageOverlay with a unique name based on counting variable
         img_overlay = folium.raster_layers.ImageOverlay(
@@ -243,8 +243,10 @@ for count, file_name in enumerate(os.listdir(img_folder)):
             image=img_path,
             bounds=[[51.85, 9.6], [53.3, 11.70]],  # Adjust the bounds accordingly
             opacity=0.3,
+            show=False,
             interactive=False,
             cross_origin=False,
+            control=True,
             zindex=count + 1,
         )
 
