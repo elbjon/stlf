@@ -54,6 +54,11 @@ if geojson_data:
     st.write(type(mabb))
     st.write(mabb == None)
     st.write('last_active_drawing' in mabb)
+    st.write(mabb['last_active_drawing'])
+    st.write(mabb['last_active_drawing']== None)
+
+
+
     if mabb and 'last_active_drawing' in mabb:
         continent = mabb['last_active_drawing']['properties']['CONTINENT']
         fid = mabb['last_active_drawing']['properties']['FID']
