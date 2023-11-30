@@ -12,7 +12,7 @@ m = folium.Map([43, -100], zoom_start=4)
 
 folium.GeoJson(r"polygons\World_Continents.geojson").add_to(m)
 
-data = st_folium(m, height=900, width=1400)
+st_folium(m, height=900, width=1400)
 
 
 
