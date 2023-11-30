@@ -257,7 +257,7 @@ folium.LayerControl().add_to(m)
 
 
 
-map = st_folium(m, height=800, width=1400)
+map = st_folium(m, location=[30, 10], height=800, width=1400, zoom_start=7 )
 st.write(map)
 
 
