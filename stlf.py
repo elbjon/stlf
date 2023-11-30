@@ -227,14 +227,14 @@ folium.TileLayer(
 
 # Display the map using Streamlit
 # add image
-merc = r'img\1.png' 
+merc = 'img/1.png' 
 if not os.path.isfile(merc):
     st.write(f"Could not find {merc}")
 
 else:
     st.write(f'{merc} found')
     img = folium.raster_layers.ImageOverlay(
-        name="Mercator projection SW",
+        name="Overlay_1",
         image=merc,
         bounds=[[51.85, 9.6], [53.3, 11.70]],
         opacity=0.6,
