@@ -45,7 +45,7 @@ if geojson_data:
         st.write(mabb)
 
     if map.get("last_clicked"):
-        data = mabb["last_clicked"]["lat"], mabb["last_clicked"]["lng"])
+        data = mabb["last_clicked"]["lat"], mabb["last_clicked"]["lng"]
 
 
 
