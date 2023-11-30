@@ -163,11 +163,9 @@ if choice == 'Overview Map':
     # add search field
     Geocoder().add_to(m)
 
-
-
-
     #folium_static(m)
     map = st_folium(m, height=900, width=1400)
+
 ######
     #data = None
     if map.get("last_clicked"):
@@ -182,16 +180,17 @@ if choice == 'Overview Map':
         choice = "Detail Map" #this doesn't work the way I hoped for
         
 
-elif choice == "Detail Map":
+elif choice == "Detail Map":   ######################## Detail Map
     
-    st.write('data', dada)
-    data = [52, 10]
+    #st.write('data', dada) #why can't I just take it over here?
+    data = [52.5, 10.5]
 
+    #st.write(data)
+
+
+#create a map at the chosen location
     m = folium.Map(location=data, zoom_start=12, tiles="cartodb positron")
 
-
-    st.write(data)
-#create a map at the chosen location
     tile = folium.TileLayer(
             tiles = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
             attr = 'Esri',
@@ -199,7 +198,7 @@ elif choice == "Detail Map":
             overlay = False,
             control = True
            ).add_to(m)
-    folium_static(m)
+    folium_static(m) #change to bi-directional if neccessary
 
 
     
@@ -208,12 +207,12 @@ st.write(' Is this the end?')
 
 
 p = folium.Map(location=[50, 10], tiles=None, zoom_start=7)
-folium.TileLayer("OpenStreetMap").add_to(p)
+folium.TileLayer("OpenStreetMap", name= 'OpenStreetMap').add_to(p)
 folium.TileLayer("cartodb positron",show=False).add_to(p)
 folium.TileLayer(
             tiles = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
             attr = 'Esri',
-            name = 'Esri Satellite',
+            name = 'Satellite Image',
             show=False,
             overlay = False,
             control = True
@@ -221,17 +220,14 @@ folium.TileLayer(
 
 folium.TileLayer(
     tiles = 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
+    name = 'Topographic Map',
     attr='opentopomap.org',
     show=False,
     ).add_to(p)
 
 # Display the map using Streamlit
-
-
-
-
 # add image
-merc = r'\img\1.png' 
+merc = r'img\1.png' 
 if not os.path.isfile(merc):
     st.write(f"Could not find {merc}")
 
