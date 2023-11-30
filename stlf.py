@@ -51,11 +51,6 @@ if geojson_data:
     # Display the map using Streamlit
     mabb = st_folium(m, height=1000, width=1400,returned_objects=["last_active_drawing"])
 
-    st.write(type(mabb))
-    st.write(mabb == None)
-    st.write('last_active_drawing' in mabb)
-    st.write(mabb['last_active_drawing'])
-    st.write(mabb['last_active_drawing']== None)
 
     if mabb['last_active_drawing'] == None:
         st.warning(r'what\'s a warning? Just choose your continent')
