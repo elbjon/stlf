@@ -29,7 +29,7 @@ geojson_file = "World_Continents.geojson"
 geojson_data = embed_geojson_from_github(github_folder, geojson_file)
 
 # Create a Folium map
-m = folium.Map(location=[30, 10], zoom_start=2)
+m = folium.Map(location=[30, 10], zoom_start=2.5)
 
 # Define hard-coded colors
 colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF', '#FFA500', '#008000']
