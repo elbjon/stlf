@@ -29,7 +29,7 @@ geojson_file = "World_Continents.geojson"
 geojson_data = embed_geojson_from_github(github_folder, geojson_file)
 
 # Create a Folium map
-m = folium.Map(location=[30, 10], zoom_start=2.5)
+m = folium.Map(location=[30, 10], zoom_start=3)
 
 # Define hard-coded colors
 colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF', '#FFA500', '#008000']
@@ -51,7 +51,8 @@ if geojson_data:
     # Display the map using Streamlit
     mabb = st_folium(m, height=1000, width=1400,returned_objects=["last_active_drawing"])
 
-    
+    st.write(type(mabb))
+    st.write(type(mabb['map']))
     if mabb and 'last_active_drawing' in mabb:
         continent = mabb['last_active_drawing']['properties']['CONTINENT']
         fid = mabb['last_active_drawing']['properties']['FID']
