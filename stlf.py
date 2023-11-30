@@ -173,10 +173,10 @@ if choice == 'Overview Map':
     if map.get("last_clicked"):
         dada = get_pos(map["last_clicked"]["lat"], map["last_clicked"]["lng"])
 
-    if dada is not None:
-        st.write(dada) # Writes to the app
+    #if dada is not None:
+    st.write(dada) # Writes to the app
         #print(data) # Writes to terminal
-        choice = "Detail Map"
+    choice = "Detail Map"
         
 
 elif choice == "Detail Map":
