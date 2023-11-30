@@ -201,7 +201,7 @@ elif choice == "Detail Map":
 st.write(' Is this the end?')
 
 
-p = folium.Map(location=[30, 10], tiles=None, zoom_start=7)
+p = folium.Map(location=[50, 10], tiles=None, zoom_start=7)
 folium.TileLayer("OpenStreetMap").add_to(p)
 folium.TileLayer("cartodb positron",show=False).add_to(p)
 folium.TileLayer(
@@ -245,7 +245,7 @@ else:
 
 
 
-folium.LayerControl().add_to(p)
+
 
 folium.Marker(
     [52, 10], popup="52,10", tooltip="HELLOHELLO"
