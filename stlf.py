@@ -32,7 +32,7 @@ geojson_file = "World_Continents.geojson"
 geojson_data = embed_geojson_from_github(github_folder, geojson_file)
 
 # Create a Folium map
-m = folium.Map(location=[30, 0], zoom_start=4)
+m = folium.Map(location=[30, 10], zoom_start=3)
 
 # Check if GeoJSON data is available
 if geojson_data:
