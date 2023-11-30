@@ -253,7 +253,7 @@ else:
 
 folium.LayerControl().add_to(m)
 
-
+st_folium(m)
 
 # Display the drawn features
 st.write(draw)
