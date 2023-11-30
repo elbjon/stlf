@@ -235,8 +235,7 @@ for count, file_name in enumerate(os.listdir(img_folder)):
 
     # Check if the file is an image (you may want to refine this check based on your specific image types)
     if os.path.isfile(img_path) and img_path.lower().endswith(('.png', '.jpg', '.jpeg')):
-        #st.write(f'{img_path} found')
-
+        
         # Create ImageOverlay with a unique name based on counting variable
         img_overlay = folium.raster_layers.ImageOverlay(
             name=f"Overlay_{count + 1}",
@@ -252,28 +251,6 @@ for count, file_name in enumerate(os.listdir(img_folder)):
 
         # Add ImageOverlay to the map 'p'
         img_overlay.add_to(p)
-
-
-
-
-
-# Display the map using Streamlit
-# add image
-#merc = 'img/1.png' 
-#if not os.path.isfile(merc):
-#    st.write(f"Could not find {merc}")
-#else:
-#    st.write(f'{merc} found')
-#    img = folium.raster_layers.ImageOverlay(
-#        name="Overlay_1",
-#        image=merc,
-#        bounds=[[51.85, 9.6], [53.3, 11.70]],
-#        opacity=0.6,
-#        interactive=True,
-#        cross_origin=False,
-#        zindex=1,
-#    )
-    #img.add_to(p)
 
 
 
