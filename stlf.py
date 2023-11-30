@@ -4,16 +4,50 @@ import folium
 from ast import literal_eval
 from streamlit_folium import st_folium, folium_static
 from folium.plugins import Geocoder
+import json
 st.set_page_config(layout="wide")
 
 
 
-m = folium.Map([43, -100], zoom_start=4)
+#m = folium.Map([43, -100], zoom_start=4)
+#folium.GeoJson(r"polygons\World_Continents.geojson").add_to(m)
+#st_folium(m, height=900, width=1400)
 
-folium.GeoJson(r"polygons\World_Continents.geojson").add_to(m)
 
-st_folium(m, height=900, width=1400)
 
+#########################
+# Function to embed GeoJSON data
+def embed_geojson_from_github(folder, file_name):
+    # Assuming the GeoJSON file is stored in the 'polygons' folder
+    file_path = f"{folder}/{file_name}"
+    with open(file_path, 'r') as file:
+        geojson_data = json.load(file)
+    return geojson_data
+
+# GitHub repo folder and file
+github_folder = "polygons"
+geojson_file = "World_Continents.geojson"
+
+# Fetch GeoJSON data
+geojson_data = embed_geojson_from_github(github_folder, geojson_file)
+
+# Create a Folium map
+m = folium.Map(location=[0, 0], zoom_start=6)
+
+# Check if GeoJSON data is available
+if geojson_data:
+    # Add GeoJSON layer to the map
+    folium.GeoJson(geojson_data, name='geojson').add_to(m)
+
+    # Display the map using Streamlit
+    folium_static(m)
+else:
+    st.warning("No GeoJSON data available.")
+
+
+
+
+###########################
 
 
 
