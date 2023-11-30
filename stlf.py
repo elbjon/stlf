@@ -173,16 +173,18 @@ if choice == 'Overview Map':
     if map.get("last_clicked"):
         dada = get_pos(map["last_clicked"]["lat"], map["last_clicked"]["lng"])
 
-    st.write('last clicked == None is ', map['last_clicked']==None)
-    #if dada is not None:
-    st.write(dada) # Writes to the app
-        #print(data) # Writes to terminal
-    choice = "Detail Map"
+    if map['last_clicked']==None:
+        st.write('')
+    else:
+        #if dada is not set:
+        st.write(dada) # Writes to the app
+        
+        choice = "Detail Map" #this doesn't work the way I hoped for
         
 
 elif choice == "Detail Map":
     
-    #st.write('data', data)
+    st.write('data', dada)
     data = [52, 10]
 
     m = folium.Map(location=data, zoom_start=12, tiles="cartodb positron")
