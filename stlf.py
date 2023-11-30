@@ -265,7 +265,7 @@ folium.Marker(
 folium.LayerControl().add_to(p)
 
 
-map = st_folium(p, height=800, width=1400)
+map = st_folium(p, height=800, width=1400)['map']
 st.write(map)
 
 
