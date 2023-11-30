@@ -32,7 +32,7 @@ geojson_file = "World_Continents.geojson"
 geojson_data = embed_geojson_from_github(github_folder, geojson_file)
 
 # Create a Folium map
-m = folium.Map(location=[0, 0], zoom_start=6)
+m = folium.Map(location=[0, 0], height=900, width=1200, zoom_start=6)
 
 # Check if GeoJSON data is available
 if geojson_data:
@@ -40,11 +40,11 @@ if geojson_data:
     folium.GeoJson(geojson_data, name='geojson').add_to(m)
 
     # Display the map using Streamlit
-    folium_static(m)
+    mabb = folium_static(m)
 else:
     st.warning("No GeoJSON data available.")
 
-
+st.write(mabb)
 
 
 ###########################
