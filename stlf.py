@@ -60,19 +60,8 @@ if geojson_data:
         fid = mabb['last_active_drawing']['properties']['FID']
         st.write(continent, fid)
 
-
-
-    #if mabb is not None:
-    #    st.write(mabb['last_active_drawing']['properties']['CONTINENT'],mabb['last_active_drawing']['properties']['FID'])
-
-    #if map.get("last_clicked"):
-    #    data = mabb["last_clicked"]["lat"], mabb["last_clicked"]["lng"]
-
-
-
-
 else:
-    st.warning("No GeoJSON data available.")
+    st.warning("Pick-click your continent of choice!")
 
 
 
@@ -84,7 +73,7 @@ else:
 
 
 
-data = [52, 10]
+
 choice = st.radio(
     "Set scale:",
     ["Overview Map", "Detail Map"],
@@ -184,7 +173,7 @@ if choice == 'Overview Map':
     if map.get("last_clicked"):
         dada = get_pos(map["last_clicked"]["lat"], map["last_clicked"]["lng"])
 
-    if data is not None:
+    if dada is not None:
         st.write(dada) # Writes to the app
         #print(data) # Writes to terminal
         choice = "Detail Map"
