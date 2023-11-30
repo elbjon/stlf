@@ -195,10 +195,13 @@ elif choice == "Detail Map":
            ).add_to(m)
     folium_static(m)
 
+
+    
+###################################################################
 st.write(' Is this the end?')
 
 
-p = folium.Map(location=[30, 10], tiles=None)
+p = folium.Map(location=[30, 10], tiles=None, zoom_start=5)
 folium.TileLayer("OpenStreetMap").add_to(p)
 folium.TileLayer("cartodb positron",show=False).add_to(p)
 folium.TileLayer(
@@ -267,7 +270,7 @@ folium.LayerControl().add_to(p)
 
 
 
-map = st_folium(p, height=800, width=1400, zoom_start=7 )
+map = st_folium(p, height=800, width=1400)
 st.write(map)
 
 
