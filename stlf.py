@@ -4,6 +4,7 @@ import folium
 from ast import literal_eval
 from streamlit_folium import st_folium, folium_static
 from folium.plugins import Geocoder
+st.set_page_config(layout="wide")
 
 data = [52, 10]
 choice = st.radio(
@@ -94,7 +95,7 @@ if choice == 'Overview Map':
 
 
     #folium_static(m)
-    map = st_folium(m, height=600, width=600)
+    map = st_folium(m, height=600, width=900)
 
     data = None
     if map.get("last_clicked"):
