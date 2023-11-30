@@ -52,7 +52,8 @@ if geojson_data:
     mabb = st_folium(m, height=1000, width=1400,returned_objects=["last_active_drawing"])
 
     st.write(type(mabb))
-    st.write(type(mabb['map']))
+    st.write(mabb == None)
+    st.write('last_active_drawing' in mabb)
     if mabb and 'last_active_drawing' in mabb:
         continent = mabb['last_active_drawing']['properties']['CONTINENT']
         fid = mabb['last_active_drawing']['properties']['FID']
