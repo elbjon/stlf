@@ -38,6 +38,9 @@ if geojson_data:
 
     # Display the map using Streamlit
     mabb = st_folium(m, height=1000, width=1400,returned_objects=["last_active_drawing"])
+
+    st.write(type(mabb),type(mabb['last_active_drawing']))
+
     if mabb is not None:
         st.write(mabb['last_active_drawing']['properties']['CONTINENT'],mabb['last_active_drawing']['properties']['FID'])
 
@@ -90,7 +93,7 @@ if choice == 'Overview Map':
 
 
     # Create a map using the Map() function and the coordinates for Boulder, CO
-    m = folium.Map(location=[54, 13], zoom_start=1, tiles="cartodb positron",height=900, width=1200,returned_objects=["last_object_clicked"])
+    m = folium.Map(zoom_start=4, tiles="cartodb positron",height=900, width=1200,returned_objects=["last_object_clicked"])
     #bounds = folium.get_bounds(m)
     #print("Bounds:", bounds)
     
