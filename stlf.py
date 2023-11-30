@@ -188,9 +188,9 @@ elif choice == "Detail Map":
 st.write(' Is this the end?')
 
 
-m = folium.Map(tiles=None)
-folium.TileLayer("OpenStreetMap").add_to(m)
-folium.TileLayer("cartodb positron",show=False).add_to(m)
+p = folium.Map(location=[30, 10], tiles=None)
+folium.TileLayer("OpenStreetMap").add_to(p)
+folium.TileLayer("cartodb positron",show=False).add_to(p)
 folium.TileLayer(
             tiles = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
             attr = 'Esri',
@@ -198,13 +198,13 @@ folium.TileLayer(
             show=False,
             overlay = False,
             control = True
-           ).add_to(m)
+           ).add_to(p)
 
 folium.TileLayer(
     tiles = 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
     attr='opentopomap.org',
     show=False,
-    ).add_to(m)
+    ).add_to(p)
 
 # Display the map using Streamlit
 
@@ -228,36 +228,36 @@ else:
     
 
     
-    img.add_to(m)
-    folium.LayerControl().add_to(m)
+    img.add_to(p)
+    folium.LayerControl().add_to(p)
     
     folium.Marker(
         [52, 10], popup="52,10", tooltip="HELLOHELLO"
-    ).add_to(m)
+    ).add_to(p)
     folium.Marker(
         [53, 10], popup="53, 10", tooltip="HELLOHELLO"
-    ).add_to(m)
+    ).add_to(p)
     folium.Marker(
         [53, 11], popup="53, 11", tooltip="HELLOHELLO"
-    ).add_to(m)
+    ).add_to(p)
     folium.Marker(
         [52, 11], popup="52, 11", tooltip="HELLOHELLO"
-    ).add_to(m)
+    ).add_to(p)
 
 
 
-folium.LayerControl().add_to(m)
-
-
-
-
+folium.LayerControl().add_to(p)
 
 
 
 
 
 
-map = st_folium(m, location=[30, 10], height=800, width=1400, zoom_start=7 )
+
+
+
+
+map = st_folium(p, height=800, width=1400, zoom_start=7 )
 st.write(map)
 
 
