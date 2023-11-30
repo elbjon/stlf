@@ -32,7 +32,7 @@ geojson_file = "World_Continents.geojson"
 geojson_data = embed_geojson_from_github(github_folder, geojson_file)
 
 # Create a Folium map
-m = folium.Map(location=[30, 10], zoom_start=3)
+m = folium.Map(location=[30, 10], zoom_start=2)
 
 # Check if GeoJSON data is available
 if geojson_data:
@@ -42,7 +42,7 @@ if geojson_data:
     # Display the map using Streamlit
     mabb = st_folium(m, height=1000, width=1400,returned_objects=["last_active_drawing"])
     if mabb is not None:
-        st.write(mabb['last_active_drawing']['properties'],mabb['last_active_drawing']['properties'])
+        st.write(mabb['last_active_drawing']['properties']['CONTINENT'],mabb['last_active_drawing']['properties']['FID'])
 
     #if map.get("last_clicked"):
     #    data = mabb["last_clicked"]["lat"], mabb["last_clicked"]["lng"]
