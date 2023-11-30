@@ -57,14 +57,14 @@ if geojson_data:
     st.write(mabb['last_active_drawing'])
     st.write(mabb['last_active_drawing']== None)
 
+    if mabb['last_active_drawing'] == None:
+        st.warning(r'what\'s a warning? Just choose your continent')
 
-
-    if mabb and 'last_active_drawing' in mabb:
+    else:
         continent = mabb['last_active_drawing']['properties']['CONTINENT']
         fid = mabb['last_active_drawing']['properties']['FID']
         st.write(continent, fid)
-    else:
-        st.warning("Please use the drawing tool to select a continent.")
+
 
 
     #if mabb is not None:
