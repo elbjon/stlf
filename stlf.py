@@ -42,7 +42,7 @@ if geojson_data:
     # Display the map using Streamlit
     mabb = st_folium(m, height=1000, width=1400,returned_objects=["last_active_drawing"])
     if mabb is not None:
-        st.write(mabb['last_active_drawing'])
+        st.write(mabb['last_active_drawing']['properties'])
 
     #if map.get("last_clicked"):
     #    data = mabb["last_clicked"]["lat"], mabb["last_clicked"]["lng"]
