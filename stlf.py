@@ -100,7 +100,7 @@ if choice == 'Overview Map':
 
 
     # Create a map using the Map() function and the coordinates for Boulder, CO
-    m = folium.Map(zoom_start=4, tiles="cartodb positron",height=900, width=1200,returned_objects=["last_object_clicked"])
+    m = folium.Map(zoom_start=6, tiles="cartodb positron",height=900, width=1200,returned_objects=["last_object_clicked"])
     #bounds = folium.get_bounds(m)
     #print("Bounds:", bounds)
     
@@ -201,7 +201,7 @@ elif choice == "Detail Map":
 st.write(' Is this the end?')
 
 
-p = folium.Map(location=[30, 10], tiles=None, zoom_start=5)
+p = folium.Map(location=[30, 10], tiles=None, zoom_start=7)
 folium.TileLayer("OpenStreetMap").add_to(p)
 folium.TileLayer("cartodb positron",show=False).add_to(p)
 folium.TileLayer(
@@ -227,8 +227,10 @@ folium.TileLayer(
 # add image
 merc = r'img\1.png' 
 if not os.path.isfile(merc):
-    print(f"Could not find {merc}")
+    st.write(f"Could not find {merc}")
+
 else:
+    st.write(f'{merc} found')
     img = folium.raster_layers.ImageOverlay(
         name="Mercator projection SW",
         image=merc,
@@ -241,33 +243,25 @@ else:
     
 
     
-    img.add_to(p)
-    folium.LayerControl().add_to(p)
-    
-    folium.Marker(
-        [52, 10], popup="52,10", tooltip="HELLOHELLO"
-    ).add_to(p)
-    folium.Marker(
-        [53, 10], popup="53, 10", tooltip="HELLOHELLO"
-    ).add_to(p)
-    folium.Marker(
-        [53, 11], popup="53, 11", tooltip="HELLOHELLO"
-    ).add_to(p)
-    folium.Marker(
-        [52, 11], popup="52, 11", tooltip="HELLOHELLO"
-    ).add_to(p)
+img.add_to(p)
+folium.LayerControl().add_to(p)
+
+folium.Marker(
+    [52, 10], popup="52,10", tooltip="HELLOHELLO"
+).add_to(p)
+folium.Marker(
+    [53, 10], popup="53, 10", tooltip="HELLOHELLO"
+).add_to(p)
+folium.Marker(
+    [53, 11], popup="53, 11", tooltip="HELLOHELLO"
+).add_to(p)
+folium.Marker(
+    [52, 11], popup="52, 11", tooltip="HELLOHELLO"
+).add_to(p)
 
 
 
 folium.LayerControl().add_to(p)
-
-
-
-
-
-
-
-
 
 
 map = st_folium(p, height=800, width=1400)
