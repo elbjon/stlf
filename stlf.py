@@ -53,7 +53,7 @@ if geojson_data:
 
 
     if mabb['last_active_drawing'] == None:
-        st.warning(r'what\'s a warning? Just choose your continent')
+        st.warning("Pick-click your continent of choice!")
 
     else:
         continent = mabb['last_active_drawing']['properties']['CONTINENT']
@@ -61,7 +61,7 @@ if geojson_data:
         st.write(continent, fid)
 
 else:
-    st.warning("Pick-click your continent of choice!")
+    st.warning("Geo data is missing")
 
 
 
