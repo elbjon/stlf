@@ -4,7 +4,6 @@ import folium
 from ast import literal_eval
 from streamlit_folium import st_folium, folium_static
 from folium.plugins import Geocoder
-from folium.plugins import Draw
 import json
 import os
 
@@ -207,17 +206,13 @@ folium.TileLayer(
     show=False,
     ).add_to(m)
 
-# Add a drawing tool to the map
-draw = Draw(export=True)
-draw.add_to(m)
-
 # Display the map using Streamlit
 
 
 
 
 # add image
-merc = '1.png' #= os.path.join("data", "Mercator_projection_SW.png")
+merc = r'img\1.png' 
 if not os.path.isfile(merc):
     print(f"Could not find {merc}")
 else:
@@ -231,7 +226,7 @@ else:
         zindex=1,
     )
     
-    #folium.Popup("I am an image").add_to(img)
+
     
     img.add_to(m)
     folium.LayerControl().add_to(m)
@@ -253,18 +248,17 @@ else:
 
 folium.LayerControl().add_to(m)
 
-st_folium(m)
-
-# Display the drawn features
-st.write(draw)
 
 
 
 
 
 
-#map = st_folium(m, height=350, width=700)
 
+
+
+map = st_folium(m, height=800, width=1400)
+st.write(map)
 
 
 
