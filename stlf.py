@@ -33,8 +33,17 @@ m = folium.Map(location=[30, 10], zoom_start=2)
 
 # Check if GeoJSON data is available
 if geojson_data:
-    # Add GeoJSON layer to the map
-    folium.GeoJson(geojson_data, name='geojson').add_to(m)
+    # Add GeoJSON layer to the map with custom fill colors based on FID
+    folium.GeoJson(
+        geojson_data,
+        name='geojson',
+        style_function=lambda feature: {
+            "fillColor": f"#{feature['properties']['FID'] % 16777215:06X}",  # Use FID for color
+            "color": "black",
+            "weight": 2,
+            "dashArray": "5, 5",
+        },
+    ).add_to(m)
 
     # Display the map using Streamlit
     mabb = st_folium(m, height=1000, width=1400,returned_objects=["last_active_drawing"])
@@ -100,7 +109,7 @@ if choice == 'Overview Map':
 
 
     # Create a map using the Map() function and the coordinates for Boulder, CO
-    m = folium.Map(zoom_start=6, tiles="cartodb positron",height=900, width=1200,returned_objects=["last_object_clicked"])
+    m = folium.Map(zoom_start=8, tiles="cartodb positron",height=900, width=1200,returned_objects=["last_object_clicked"])
     #bounds = folium.get_bounds(m)
     #print("Bounds:", bounds)
     
