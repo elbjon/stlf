@@ -26,14 +26,14 @@ for i, img_file in enumerate(image_files, start=1):
         cross_origin=False,
         zindex=i
     )
-    overlay.add_to(overlay_group)
+    overlay.add_to(overlay_group})
 
     # Group images in sets of four
     if i % 4 == 0:
         # Füge die FeatureGroup zur Karte hinzu
         overlay_group.add_to(m)
         # Erstelle eine neue FeatureGroup für die nächsten Overlays
-        overlay_group = folium.FeatureGroup(name='Overlays')
+        overlay_group = folium.FeatureGroup(name=f'Overlays{i}')
 
 # Füge eine weitere Layer Control für die FeatureGroup hinzu
 folium.LayerControl(collapsed=False).add_to(m)
