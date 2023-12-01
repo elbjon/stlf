@@ -1,48 +1,66 @@
 import os
 import streamlit as st
 import pandas as pd
-from PIL import Image
+import streamlit.components.v1 as components
 
-# Function to get image names from a subfolder
-def get_image_names(subfolder):
-    subfolder_path = os.path.join('img', subfolder)
-    if os.path.exists(subfolder_path):
-        return [f for f in os.listdir(subfolder_path) if f.endswith('.jpg')]
-    return []
+# Function to load image names from subfolder into a DataFrame
+def load_image_names(subfolder):
+    image_names = os.listdir(subfolder)
+    df = pd.DataFrame({'Image': image_names, 'preselect': 0, 'notes': ''})
+    return df
 
 # Function to display images and handle selection
-def display_images(subfolder, images):
-    st.header(f"Images in {subfolder}")
-    df = pd.DataFrame({'Image': images, 'Preselect': [0] * len(images), 'Notes': [''] * len(images)})
+def display_images(images_df, current_index):
+    st.image(images_df.iloc[current_index]['Image'], use_column_width=True, width=90, caption=images_df.iloc[current_index]['Image'])
 
-    for i, row in df.iterrows():
-        image_path = os.path.join('img', subfolder, row['Image'])
-        img = Image.open(image_path)
-        st.image(img, caption=row['Image'], width=60, use_column_width=False)
-        
-        # Checkbox to preselect
-        row['Preselect'] = st.checkbox(f"Preselect {i+1}", key=f"checkbox_{i}")
+    # Checkbox for preselecting images
+    preselect = st.checkbox('Preselect', value=bool(images_df.iloc[current_index]['preselect']))
 
-        # Text input for notes
-        row['Notes'] = st.text_input(f"Notes {i+1}")
-
-    st.write(df)
+    # Save the preselection state
+    images_df.at[current_index, 'preselect'] = 1 if preselect else 0
 
 # Main Streamlit app
 def main():
     st.title("Image Selection App")
 
-    # Get a list of subfolders in the 'img' directory
-    subfolders = [f for f in os.listdir('img') if os.path.isdir(os.path.join('img', f))]
+    # List all subfolders in the 'img' directory
+    subfolders = [f.path for f in os.scandir('img') if f.is_dir()]
 
-    # Dropdown to select a subfolder
+    # Sidebar to select subfolder
     selected_subfolder = st.sidebar.selectbox("Select Subfolder", subfolders)
 
-    # Get image names from the selected subfolder
-    images = get_image_names(selected_subfolder)
+    # Load images into DataFrame
+    images_df = load_image_names(selected_subfolder)
 
-    # Display images and handle selection
-    display_images(selected_subfolder, images)
+    # Display columns of images
+    num_columns = 7
+    num_images = len(images_df)
+    images_per_column = num_images // num_columns
 
-if __name__ == "__main__":
+    for col in range(num_columns):
+        start_index = col * images_per_column
+        end_index = (col + 1) * images_per_column if col < num_columns - 1 else num_images
+        column_images_df = images_df.iloc[start_index:end_index]
+
+        # Display images in this column
+        with st.beta_container():
+            st.write(f"Column {col + 1}")
+            for index, image_row in column_images_df.iterrows():
+                display_images(images_df, index)
+
+    # 'Back' and 'Next' buttons
+    current_index = st.session_state.get('current_index', 0)
+    back_button = st.button("Back")
+    next_button = st.button("Next")
+
+    if back_button:
+        current_index = max(0, current_index - 1)
+    elif next_button:
+        current_index = min(num_images - 1, current_index + 1)
+
+    # Save current index in session state
+    st.session_state.current_index = current_index
+
+# Run the app
+if __name__ == '__main__':
     main()
