@@ -38,7 +38,7 @@ for row in range(num_rows):
         i = row * num_columns + col + start_index
         if i < end_index:
             img_path = os.path.join(subfolder_path, df.loc[i, 'Image'])
-            img = Image.open(img_path)
+            img = Image.open(img_path).resize((150, 200))
             col_images[col].image(img, use_column_width=True, caption=df.loc[i, 'Image'])
 
             # Checkbox for image selection
