@@ -103,7 +103,7 @@ if choice == 'Overview Map':
 
 
     # Create a map using the Map() function and the coordinates for Boulder, CO
-    m = folium.Map(zoom_start=8, tiles="cartodb positron",height=900, width=1200,returned_objects=["last_object_clicked"])
+    m = folium.Map(zoom_start=8, tiles="cartodb positron",height=900, width=1400,returned_objects=["last_object_clicked"])
     #bounds = folium.get_bounds(m)
     #print("Bounds:", bounds)
     
@@ -163,8 +163,8 @@ if choice == 'Overview Map':
     # add search field
     Geocoder().add_to(m)
 
-    #folium_static(m)
-    map = st_folium(m, height=900, width=1400)
+    #folium_static(m) # vs.:
+    map = st_folium(m)
 
 ######
     #data = None
