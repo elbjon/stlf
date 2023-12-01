@@ -18,7 +18,7 @@ image_path = "images/example_image.png"
 
 # Load and display the image
 image = Image.open('heatmap_Screenshot.png')
-st.image(image, caption="Density or Photographic Reconnaissance Flights", use_column_width=True)
+st.image(image, caption="Density or Photographic Reconnaissance Flights", use_column_width=False)
 
 
 
