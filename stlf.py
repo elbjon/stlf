@@ -1,85 +1,53 @@
-import streamlit as st
+from folium import Map, TileLayer, LayerControl
 import folium
-from streamlit_folium import folium_static
+from streamlit_folium import st_folium
 
 # Create a Folium map
-m = folium.Map(location=[51.1657, 10.4515], zoom_start=5)
+m = Map(location=[51.5, -0.1], zoom_start=10)
 
-# Add ImageOverlays to the map
-img_overlay_1 = folium.raster_layers.ImageOverlay(
-    name="Overlay 1",
-    image="img/224m1765-279-00488_it1_thresholded.jpg",
-    bounds=[[50, 10], [52, 12]],
-    opacity=0.6,
-    interactive=True,
-)
-img_overlay_1.add_to(m)
+# Add tile layers
+TileLayer("OpenStreetMap").add_to(m)
+TileLayer("cartodb positron").add_to(m)
 
-img_overlay_2 = folium.raster_layers.ImageOverlay(
-    name="Overlay 2",
-    image="img/224m1765-279-00488_it1_thresholded.jpg",
-    bounds=[[53, 11], [55, 13]],
-    opacity=0.6,
-    interactive=True,
-)
-img_overlay_2.add_to(m)
+# Create a Layer Control
+layer_control = LayerControl().add_to(m)
 
-# Add placeholder GeoJSON layers with custom colors for the LayerControl
-placeholder_geojson_1 = folium.GeoJson(
-    {"type": "Point", "coordinates": [0, 0]},
-    name="Overlay 1",
-    style_function=lambda x: {"fillColor": "blue", "color": "blue"},
-)
-placeholder_geojson_1.add_to(m)
-
-placeholder_geojson_2 = folium.GeoJson(
-    {"type": "Point", "coordinates": [0, 0]},
-    name="Overlay 2",
-    style_function=lambda x: {"fillColor": "green", "color": "green"},
-)
-placeholder_geojson_2.add_to(m)
-
-# Display the map in Streamlit
-folium_static(m)
-#test
-
-#############################################
-
-# Create a Folium map
-m = folium.Map(location=[51.1657, 10.4515], zoom_start=5)
-
-# Add some layers to the map
-folium.TileLayer("OpenStreetMap").add_to(m)
-folium.TileLayer("Stamen Terrain").add_to(m)
-folium.TileLayer("Stamen Toner").add_to(m)
-
-# Create a LayerControl with custom colors
-layer_control_html = """
-    <div style="
-        position: fixed; 
-        top: 10px; 
-        left: 10px; 
-        width: 120px; 
-        height: 110px; 
-        border: 2px solid grey; 
-        z-index: 1002;
-        background-color: white;
-        opacity: 0.8;
-    ">
-        <p style="margin: 5px;">
-            <span style="color: #1f77b4;">&#9679;</span> OpenStreetMap
-        </p>
-        <p style="margin: 5px;">
-            <span style="color: #ff7f0e;">&#9679;</span> Terrain
-        </p>
-        <p style="margin: 5px;">
-            <span style="color: #2ca02c;">&#9679;</span> Toner
-        </p>
-    </div>
+# Inject custom CSS styles
+custom_css = """
+<style>
+.leaflet-control-layers-list {
+    color: red;  /* Change the text color to red */
+    /* Add more custom styles as needed */
+}
+</style>
 """
 
-# Add the custom LayerControl to the map
-folium.Marker([0, 0], icon=folium.DivIcon(html=layer_control_html)).add_to(m)
+m.get_root().html.add_child(folium.Element(custom_css))
 
-# Display the map in Streamlit
-folium_static(m)
+# Display the map
+m
+
+# Create a Folium map
+m = Map(location=[51.5, -0.1], zoom_start=10)
+
+# Add tile layers
+TileLayer("OpenStreetMap").add_to(m)
+TileLayer("cartodb positron").add_to(m)
+
+# Create a Layer Control
+layer_control = LayerControl().add_to(m)
+
+# Inject custom CSS styles
+custom_css = """
+<style>
+.leaflet-control-layers-list {
+    color: red;  /* Change the text color to red */
+    /* Add more custom styles as needed */
+}
+</style>
+"""
+
+m.get_root().html.add_child(folium.Element(custom_css))
+
+# Display the map
+st_folium(m)
