@@ -35,6 +35,9 @@ for i, img_file in enumerate(image_files, start=1):
         # Erstelle eine neue FeatureGroup für die nächsten Overlays
         overlay_group = folium.FeatureGroup(name=f'Overlays{i}')
 
+# Add the last group of overlays to the map
+overlay_group.add_to(m)
+
 # Füge eine weitere Layer Control für die FeatureGroup hinzu
 folium.LayerControl(collapsed=False).add_to(m)
 
