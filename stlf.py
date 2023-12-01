@@ -42,3 +42,44 @@ placeholder_geojson_2.add_to(m)
 # Display the map in Streamlit
 folium_static(m)
 #test
+
+#############################################
+
+# Create a Folium map
+m = folium.Map(location=[51.1657, 10.4515], zoom_start=5)
+
+# Add some layers to the map
+folium.TileLayer("OpenStreetMap").add_to(m)
+folium.TileLayer("Stamen Terrain").add_to(m)
+folium.TileLayer("Stamen Toner").add_to(m)
+
+# Create a LayerControl with custom colors
+layer_control_html = """
+    <div style="
+        position: fixed; 
+        top: 10px; 
+        left: 10px; 
+        width: 120px; 
+        height: 110px; 
+        border: 2px solid grey; 
+        z-index: 1002;
+        background-color: white;
+        opacity: 0.8;
+    ">
+        <p style="margin: 5px;">
+            <span style="color: #1f77b4;">&#9679;</span> OpenStreetMap
+        </p>
+        <p style="margin: 5px;">
+            <span style="color: #ff7f0e;">&#9679;</span> Terrain
+        </p>
+        <p style="margin: 5px;">
+            <span style="color: #2ca02c;">&#9679;</span> Toner
+        </p>
+    </div>
+"""
+
+# Add the custom LayerControl to the map
+folium.Marker([0, 0], icon=folium.DivIcon(html=layer_control_html)).add_to(m)
+
+# Display the map in Streamlit
+folium_static(m)
