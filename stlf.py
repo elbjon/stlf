@@ -26,7 +26,7 @@ for i, img_file in enumerate(image_files, start=1):
         cross_origin=False,
         zindex=i
     )
-    overlay.add_to(overlay_group})
+    overlay.add_to(overlay_group)
 
     # Group images in sets of four
     if i % 4 == 0:
