@@ -75,18 +75,18 @@ for count, file_name in enumerate(os.listdir(img_folder)):
 
 
 
-folium.Marker(
-    [52, 10], popup="52,10", tooltip="HELLOHELLO"
-).add_to(p)
-folium.Marker(
-    [53, 10], popup="53, 10", tooltip="HELLOHELLO"
-).add_to(p)
-folium.Marker(
-    [53, 11], popup="53, 11", tooltip="HELLOHELLO"
-).add_to(p)
-folium.Marker(
-    [52, 11], popup="52, 11", tooltip="HELLOHELLO"
-).add_to(p)
+#folium.Marker(
+#    [52, 10], popup="52,10", tooltip="HELLOHELLO"
+#).add_to(p)
+#folium.Marker(
+#    [53, 10], popup="53, 10", tooltip="HELLOHELLO"
+#).add_to(p)
+#folium.Marker(
+#    [53, 11], popup="53, 11", tooltip="HELLOHELLO"
+#).add_to(p)
+#folium.Marker(
+#    [52, 11], popup="52, 11", tooltip="HELLOHELLO"
+#).add_to(p)
 
 # add search field
 Geocoder().add_to(p)
