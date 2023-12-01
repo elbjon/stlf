@@ -270,7 +270,8 @@ folium.Marker(
     [52, 11], popup="52, 11", tooltip="HELLOHELLO"
 ).add_to(p)
 
-
+# add search field
+Geocoder().add_to(p)
 
 folium.LayerControl().add_to(p)
 
