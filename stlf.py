@@ -14,7 +14,7 @@ m = folium.Map(location=[51.5, 10], zoom_start=7)
 overlay_group = folium.FeatureGroup(name='Overlays')
 
 # Füge die Overlays zur FeatureGroup hinzu
-image_files = sorted([f for f in os.listdir(img_path) if f.endswith('.png')])
+image_files = sorted([f for f in os.listdir(img_path) if f.endswith('.jpg')])
 for i, img_file in enumerate(image_files, start=1):
     img_path = os.path.join(img_folder, img_file)
     overlay = folium.raster_layers.ImageOverlay(
