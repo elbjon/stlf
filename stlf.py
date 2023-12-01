@@ -4,11 +4,21 @@ import folium
 from ast import literal_eval
 from streamlit_folium import st_folium, folium_static
 from folium.plugins import Geocoder
+from PIL import Image
 import json
 import os
 
 st.set_page_config(layout="wide")
 
+
+
+
+# Image file path
+image_path = "images/example_image.png"
+
+# Load and display the image
+image = Image.open('heatmap_Screenshot.png')
+st.image(image, caption="heat map", use_column_width=False)
 
 
 st.write('Choose your continent of interest by clicking')
