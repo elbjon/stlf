@@ -24,7 +24,7 @@ st.image(image, caption="Density or Photographic Reconnaissance Flights", use_co
 
 
 
-p = folium.Map(location=[52.5, 10.5], tiles=None, zoom_start=9)
+p = folium.Map(location=[0, 30], tiles=None, zoom_start=5)
 folium.TileLayer("OpenStreetMap", name= 'OpenStreetMap').add_to(p)
 folium.TileLayer("cartodb positron",show=False).add_to(p)
 folium.TileLayer(
