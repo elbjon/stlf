@@ -18,13 +18,13 @@ image_path = "images/example_image.png"
 
 # Load and display the image
 image = Image.open('heatmap_Screenshot.png')
-st.image(image, caption="Density or Photographic Reconnaissance Flights", use_column_width=False)
+st.image(image, caption="Density of Photographic Reconnaissance Flights", use_column_width=False)
 
 
 
 
 
-p = folium.Map(location=[0, 30], tiles=None, zoom_start=5)
+p = folium.Map(location=[30, 30], tiles=None, zoom_start=3)
 folium.TileLayer("OpenStreetMap", name= 'OpenStreetMap').add_to(p)
 folium.TileLayer("cartodb positron",show=False).add_to(p)
 folium.TileLayer(
