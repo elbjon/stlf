@@ -1,46 +1,48 @@
 import os
 import streamlit as st
-import folium
-from streamlit_folium import folium_static
+import pandas as pd
+from PIL import Image
 
-# Get the path to the directory containing the images
-img_folder = 'img'  # Replace with your actual folder name
-img_path = os.path.join(os.path.dirname(__file__), img_folder)
+# Function to get image names from a subfolder
+def get_image_names(subfolder):
+    subfolder_path = os.path.join('img', subfolder)
+    if os.path.exists(subfolder_path):
+        return [f for f in os.listdir(subfolder_path) if f.endswith('.jpg')]
+    return []
 
-# Erstelle eine Karte
-m = folium.Map(location=[51.5, 10], zoom_start=7)
+# Function to display images and handle selection
+def display_images(subfolder, images):
+    st.header(f"Images in {subfolder}")
+    df = pd.DataFrame({'Image': images, 'Preselect': [0] * len(images), 'Notes': [''] * len(images)})
 
-# Erstelle eine FeatureGroup für die Overlays
-overlay_group = folium.FeatureGroup(name='Overlays')
+    for i, row in df.iterrows():
+        image_path = os.path.join('img', subfolder, row['Image'])
+        img = Image.open(image_path)
+        st.image(img, caption=row['Image'], width=60, use_column_width=False)
+        
+        # Checkbox to preselect
+        row['Preselect'] = st.checkbox(f"Preselect {i+1}", key=f"checkbox_{i}")
 
-# Füge die Overlays zur FeatureGroup hinzu
-image_files = sorted([f for f in os.listdir(img_path) if f.endswith('.jpg')])
-for i, img_file in enumerate(image_files, start=1):
-    img_path = os.path.join(img_folder, img_file)
-    overlay = folium.raster_layers.ImageOverlay(
-        name=f'Overlay_{i}',
-        image=img_path,
-        bounds=[[51.85, 9.6], [53.3, 11.70]],
-        opacity=0.6,
-        interactive=True,
-        cross_origin=False,
-        show=False,
-        zindex=i
-    )
-    overlay.add_to(overlay_group)
+        # Text input for notes
+        row['Notes'] = st.text_input(f"Notes {i+1}")
 
-    # Group images in sets of four
-    if i % 4 == 0:
-        # Füge die FeatureGroup zur Karte hinzu
-        overlay_group.add_to(m)
-        # Erstelle eine neue FeatureGroup für die nächsten Overlays
-        overlay_group = folium.FeatureGroup(name=f'Overlays{i}')
+    st.write(df)
 
-# Add the last group of overlays to the map
-overlay_group.add_to(m)
+# Main Streamlit app
+def main():
+    st.title("Image Selection App")
 
-# Füge eine weitere Layer Control für die FeatureGroup hinzu
-folium.LayerControl(collapsed=False).add_to(m)
+    # Get a list of subfolders in the 'img' directory
+    subfolders = [f for f in os.listdir('img') if os.path.isdir(os.path.join('img', f))]
 
-# Zeige die Karte mit streamlit_folium
-folium_static(m)
+    # Dropdown to select a subfolder
+    selected_subfolder = st.sidebar.selectbox("Select Subfolder", subfolders)
+
+    # Get image names from the selected subfolder
+    images = get_image_names(selected_subfolder)
+
+    # Display images and handle selection
+    display_images(selected_subfolder, images)
+
+if __name__ == "__main__":
+    main()
