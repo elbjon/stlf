@@ -43,7 +43,7 @@ def main():
         column_images_df = images_df.iloc[start_index:end_index]
 
         # Display images in this column
-        with st.beta_container():
+        with st.container():
             st.write(f"Column {col + 1}")
             for index, image_row in column_images_df.iterrows():
                 display_images(images_df, index)
