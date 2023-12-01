@@ -241,7 +241,7 @@ for count, file_name in enumerate(os.listdir(img_folder)):
             name=f"Overlay_{count + 1}",
             image=img_path,
             bounds=[[51.85, 9.6], [53.3, 11.70]],  # Adjust the bounds accordingly
-            opacity=0.3,
+            opacity=0.6,
             show=False,
             interactive=False,
             cross_origin=False,
