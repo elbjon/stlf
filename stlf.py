@@ -24,6 +24,7 @@ for i, img_file in enumerate(image_files, start=1):
         opacity=0.6,
         interactive=True,
         cross_origin=False,
+        show=False,
         zindex=i
     )
     overlay.add_to(overlay_group)
