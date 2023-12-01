@@ -41,3 +41,4 @@ placeholder_geojson_2.add_to(m)
 
 # Display the map in Streamlit
 folium_static(m)
+#test
