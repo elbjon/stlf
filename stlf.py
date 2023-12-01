@@ -21,7 +21,7 @@ custom_css = """
 }
 </style>
 """
-
+#test
 m.get_root().html.add_child(folium.Element(custom_css))
 
 # Display the map
