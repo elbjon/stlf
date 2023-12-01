@@ -18,8 +18,8 @@ df = pd.DataFrame(data)
 st.title("Image Selector App")
 
 # Number of columns and rows to display
-num_columns = 10
-num_rows = 2
+num_columns = 6
+num_rows = 4
 num_images = len(df)
 num_images_per_page = num_columns * num_rows
 num_pages = -(-num_images // num_images_per_page)  # Ceiling division
