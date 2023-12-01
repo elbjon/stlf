@@ -17,18 +17,29 @@ df = pd.DataFrame(data)
 # Define Streamlit app layout
 st.title("Image Selector App")
 
-# Display images in a single column
-for i in range(len(df)):
-    img_path = os.path.join(subfolder_path, df.loc[i, 'Image'])
-    img = Image.open(img_path)
-    st.image(img, use_column_width=True, caption=df.loc[i, 'Image'])
+# Display images in six columns
+num_columns = 6
+num_images = len(df)
 
-    # Checkbox for image selection
-    selected = st.checkbox("Select", key=f"select_{i}")
-    if selected:
-        df.loc[i, 'Preselect'] = 1
-    else:
-        df.loc[i, 'Preselect'] = 0
+# Calculate the number of rows needed
+num_rows = -(-num_images // num_columns)  # Ceiling division
+
+# Display images in a grid layout
+for row in range(num_rows):
+    col_images = st.columns(num_columns)
+    for col in range(num_columns):
+        i = row * num_columns + col
+        if i < num_images:
+            img_path = os.path.join(subfolder_path, df.loc[i, 'Image'])
+            img = Image.open(img_path)
+            col_images[col].image(img, use_column_width=True, caption=df.loc[i, 'Image'])
+
+            # Checkbox for image selection
+            selected = col_images[col].checkbox("Select", key=f"select_{i}")
+            if selected:
+                df.loc[i, 'Preselect'] = 1
+            else:
+                df.loc[i, 'Preselect'] = 0
 
 # Back and Next buttons
 back_pressed = st.button("Back")
@@ -45,3 +56,4 @@ if next_pressed:
 
 # Display the DataFrame (optional, for debugging)
 st.write(df)
+
