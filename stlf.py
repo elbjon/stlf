@@ -33,7 +33,7 @@ st.title("Image Selector App")
 
 # Number of columns and rows to display
 num_columns = 6
-num_rows = 4
+num_rows = 3
 num_images = len(st.session_state.df)
 num_images_per_page = num_columns * num_rows
 num_pages = -(-num_images // num_images_per_page)  # Ceiling division
