@@ -12,7 +12,7 @@ subfolders = [f.path for f in os.scandir('img') if f.is_dir()]
 # Select a specific subfolder
 selected_subfolder = st.sidebar.selectbox("Select Subfolder", subfolders)
 
-subfolder_path = os.path.join('img', selected_subfolder)
+subfolder_path = selected_subfolder #os.path.join('img', selected_subfolder)
 
 
 
