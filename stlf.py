@@ -3,9 +3,18 @@ import streamlit as st
 import pandas as pd
 from PIL import Image
 
+
+#selected_subfolder = '52N10E'
+
+# List all subfolders in the 'img' directory
+subfolders = [f.path for f in os.scandir('img') if f.is_dir()]
+
 # Select a specific subfolder
-selected_subfolder = '52N10E'
+selected_subfolder = st.sidebar.selectbox("Select Subfolder", subfolders)
+
 subfolder_path = os.path.join('img', selected_subfolder)
+
+
 
 # Get the list of image names in the selected subfolder
 image_names = [f.name for f in os.scandir(subfolder_path) if f.is_file() and f.name.endswith(('.jpg', '.png'))]
@@ -50,8 +59,8 @@ for row in range(num_rows):
             selected = col_images[col].checkbox("Select", key=f"select_{i}")
             if selected:
                 st.session_state.df.loc[i, 'Preselect'] = 1
-            else:
-                st.session_state.df.loc[i, 'Preselect'] = 0
+            #else:
+            #    st.session_state.df.loc[i, 'Preselect'] = 0
 
 # Back and Next buttons
 back_pressed = st.button("Back")
