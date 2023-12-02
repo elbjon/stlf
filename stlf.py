@@ -12,10 +12,11 @@ image_names = [f.name for f in os.scandir(subfolder_path) if f.is_file() and f.n
 
 # Initialize a DataFrame to store image names, preselect status, and notes
 data = {'Image': image_names, 'Preselect': [0] * len(image_names), 'Note': [''] * len(image_names)}
-df = pd.DataFrame(data)
+
 
 # Check if 'df' is not in session state, and if not, store it
 if 'df' not in st.session_state:
+    df = pd.DataFrame(data)
     st.session_state.df = df
 
 # Define Streamlit app layout
