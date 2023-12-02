@@ -14,13 +14,17 @@ image_names = [f.name for f in os.scandir(subfolder_path) if f.is_file() and f.n
 data = {'Image': image_names, 'Preselect': [0] * len(image_names), 'Note': [''] * len(image_names)}
 df = pd.DataFrame(data)
 
+# Check if 'df' is not in session state, and if not, store it
+if 'df' not in st.session_state:
+    st.session_state.df = df
+
 # Define Streamlit app layout
 st.title("Image Selector App")
 
 # Number of columns and rows to display
 num_columns = 6
 num_rows = 4
-num_images = len(df)
+num_images = len(st.session_state.df)
 num_images_per_page = num_columns * num_rows
 num_pages = -(-num_images // num_images_per_page)  # Ceiling division
 
@@ -37,16 +41,16 @@ for row in range(num_rows):
     for col in range(num_columns):
         i = row * num_columns + col + start_index
         if i < end_index:
-            img_path = os.path.join(subfolder_path, df.loc[i, 'Image'])
+            img_path = os.path.join(subfolder_path, st.session_state.df.loc[i, 'Image'])
             img = Image.open(img_path).resize((150, 200))
-            col_images[col].image(img, use_column_width=True, caption=df.loc[i, 'Image'])
+            col_images[col].image(img, use_column_width=True, caption=st.session_state.df.loc[i, 'Image'])
 
             # Checkbox for image selection
             selected = col_images[col].checkbox("Select", key=f"select_{i}")
             if selected:
-                df.loc[i, 'Preselect'] = 1
+                st.session_state.df.loc[i, 'Preselect'] = 1
             else:
-                df.loc[i, 'Preselect'] = 0
+                st.session_state.df.loc[i, 'Preselect'] = 0
 
 # Back and Next buttons
 back_pressed = st.button("Back")
@@ -64,4 +68,4 @@ if next_pressed:
     st.write("Next button clicked")
 
 # Display the DataFrame (optional, for debugging)
-st.write(df)
+st.write(st.session_state.df)
