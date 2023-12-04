@@ -174,7 +174,7 @@ else:
     #####################
         if selected:
             st.session_state.df.loc[i, 'Preselect'] = 1
-            st.write(st.session_state.df.loc[i, 'Image'])
+            #st.write(st.session_state.df.loc[i, 'Image'])
 
 
 
