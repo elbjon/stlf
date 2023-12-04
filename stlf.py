@@ -27,11 +27,11 @@ subfolder_path = selected_subfolder #os.path.join('img', selected_subfolder)
 image_names = [f.name for f in os.scandir(subfolder_path) if f.is_file() and f.name.endswith(('.jpg', '.png'))] # change accordingly
 
 # Initialize a DataFrame to store image names, preselect status, and notes
-data = {'Image': image_names, 'Preselect': [0] * len(image_names), 'Note': [''] * len(image_names), 'Path':['']* len(image_names),'No': list(range(1, len(image_names) + 1)) }
+dada = {'Image': image_names, 'Preselect': [0] * len(image_names), 'Note': [''] * len(image_names), 'Path':['']* len(image_names),'No': list(range(1, len(image_names) + 1)) }
 
 # Check if 'df' is not in session state, and if not, store it
 if 'df' not in st.session_state:
-    st.session_state['df'] = pd.DataFrame(data)
+    st.session_state['df'] = pd.DataFrame(dada)
 
 # Define Streamlit app layout
 st.title("Part 2: Image Selector App")
