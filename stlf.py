@@ -52,12 +52,22 @@ st.title("Part 2: Image Selector App")
 
 for i, v in enumerate(st.session_state.df['Image']):
 
-    img_path = os.path.join(subfolder_path, st.session_state.df.loc[i, 'Image'])
+    img_path = os.path.join(subfolder_path, v)#st.session_state.df.loc[i, 'Image'])
     #st.sidebar.markdown(img_path)
     img = Image.open(img_path)#.resize((150, 200))
     
     st.sidebar.image(img, caption='Your Image', use_column_width=True)
+
+    # Checkbox for image selection in the sidebar
+    selected = st.sidebar.checkbox(f"Select Image {i}", key=f"select_{i}", value=st.session_state.df.loc[i, 'Preselect'])
+    st.session_state.df.loc[i, 'Preselect'] = int(selected)
+
+
     
+    if selected:
+        st.session_state.df.loc[i, 'Preselect'] = 1
+    #else:
+    #    st.session_state.df.loc[i, 'Preselect'] = 0
     #col_images[col].image(img, use_column_width=True, caption=st.session_state.df.loc[i, 'Image'])
 
         # Checkbox for image selection
