@@ -181,7 +181,7 @@ else:
 
                     # Create ImageOverlay with a unique name based on counting variable
             img_overlay = folium.raster_layers.ImageOverlay(
-                name=f"nameshould be number and saved in df",
+                name=f"Image {st.session_state.df.loc[i, 'No']}",
                 image=img_path,
                 bounds=[[51.85, 9.6], [53.3, 11.70]],  # Adjust the bounds accordingly
                 opacity=0.6,
@@ -189,7 +189,7 @@ else:
                 interactive=False,
                 cross_origin=False,
                 control=True,
-                zindex=count + 1,
+                
             )
 
             # Add ImageOverlay to the map 'p'
