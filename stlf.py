@@ -4,7 +4,7 @@ import pandas as pd
 from PIL import Image
 
 
-selected_subfolder = '52N10E'
+selected_subfolder = 'img/52N10E'
 
 
 # Your content that you want to make scrollable
