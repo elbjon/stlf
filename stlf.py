@@ -3,8 +3,7 @@ import streamlit as st
 import pandas as pd
 from PIL import Image
 
-#no app restart e.g. by hitting refresh button
-st.set_page_config(on_reload=False)
+
 
 #set layout to wide
 st.set_page_config(layout="wide")
@@ -18,8 +17,12 @@ if 'loc_chosen' not in st.session_state:
 if st.session_state['loc_chosen']==0:
     #Then go for overview map
 
+    # Image file path
+    image_path = "images/example_image.png"
 
-    st.write('placeholder')
+    # Load and display the image
+    image = Image.open('heatmap_Screenshot.png')
+    st.sidebar.image(image, caption="Density of Photographic Reconnaissance Flights", use_column_width=True)
 
 
 
@@ -34,12 +37,7 @@ else:
     subfolders = [f.path for f in os.scandir('img') if f.is_dir()]
 
 
-    # Image file path
-    image_path = "images/example_image.png"
-
-    # Load and display the image
-    image = Image.open('heatmap_Screenshot.png')
-    st.sidebar.image(image, caption="Density of Photographic Reconnaissance Flights", use_column_width=True)
+    
 
 
 
