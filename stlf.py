@@ -41,13 +41,13 @@ if st.session_state['loc_chosen']==0:
     def get_pos(lat, lng):
         return lat, lng
 
-    m = folium.Map(location=[30, 30],height=800, width=1400, tiles=None, zoom_start=3)
+    m = folium.Map(location=[30, 30], tiles=None, zoom_start=3)
     folium.TileLayer("OpenStreetMap", name= 'OpenStreetMap').add_to(m)
     folium.TileLayer("cartodb positron",show=False).add_to(m)
     
     m.add_child(folium.LatLngPopup())
     st.write('Choose your general area of interest by clicking')
-    map = st_folium(m) 
+    map = st_folium(m,height=800, width=1200,) 
 
     
 
