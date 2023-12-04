@@ -137,27 +137,29 @@ else:
                     # Create ImageOverlay with a unique name based on counting variable
         if st.session_state.df.loc[i, 'Preselect'] == 1:
             st.write(st.session_state.df.loc[i, 'No'])
+            
+            #path for sidebar and overlay images
+            img_path = os.path.join(subfolder_path, v)
 
-
-            #img_overlay = folium.raster_layers.ImageOverlay(
-            #name=f"Image {st.session_state.df.loc[i, 'No']}",
-            #image=st.session_state.df.loc[i, 'Path'], # img_path,
-            #bounds=[[51.85, 9.6], [53.3, 11.70]],  # Adjust the bounds accordingly
-            #opacity=0.6,
-            #show=True,
-            #interactive=False,
-            #cross_origin=False,
-            #control=True
-            #)
+            img_overlay = folium.raster_layers.ImageOverlay(
+            name=f"Image{st.session_state.df.loc[i, 'No']}",
+            image=img_path,
+            bounds=[[51.85, 9.6], [53.3, 11.70]],  # Adjust the bounds accordingly
+            opacity=0.6,
+            show=True,
+            interactive=False,
+            cross_origin=False,
+            control=True
+            )
 
             # Add ImageOverlay to the map 'p'
-            #img_overlay.add_to(p)
+            img_overlay.add_to(p)
             #######################
 
         
         
         ###actual sidebar images
-        img_path = os.path.join(subfolder_path, v)#st.session_state.df.loc[i, 'Image'])
+        #st.session_state.df.loc[i, 'Image'])
         #st.sidebar.markdown(img_path)
         img = Image.open(img_path)#.resize((150, 200))
         
