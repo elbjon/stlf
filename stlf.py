@@ -41,7 +41,7 @@ if st.session_state['loc_chosen']==0:
     
     # add search field
     Geocoder().add_to(m)
-    
+
     folium.LayerControl().add_to(m)
 
     st.write('Choose your general area of interest by clicking')
@@ -160,7 +160,8 @@ else:
         #st.sidebar.markdown(img_path)
         img = Image.open(img_path)#.resize((150, 200))
         
-        st.sidebar.image(img, use_column_width=True) #, caption='Your Image'
+        butt = st.button(st.image(img))
+        st.sidebar.image(butt, use_column_width=True) #, caption='Your Image'
 
         # Checkbox for image selection in the sidebar
         selected = st.sidebar.checkbox(f"Select Image {i}", key=f"select_{i}", value=st.session_state.df.loc[i, 'Preselect'])
