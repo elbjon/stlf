@@ -38,8 +38,14 @@ if st.session_state['loc_chosen']==0:
     folium.TileLayer("cartodb positron",show=False).add_to(m)
     
     m.add_child(folium.LatLngPopup())
+    
+    # add search field
+    Geocoder().add_to(m)
+    
+    folium.LayerControl().add_to(m)
+
     st.write('Choose your general area of interest by clicking')
-    map = st_folium(m,height=800, width=1200,) 
+    map = st_folium(m,height=800, width=1600,) 
 
     
 
@@ -82,7 +88,7 @@ else:
     folium.LayerControl().add_to(p)
 
 
-    map = st_folium(p, height=800, width=1400)
+    map = st_folium(p, height=800, width=1600)
 
 
     # List all subfolders in the 'img' directory
