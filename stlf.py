@@ -136,8 +136,10 @@ else:
 
                     # Create ImageOverlay with a unique name based on counting variable
         if st.session_state.df.loc[i, 'Preselect'] == 1:
+            st.write(st.session_state.df.loc[i, 'No'])
             img_overlay = folium.raster_layers.ImageOverlay(
             name=f"Image {st.session_state.df.loc[i, 'No']}",
+            #test
             image=st.session_state.df.loc[i, 'Path'], # img_path,
             bounds=[[51.85, 9.6], [53.3, 11.70]],  # Adjust the bounds accordingly
             opacity=0.6,
