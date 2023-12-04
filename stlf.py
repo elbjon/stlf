@@ -96,7 +96,7 @@ if st.session_state['loc_chosen']==0:
 #Call2
 #=When loc_chosen is not 0
 else:
-    p = folium.Map(location=[52.5, 10.5], tiles=None, zoom_start=9)
+    p = folium.Map(location=data, tiles=None, zoom_start=9)
     folium.TileLayer("OpenStreetMap", name= 'OpenStreetMap').add_to(p)
     folium.TileLayer("cartodb positron",show=False).add_to(p)
     folium.TileLayer(
@@ -191,6 +191,6 @@ else:
             #   st.session_state.df.loc[i, 'Preselect'] = 1
     map = st_folium(p, height=800, width=1600)
 
-    st.write(st.session_state.df)
+    #st.write(st.session_state.df)
 
 
