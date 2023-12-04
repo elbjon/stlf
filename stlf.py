@@ -34,7 +34,7 @@ if 'df' not in st.session_state:
     st.session_state['df'] = pd.DataFrame(dada)
 
 # Define Streamlit app layout
-st.title("Part 2: Image Selector App")
+st.title("Localizing Aerial Images")
 #############################################
 
 
@@ -139,19 +139,19 @@ else:
             st.write(st.session_state.df.loc[i, 'No'])
 
 
-            img_overlay = folium.raster_layers.ImageOverlay(
-            name=f"Image {st.session_state.df.loc[i, 'No']}",
-            image=st.session_state.df.loc[i, 'Path'], # img_path,
-            bounds=[[51.85, 9.6], [53.3, 11.70]],  # Adjust the bounds accordingly
-            opacity=0.6,
-            show=True,
-            interactive=False,
-            cross_origin=False,
-            control=True
-            )
+            #img_overlay = folium.raster_layers.ImageOverlay(
+            #name=f"Image {st.session_state.df.loc[i, 'No']}",
+            #image=st.session_state.df.loc[i, 'Path'], # img_path,
+            #bounds=[[51.85, 9.6], [53.3, 11.70]],  # Adjust the bounds accordingly
+            #opacity=0.6,
+            #show=True,
+            #interactive=False,
+            #cross_origin=False,
+            #control=True
+            #)
 
             # Add ImageOverlay to the map 'p'
-            img_overlay.add_to(p)
+            #img_overlay.add_to(p)
             #######################
 
         
