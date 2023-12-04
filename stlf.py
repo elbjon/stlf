@@ -137,13 +137,14 @@ else:
                     # Create ImageOverlay with a unique name based on counting variable
         if st.session_state.df.loc[i, 'Preselect'] == 1:
             st.write(st.session_state.df.loc[i, 'No'])
+
+
             img_overlay = folium.raster_layers.ImageOverlay(
             name=f"Image {st.session_state.df.loc[i, 'No']}",
-            #test
             image=st.session_state.df.loc[i, 'Path'], # img_path,
             bounds=[[51.85, 9.6], [53.3, 11.70]],  # Adjust the bounds accordingly
             opacity=0.6,
-            show=False,
+            show=True,
             interactive=False,
             cross_origin=False,
             control=True
@@ -153,13 +154,15 @@ else:
             img_overlay.add_to(p)
             #######################
 
+        
+        
+        ###actual sidebar images
         img_path = os.path.join(subfolder_path, v)#st.session_state.df.loc[i, 'Image'])
         #st.sidebar.markdown(img_path)
         img = Image.open(img_path)#.resize((150, 200))
         
         #save image path into df
         st.session_state.df.loc[i, 'Path']= img_path
-
 
         ### Make the whole image a button
         #butt = st.button(st.image(img))
@@ -183,7 +186,7 @@ else:
 
 
 
-        #st_folium(p)    
+    st_folium(p)    
 
         #else:
         #    st.session_state.df.loc[i, 'Preselect'] = 0
@@ -193,7 +196,7 @@ else:
         #    selected = col_images[col].checkbox("Select", key=f"select_{i}")
             #if selected:
             #   st.session_state.df.loc[i, 'Preselect'] = 1
-    map = st_folium(p, height=800, width=1600)
+    #map = st_folium(p, height=800, width=1600)
 
     #st.write(st.session_state.df)
 
