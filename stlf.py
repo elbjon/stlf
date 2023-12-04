@@ -28,11 +28,15 @@ if st.session_state['loc_chosen']==0:
     def get_pos(lat, lng):
         return lat, lng
 
-    m = folium.Map()
-
+    m = folium.Map(location=[30, 30],height=800, width=1400, tiles=None, zoom_start=3)
+    folium.TileLayer("OpenStreetMap", name= 'OpenStreetMap').add_to(m)
+    folium.TileLayer("cartodb positron",show=False).add_to(m)
+    
     m.add_child(folium.LatLngPopup())
 
-    map = st_folium(m, height=350, width=700)
+    map = st_folium(m, height=350, width=700) 
+
+    
 
     data = None
     if map.get("last_clicked"):
