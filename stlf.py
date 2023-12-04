@@ -2,6 +2,11 @@ import os
 import streamlit as st
 import pandas as pd
 from PIL import Image
+
+#no app restart e.g. by hitting refresh button
+st.set_page_config(on_reload=False)
+
+#set layout to wide
 st.set_page_config(layout="wide")
 
 # Check if loc_chosen is not in session state, and if not, store it
