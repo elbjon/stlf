@@ -198,7 +198,7 @@ else:
 
             # Add ImageOverlay to the map 'p'
             img_overlay.add_to(p)
-            st_folium(p)
+        st_folium(p)    
 
         #else:
         #    st.session_state.df.loc[i, 'Preselect'] = 0
