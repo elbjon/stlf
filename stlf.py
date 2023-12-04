@@ -17,6 +17,10 @@ if 'loc_chosen' not in st.session_state:
 else: #delete after debugging
     st.session_state['loc_chosen'] = 0
 
+#delete me
+st.session_state['loc_chosen']=0
+
+
 #Check if no location is chosen
 if st.session_state['loc_chosen']==0:
     #Then go for overview map
