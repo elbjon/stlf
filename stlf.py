@@ -29,17 +29,18 @@ if 'df' not in st.session_state:
     st.session_state['df'] = pd.DataFrame(data)
 
 # Define Streamlit app layout
-st.title("Image Selector App")
+st.title("Part 2: Image Selector App")
 
 # Number of columns and rows to display
 num_columns = 6
 num_rows = 3
-num_images = len(st.session_state.df)
+num_images = len(st.session_state['df'])
 num_images_per_page = num_columns * num_rows
 num_pages = -(-num_images // num_images_per_page)  # Ceiling division
 
 # Get the current page number from the URL
 page_num = int(st.experimental_get_query_params().get("page_num", [0])[0])
+st.write(page_num)
 
 # Calculate the start and end indices for the current page
 start_index = page_num * num_images_per_page
