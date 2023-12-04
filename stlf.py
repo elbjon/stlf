@@ -143,7 +143,7 @@ else:
             name=f"Image{st.session_state.df.loc[i, 'No']}",
             image=img_path,
             bounds=[[51.85, 9.6], [53.3, 11.70]],  # Adjust the bounds accordingly
-            opacity=0.6,
+            opacity=1,
             show=True,
             interactive=False,
             cross_origin=False,
