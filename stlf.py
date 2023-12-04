@@ -51,11 +51,9 @@ if 'loc_chosen' not in st.session_state:
 #Check if no location is chosen
 if st.session_state['loc_chosen']==0:
     st.write('no location chosen')
-    #Then go for overview map
+    #Then go for map overview style
     
     # Sidebar Call 1
-    # Image file path
-    image_path = "images/example_image.png"
 
     # Load and display the image
     image = Image.open('heatmap_Screenshot.png')
@@ -78,7 +76,7 @@ if st.session_state['loc_chosen']==0:
     folium.LayerControl().add_to(m)
 
     st.write('Choose your general area of interest by clicking')
-    map = st_folium(m,height=800, width=1600,) 
+    map = st_folium.map(m,height=800, width=1600,) 
 
     
 
@@ -188,7 +186,7 @@ else:
 
 
 
-    st_folium(p,height=800, width=1400)    
+    st_folium.map(p,height=800, width=1400)    
 
         #else:
         #    st.session_state.df.loc[i, 'Preselect'] = 0
