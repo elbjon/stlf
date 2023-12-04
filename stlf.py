@@ -130,14 +130,14 @@ else:
 ###add images to sidebar
 ###########################
     for i, v in enumerate(st.session_state.df['Image']):
-        
+        #path for sidebar and overlay images
+        img_path = os.path.join(subfolder_path, v)        
 
                     # Create ImageOverlay with a unique name based on counting variable
         if st.session_state.df.loc[i, 'Preselect'] == 1:
             st.write(st.session_state.df.loc[i, 'No'])
             
-            #path for sidebar and overlay images
-            img_path = os.path.join(subfolder_path, v)
+
 
             img_overlay = folium.raster_layers.ImageOverlay(
             name=f"Image{st.session_state.df.loc[i, 'No']}",
