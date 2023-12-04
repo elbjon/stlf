@@ -8,8 +8,40 @@ from folium.plugins import Draw
 from folium.plugins import Geocoder
 
 
+
 #set layout to wide
 st.set_page_config(layout="wide")
+
+
+###########################################
+###PREPARATION###
+# List all subfolders in the 'img' directory
+subfolders = [f.path for f in os.scandir('img') if f.is_dir()]
+
+#st.sidebar.markdown(scrollable_content, unsafe_allow_html=True)
+selected_subfolder = 'img/52N10E'
+
+subfolder_path = selected_subfolder #os.path.join('img', selected_subfolder)
+
+# Get the list of image names in the selected subfolder
+image_names = [f.name for f in os.scandir(subfolder_path) if f.is_file() and f.name.endswith(('.jpg', '.png'))] # change accordingly
+
+# Initialize a DataFrame to store image names, preselect status, and notes
+data = {'Image': image_names, 'Preselect': [0] * len(image_names), 'Note': [''] * len(image_names), 'Path':['']* len(image_names),'No': list(range(1, len(image_names) + 1)) }
+
+# Check if 'df' is not in session state, and if not, store it
+if 'df' not in st.session_state:
+    st.session_state['df'] = pd.DataFrame(data)
+
+# Define Streamlit app layout
+st.title("Part 2: Image Selector App")
+#############################################
+
+
+
+
+
+
 
 # Check if loc_chosen is not in session state, and if not, store it
 # Loc_chosen takes the Point of Interest#s coordinates from overview map to detail map. Also the switch from overview to detail map is triggered by it.
@@ -91,35 +123,7 @@ else:
 
 
 
-###########################################
-    # List all subfolders in the 'img' directory
-    subfolders = [f.path for f in os.scandir('img') if f.is_dir()]
-
-    #st.sidebar.markdown(scrollable_content, unsafe_allow_html=True)
-    selected_subfolder = 'img/52N10E'
-
-    subfolder_path = selected_subfolder #os.path.join('img', selected_subfolder)
-
-    # Get the list of image names in the selected subfolder
-    image_names = [f.name for f in os.scandir(subfolder_path) if f.is_file() and f.name.endswith(('.jpg', '.png'))] # change accordingly
-
-    # Initialize a DataFrame to store image names, preselect status, and notes
-    data = {'Image': image_names, 'Preselect': [0] * len(image_names), 'Note': [''] * len(image_names), 'Path':['']* len(image_names),'No': list(range(1, len(image_names) + 1)) }
-
-
-
-
-
-
-
-
-    # Check if 'df' is not in session state, and if not, store it
-    if 'df' not in st.session_state:
-        st.session_state['df'] = pd.DataFrame(data)
-
-    # Define Streamlit app layout
-    st.title("Part 2: Image Selector App")
-
+###PREP, originally###
 
     for i, v in enumerate(st.session_state.df['Image']):
 
