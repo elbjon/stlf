@@ -2,20 +2,44 @@ import os
 import streamlit as st
 import pandas as pd
 from PIL import Image
+st.set_page_config(layout="wide")
 
-
-
-
-
-# Your content that you want to make scrollable
-scrollable_content = """
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut porttitor nisl. 
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
-Fusce vel lectus vel mauris consequat mattis. Integer fringilla tempus sem, vel bibendum ligula luctus at. 
-"""
 
 # List all subfolders in the 'img' directory
 subfolders = [f.path for f in os.scandir('img') if f.is_dir()]
+
+
+# Image file path
+image_path = "images/example_image.png"
+
+# Load and display the image
+image = Image.open('heatmap_Screenshot.png')
+st.sidebar.image(image, caption="Density of Photographic Reconnaissance Flights", use_column_width=True)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
