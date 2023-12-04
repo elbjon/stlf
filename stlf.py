@@ -186,7 +186,7 @@ else:
 
 
 
-    st_folium(p,height=800, width=1600)    
+    st_folium(p,height=800, width=1400)    
 
         #else:
         #    st.session_state.df.loc[i, 'Preselect'] = 0
