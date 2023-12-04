@@ -160,9 +160,15 @@ else:
         #st.sidebar.markdown(img_path)
         img = Image.open(img_path)#.resize((150, 200))
         
-        butt = st.button(st.image(img))
-        st.sidebar.image(butt, use_column_width=True) #, caption='Your Image'
+        
+        ### Make the whole image a button
+        #butt = st.button(st.image(img))
+        #st.sidebar.image(butt, use_column_width=True) #, caption='Your Image'
+        
+        
+        st.sidebar.image(img, use_column_width=True)
 
+        ### until the whole image is a button:
         # Checkbox for image selection in the sidebar
         selected = st.sidebar.checkbox(f"Select Image {i}", key=f"select_{i}", value=st.session_state.df.loc[i, 'Preselect'])
         st.session_state.df.loc[i, 'Preselect'] = int(selected)
@@ -171,6 +177,11 @@ else:
 
         if selected:
             st.session_state.df.loc[i, 'Preselect'] = 1
+            st.write(st.session_state.df.loc[i, 'Image'])
+
+
+
+
         #else:
         #    st.session_state.df.loc[i, 'Preselect'] = 0
         #col_images[col].image(img, use_column_width=True, caption=st.session_state.df.loc[i, 'Image'])
