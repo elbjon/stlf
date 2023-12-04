@@ -1,8 +1,9 @@
 import os
 import streamlit as st
+import folium
 import pandas as pd
 from PIL import Image
-
+from streamlit_folium import st_folium, folium_static
 
 
 #set layout to wide
@@ -11,11 +12,29 @@ st.set_page_config(layout="wide")
 # Check if loc_chosen is not in session state, and if not, store it
 # Loc_chosen takes the Point of Interest#s coordinates from overview map to detail map. Also the switch from overview to detail map is triggered by it.
 if 'loc_chosen' not in st.session_state:
-    st.session_state['loc_chosen'] = 1
+    st.session_state['loc_chosen'] = 0
 
 #Check if no location is chosen
 if st.session_state['loc_chosen']==0:
     #Then go for overview map
+
+
+    m = folium.Map()
+
+    m.add_child(folium.LatLngPopup())
+
+    map = st_folium(m, height=350, width=700)
+
+    data = None
+    if map.get("last_clicked"):
+        data = get_pos(map["last_clicked"]["lat"], map["last_clicked"]["lng"])
+
+    if data is not None:
+        st.write(data) # Writes to the app
+        print(data) # Writes to terminal
+
+
+
 
     # Image file path
     image_path = "images/example_image.png"
