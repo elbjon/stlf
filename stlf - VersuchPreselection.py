@@ -6,19 +6,11 @@ from PIL import Image
 
 #selected_subfolder = '52N10E'
 
-
-# Your content that you want to make scrollable
-scrollable_content = """
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut porttitor nisl. 
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
-Fusce vel lectus vel mauris consequat mattis. Integer fringilla tempus sem, vel bibendum ligula luctus at. 
-"""
-
 # List all subfolders in the 'img' directory
 subfolders = [f.path for f in os.scandir('img') if f.is_dir()]
 
 # Select a specific subfolder via sidebar selectbox, for now
-selected_subfolder = st.sidebar("Select Subfolder", scrollable_content)
+selected_subfolder = st.sidebar.selectbox("Select Subfolder", subfolders)
 
 subfolder_path = selected_subfolder #os.path.join('img', selected_subfolder)
 
