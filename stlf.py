@@ -54,7 +54,10 @@ for i, v in enumerate(st.session_state.df['Image']):
 
     img_path = os.path.join(subfolder_path, st.session_state.df.loc[i, 'Image'])
     st.sidebar.markdown(img_path)
-    #img = Image.open(img_path).resize((150, 200))
+    img = Image.open(img_path)#.resize((150, 200))
+    
+    st.sidebar.image(img, caption='Your Image', use_column_width=True)
+    
     #col_images[col].image(img, use_column_width=True, caption=st.session_state.df.loc[i, 'Image'])
 
         # Checkbox for image selection
