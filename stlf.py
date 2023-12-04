@@ -53,7 +53,7 @@ st.title("Part 2: Image Selector App")
 for i, v in enumerate(st.session_state.df['Image']):
 
     img_path = os.path.join(subfolder_path, st.session_state.df.loc[i, 'Image'])
-    st.sidebar.markdown(img_path)
+    #st.sidebar.markdown(img_path)
     img = Image.open(img_path)#.resize((150, 200))
     
     st.sidebar.image(img, caption='Your Image', use_column_width=True)
