@@ -56,7 +56,7 @@ for i, v in enumerate(st.session_state.df['Image']):
     #st.sidebar.markdown(img_path)
     img = Image.open(img_path)#.resize((150, 200))
     
-    st.sidebar.image(img, caption='Your Image', use_column_width=True)
+    st.sidebar.image(img, use_column_width=True) #, caption='Your Image'
 
     # Checkbox for image selection in the sidebar
     selected = st.sidebar.checkbox(f"Select Image {i}", key=f"select_{i}", value=st.session_state.df.loc[i, 'Preselect'])
