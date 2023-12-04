@@ -137,7 +137,7 @@ else:
     image_names = [f.name for f in os.scandir(subfolder_path) if f.is_file() and f.name.endswith(('.jpg', '.png'))] # change accordingly
 
     # Initialize a DataFrame to store image names, preselect status, and notes
-    data = {'Image': image_names, 'Preselect': [0] * len(image_names), 'Note': [''] * len(image_names)}
+    data = {'Image': image_names, 'Preselect': [0] * len(image_names), 'Note': [''] * len(image_names), 'Path':['']* len(image_names),'No': list(range(1, len(image_names) + 1)) }
 
 
 
@@ -170,7 +170,7 @@ else:
 
         ### until the whole image is a button:
         # Checkbox for image selection in the sidebar
-        selected = st.sidebar.checkbox(f"Select Image {i}", key=f"select_{i}", value=st.session_state.df.loc[i, 'Preselect'])
+        selected = st.sidebar.checkbox(f"Select Image {st.session_state.df.loc[i, 'No']}", key=f"select_{i}", value=st.session_state.df.loc[i, 'Preselect'])
         st.session_state.df.loc[i, 'Preselect'] = int(selected)
 
 
@@ -179,7 +179,21 @@ else:
             st.session_state.df.loc[i, 'Preselect'] = 1
             st.write(st.session_state.df.loc[i, 'Image'])
 
+                    # Create ImageOverlay with a unique name based on counting variable
+            img_overlay = folium.raster_layers.ImageOverlay(
+                name=f"nameshould be number and saved in df",
+                image=img_path,
+                bounds=[[51.85, 9.6], [53.3, 11.70]],  # Adjust the bounds accordingly
+                opacity=0.6,
+                show=False,
+                interactive=False,
+                cross_origin=False,
+                control=True,
+                zindex=count + 1,
+            )
 
+            # Add ImageOverlay to the map 'p'
+            img_overlay.add_to(p)
 
 
         #else:
