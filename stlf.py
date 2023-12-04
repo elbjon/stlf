@@ -20,7 +20,7 @@ if 'loc_chosen' not in st.session_state:
 if st.session_state['loc_chosen']==0:
     #Then go for overview map
     
-    # Sidebar
+    # Sidebar Call 1
     # Image file path
     image_path = "images/example_image.png"
 
@@ -29,7 +29,7 @@ if st.session_state['loc_chosen']==0:
     st.sidebar.image(image, caption="Density of Photographic Reconnaissance Flights", use_column_width=True)
 
 
-    #Main Body
+    #Main Body Call 1
     def get_pos(lat, lng):
         return lat, lng
 
@@ -61,6 +61,7 @@ if st.session_state['loc_chosen']==0:
         st.session_state['loc_chosen'] = data
 
 
+#Call2
 #=When loc_chosen is not 0
 else:
     p = folium.Map(location=[52.5, 10.5], tiles=None, zoom_start=9)
@@ -86,76 +87,18 @@ else:
     Geocoder().add_to(p)
 
     folium.LayerControl().add_to(p)
-
-
-#####################
-    if selected:
-        st.session_state.df.loc[i, 'Preselect'] = 1
-        st.write(st.session_state.df.loc[i, 'Image'])
-
-                # Create ImageOverlay with a unique name based on counting variable
-        img_overlay = folium.raster_layers.ImageOverlay(
-            name=f"Image {st.session_state.df.loc[i, 'No']}",
-            image=st.session_state.df.loc[i, 'Path'], # img_path,
-            bounds=[[51.85, 9.6], [53.3, 11.70]],  # Adjust the bounds accordingly
-            opacity=0.6,
-            show=False,
-            interactive=False,
-            cross_origin=False,
-            control=True,
-            
-        )
-
-            # Add ImageOverlay to the map 'p'
-        img_overlay.add_to(p)
-            #######################
-
-
-
     map = st_folium(p, height=800, width=1600)
 
 
+
+###########################################
     # List all subfolders in the 'img' directory
     subfolders = [f.path for f in os.scandir('img') if f.is_dir()]
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     #st.sidebar.markdown(scrollable_content, unsafe_allow_html=True)
     selected_subfolder = 'img/52N10E'
 
     subfolder_path = selected_subfolder #os.path.join('img', selected_subfolder)
-
-
 
     # Get the list of image names in the selected subfolder
     image_names = [f.name for f in os.scandir(subfolder_path) if f.is_file() and f.name.endswith(('.jpg', '.png'))] # change accordingly
@@ -196,12 +139,32 @@ else:
 
         st.sidebar.image(img, use_column_width=True)
 
-        ### until the whole image is a button:
+        ### until the whole image is a button run this:
         # Checkbox for image selection in the sidebar
         selected = st.sidebar.checkbox(f"Select Image {st.session_state.df.loc[i, 'No']}", key=f"select_{i}", value=st.session_state.df.loc[i, 'Preselect'])
         st.session_state.df.loc[i, 'Preselect'] = int(selected)
 
+    #####################
+        if selected:
+            st.session_state.df.loc[i, 'Preselect'] = 1
+            st.write(st.session_state.df.loc[i, 'Image'])
 
+                    # Create ImageOverlay with a unique name based on counting variable
+            img_overlay = folium.raster_layers.ImageOverlay(
+                name=f"Image {st.session_state.df.loc[i, 'No']}",
+                image=st.session_state.df.loc[i, 'Path'], # img_path,
+                bounds=[[51.85, 9.6], [53.3, 11.70]],  # Adjust the bounds accordingly
+                opacity=0.6,
+                show=False,
+                interactive=False,
+                cross_origin=False,
+                control=True,
+                
+            )
+
+                # Add ImageOverlay to the map 'p'
+            img_overlay.add_to(p)
+                #######################
 
 
         st_folium(p)    
