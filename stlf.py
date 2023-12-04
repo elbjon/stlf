@@ -15,15 +15,6 @@ st.set_page_config(layout="wide")
 if 'loc_chosen' not in st.session_state:
     st.session_state['loc_chosen'] = 0
 
-
-
-#else: #delete after debugging
-#    st.session_state['loc_chosen'] = 0
-
-#delete me
-#st.session_state['loc_chosen']=0
-
-
 #Check if no location is chosen
 if st.session_state['loc_chosen']==0:
     #Then go for overview map
@@ -37,7 +28,7 @@ if st.session_state['loc_chosen']==0:
     st.sidebar.image(image, caption="Density of Photographic Reconnaissance Flights", use_column_width=True)
 
 
-    #Main
+    #Main Body
     def get_pos(lat, lng):
         return lat, lng
 
@@ -61,12 +52,29 @@ if st.session_state['loc_chosen']==0:
         #st.button('next')              
 
         st.session_state['loc_chosen'] = data
+
+
+#=When loc_chosen is not 0
 else:
-    st.write('test my patience')
+    p = folium.Map(location=[52.5, 10.5], tiles=None, zoom_start=9)
+    folium.TileLayer("OpenStreetMap", name= 'OpenStreetMap').add_to(p)
+    folium.TileLayer("cartodb positron",show=False).add_to(p)
+    folium.TileLayer(
+                tiles = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+                attr = 'Esri',
+                name = 'Satellite Image',
+                show=False,
+                overlay = False,
+                control = True
+            ).add_to(p)
 
-    
+    folium.TileLayer(
+        tiles = 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
+        name = 'Topographic Map',
+        attr='opentopomap.org',
+        show=False,
+        ).add_to(p)
 
-    st.write('this is a test if condition is tested here')
 
 
 
