@@ -1,10 +1,11 @@
 import os
-import streamlit as st
 import folium
+import streamlit as st
 import pandas as pd
 from PIL import Image
 from streamlit_folium import st_folium, folium_static
 from folium.plugins import Draw
+from folium.plugins import Geocoder
 
 
 #set layout to wide
@@ -75,7 +76,13 @@ else:
         show=False,
         ).add_to(p)
 
+    # add search field
+    Geocoder().add_to(p)
 
+    folium.LayerControl().add_to(p)
+
+
+    map = st_folium(p, height=800, width=1400)
 
 
     # List all subfolders in the 'img' directory
