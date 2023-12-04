@@ -118,8 +118,10 @@ else:
     # add search field
     Geocoder().add_to(p)
 
+    
+
     folium.LayerControl().add_to(p)
-    map = st_folium(p, height=800, width=1600)
+
 
 
 
@@ -128,6 +130,24 @@ else:
 ###add images to sidebar
 ###########################
     for i, v in enumerate(st.session_state.df['Image']):
+        
+
+                    # Create ImageOverlay with a unique name based on counting variable
+        if st.session_state.df.loc[i, 'Preselect'] == 1:
+            img_overlay = folium.raster_layers.ImageOverlay(
+            name=f"Image {st.session_state.df.loc[i, 'No']}",
+            image=st.session_state.df.loc[i, 'Path'], # img_path,
+            bounds=[[51.85, 9.6], [53.3, 11.70]],  # Adjust the bounds accordingly
+            opacity=0.6,
+            show=False,
+            interactive=False,
+            cross_origin=False,
+            control=True
+            )
+
+            # Add ImageOverlay to the map 'p'
+            img_overlay.add_to(p)
+            #######################
 
         img_path = os.path.join(subfolder_path, v)#st.session_state.df.loc[i, 'Image'])
         #st.sidebar.markdown(img_path)
@@ -169,7 +189,7 @@ else:
         #    selected = col_images[col].checkbox("Select", key=f"select_{i}")
             #if selected:
             #   st.session_state.df.loc[i, 'Preselect'] = 1
-
+    map = st_folium(p, height=800, width=1600)
 
     st.write(st.session_state.df)
 
