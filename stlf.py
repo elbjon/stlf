@@ -9,7 +9,7 @@ from PIL import Image
 # List all subfolders in the 'img' directory
 subfolders = [f.path for f in os.scandir('img') if f.is_dir()]
 
-# Select a specific subfolder
+# Select a specific subfolder via sidebar selectbox, for now
 selected_subfolder = st.sidebar.selectbox("Select Subfolder", subfolders)
 
 subfolder_path = selected_subfolder #os.path.join('img', selected_subfolder)
@@ -17,7 +17,7 @@ subfolder_path = selected_subfolder #os.path.join('img', selected_subfolder)
 
 
 # Get the list of image names in the selected subfolder
-image_names = [f.name for f in os.scandir(subfolder_path) if f.is_file() and f.name.endswith(('.jpg', '.png'))]
+image_names = [f.name for f in os.scandir(subfolder_path) if f.is_file() and f.name.endswith(('.jpg', '.png'))] # change accordingly
 
 # Initialize a DataFrame to store image names, preselect status, and notes
 data = {'Image': image_names, 'Preselect': [0] * len(image_names), 'Note': [''] * len(image_names)}
@@ -25,8 +25,8 @@ data = {'Image': image_names, 'Preselect': [0] * len(image_names), 'Note': [''] 
 
 # Check if 'df' is not in session state, and if not, store it
 if 'df' not in st.session_state:
-    df = pd.DataFrame(data)
-    st.session_state.df = df
+
+    st.session_state['df'] = pd.DataFrame(data)
 
 # Define Streamlit app layout
 st.title("Image Selector App")
