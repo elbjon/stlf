@@ -125,6 +125,8 @@ else:
 
 ###PREP, originally###
 
+###add images to sidebar
+###########################
     for i, v in enumerate(st.session_state.df['Image']):
 
         img_path = os.path.join(subfolder_path, v)#st.session_state.df.loc[i, 'Image'])
@@ -145,33 +147,19 @@ else:
 
         ### until the whole image is a button run this:
         # Checkbox for image selection in the sidebar
-        selected = st.sidebar.checkbox(f"Select Image {st.session_state.df.loc[i, 'No']}", key=f"select_{i}", value=st.session_state.df.loc[i, 'Preselect'])
+        selected = st.sidebar.checkbox(f"Select Image {st.session_state.df.loc[i, 'No']}", key=f"select_{st.session_state.df.loc[i, 'No']}", value=st.session_state.df.loc[i, 'Preselect'])
         st.session_state.df.loc[i, 'Preselect'] = int(selected)
 
+        #check wether buttons are selected and write state into df
     #####################
         if selected:
             st.session_state.df.loc[i, 'Preselect'] = 1
             st.write(st.session_state.df.loc[i, 'Image'])
 
-                    # Create ImageOverlay with a unique name based on counting variable
-            img_overlay = folium.raster_layers.ImageOverlay(
-                name=f"Image {st.session_state.df.loc[i, 'No']}",
-                image=st.session_state.df.loc[i, 'Path'], # img_path,
-                bounds=[[51.85, 9.6], [53.3, 11.70]],  # Adjust the bounds accordingly
-                opacity=0.6,
-                show=False,
-                interactive=False,
-                cross_origin=False,
-                control=True,
-                
-            )
-
-                # Add ImageOverlay to the map 'p'
-            img_overlay.add_to(p)
-                #######################
 
 
-        st_folium(p)    
+
+        #st_folium(p)    
 
         #else:
         #    st.session_state.df.loc[i, 'Preselect'] = 0
