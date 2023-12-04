@@ -21,7 +21,7 @@ subfolders = [f.path for f in os.scandir('img') if f.is_dir()]
 
 
 
-st.sidebar.markdown(scrollable_content, unsafe_allow_html=True)
+#st.sidebar.markdown(scrollable_content, unsafe_allow_html=True)
 selected_subfolder = 'img/52N10E'
 
 subfolder_path = selected_subfolder #os.path.join('img', selected_subfolder)
@@ -53,7 +53,7 @@ st.title("Part 2: Image Selector App")
 for i, v in enumerate(st.session_state.df['Image']):
 
     img_path = os.path.join(subfolder_path, st.session_state.df.loc[i, 'Image'])
-    st.write(img_path)
+    st.sidebar.markdown(img_path)
     #img = Image.open(img_path).resize((150, 200))
     #col_images[col].image(img, use_column_width=True, caption=st.session_state.df.loc[i, 'Image'])
 
