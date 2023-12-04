@@ -14,17 +14,30 @@ st.set_page_config(layout="wide")
 # Loc_chosen takes the Point of Interest#s coordinates from overview map to detail map. Also the switch from overview to detail map is triggered by it.
 if 'loc_chosen' not in st.session_state:
     st.session_state['loc_chosen'] = 0
-else: #delete after debugging
-    st.session_state['loc_chosen'] = 0
+
+
+    
+#else: #delete after debugging
+#    st.session_state['loc_chosen'] = 0
 
 #delete me
-st.session_state['loc_chosen']=0
+#st.session_state['loc_chosen']=0
 
 
 #Check if no location is chosen
 if st.session_state['loc_chosen']==0:
     #Then go for overview map
+    
+    # Sidebar
+    # Image file path
+    image_path = "images/example_image.png"
 
+    # Load and display the image
+    image = Image.open('heatmap_Screenshot.png')
+    st.sidebar.image(image, caption="Density of Photographic Reconnaissance Flights", use_column_width=True)
+
+
+    #Main
     def get_pos(lat, lng):
         return lat, lng
 
@@ -33,8 +46,8 @@ if st.session_state['loc_chosen']==0:
     folium.TileLayer("cartodb positron",show=False).add_to(m)
     
     m.add_child(folium.LatLngPopup())
-
-    map = st_folium(m, height=350, width=700) 
+    st.write('Choose your general area of interest by clicking')
+    map = st_folium(m) 
 
     
 
@@ -44,24 +57,14 @@ if st.session_state['loc_chosen']==0:
 
     if data is not None:
         st.write(data) # Writes to the app
-        print(data) # Writes to terminal
+        #print(f'Is this the correct area? {data}')
+        #st.button('next')              
 
-
-
-
-    # Image file path
-    image_path = "images/example_image.png"
-
-    # Load and display the image
-    image = Image.open('heatmap_Screenshot.png')
-    st.sidebar.image(image, caption="Density of Photographic Reconnaissance Flights", use_column_width=True)
-
-
-
-
-
+        st.session_state['loc_chosen'] = data
 
 else:     
+
+    st.write('this is a test if condition is tested here')
 
 
 
