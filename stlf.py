@@ -76,7 +76,7 @@ if st.session_state['loc_chosen']==0:
     folium.LayerControl().add_to(m)
 
     st.write('Choose your general area of interest by clicking')
-    map = st_folium.map(m,height=800, width=1600,) 
+    map = st_folium(m,height=800, width=1600,) 
 
     
 
@@ -186,7 +186,7 @@ else:
 
 
 
-    st_folium.map(p,height=800, width=1400)    
+    st_folium(p,height=800, width=1400)    
 
         #else:
         #    st.session_state.df.loc[i, 'Preselect'] = 0
