@@ -50,6 +50,7 @@ if 'loc_chosen' not in st.session_state:
 
 #Check if no location is chosen
 if st.session_state['loc_chosen']==0:
+    st.write('no location chosen')
     #Then go for overview map
     
     # Sidebar Call 1
@@ -96,6 +97,7 @@ if st.session_state['loc_chosen']==0:
 #Call2
 #=When loc_chosen is not 0
 else:
+    st.write('location chosen')
     p = folium.Map(location=st.session_state['loc_chosen'], tiles=None, zoom_start=9)
     folium.TileLayer("OpenStreetMap", name= 'OpenStreetMap').add_to(p)
     folium.TileLayer("cartodb positron",show=False).add_to(p)
