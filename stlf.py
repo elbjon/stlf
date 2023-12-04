@@ -4,6 +4,7 @@ import folium
 import pandas as pd
 from PIL import Image
 from streamlit_folium import st_folium, folium_static
+from folium.plugins import Draw
 
 
 #set layout to wide
@@ -13,11 +14,15 @@ st.set_page_config(layout="wide")
 # Loc_chosen takes the Point of Interest#s coordinates from overview map to detail map. Also the switch from overview to detail map is triggered by it.
 if 'loc_chosen' not in st.session_state:
     st.session_state['loc_chosen'] = 0
+else: #delete after debugging
+    st.session_state['loc_chosen'] = 0
 
 #Check if no location is chosen
 if st.session_state['loc_chosen']==0:
     #Then go for overview map
 
+    def get_pos(lat, lng):
+        return lat, lng
 
     m = folium.Map()
 
