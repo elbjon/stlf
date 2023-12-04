@@ -63,7 +63,7 @@ for i, v in enumerate(st.session_state.df['Image']):
     st.session_state.df.loc[i, 'Preselect'] = int(selected)
 
 
-    
+
     if selected:
         st.session_state.df.loc[i, 'Preselect'] = 1
     #else:
@@ -74,4 +74,6 @@ for i, v in enumerate(st.session_state.df['Image']):
     #    selected = col_images[col].checkbox("Select", key=f"select_{i}")
         #if selected:
          #   st.session_state.df.loc[i, 'Preselect'] = 1
+
+st.write(st.session_state.df)
 
