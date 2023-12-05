@@ -64,7 +64,7 @@ def map_overview():
 
 
 
-def map_detail():
+def map_detail(subfolder_path):
     st.write('location chosen')
     p = create_map(location=st.session_state['loc_chosen'])
     folium.TileLayer("OpenStreetMap", name='OpenStreetMap').add_to(p)
@@ -90,8 +90,44 @@ def map_detail():
     ).add_to(p)
 
     Geocoder().add_to(p)
+
+
+#overlays
+#################################################
+    # smaller df
+    sel_df = st.session_state.df[st.session_state.df['Preselect'] == 1].copy()
+
+
+    for i, v in enumerate(sel_df['Image']):
+        img_path = os.path.join(subfolder_path, v)
+        #img = Image.open(img_path)            
+        #if st.session_state.df.loc[i, 'Preselect'] == 1:
+        st.write(img_path)
+        bounds=[[st.session_state['loc_chosen'][0]-0.15,st.session_state['loc_chosen'][1]-0.4],[st.session_state['loc_chosen'][0]+1.3,st.session_state['loc_chosen'][1]+1.7]]
+        #st.write(str(bounds))
+        img_overlay = folium.raster_layers.ImageOverlay(
+            name=f"Image",
+            image=img_path,
+            bounds=bounds,
+            opacity=0.6,
+            show=True,
+            interactive=False,
+            cross_origin=False,
+            control=True
+        )
+        img_overlay.add_to(p)
+################################################
+
+
+    #add layer control box
     folium.LayerControl().add_to(p)
+
+    #show map, USE folium_static, st_folium not working!!!
     folium_static(p, height=800, width=1400)
+
+    
+
+    # no return needed, map printing done here. delete return when everything is running
     return p
 
 
@@ -110,11 +146,14 @@ def populate_side(p, subfolder_path):
             st.session_state.df.loc[i, 'Preselect'] = int(selected)
             
             if st.session_state.df.loc[i, 'Preselect'] == 1:
-                add_image_overlay(p, img_path)
+                #add_image_overlay(p, img_path)
+                st.write('now add image overlay would have been called in populate_side()')
                 
-                st.session_state.df.loc[i, 'Preselect'] = 0  # Reset preselect status
+                #st.session_state.df.loc[i, 'Preselect'] = 0  # Reset preselect status
 
+##########################
 
+###############################
 
 
 def add_image_overlay(p, img_path):
@@ -152,8 +191,8 @@ def main():
     if st.session_state['loc_chosen'] == 0:
         map_overview()
     else:
-        p = map_detail()
-        populate_side(p, subfolder_path)
+        p = map_detail(subfolder_path)
+       
         
 
         ###########
