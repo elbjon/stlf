@@ -15,7 +15,7 @@ def prepare_data(selected_subfolder):
     image_names = [f.name for f in os.scandir(subfolder_path) if f.is_file() and f.name.endswith(('.jpg', '.png'))]
 
     # Initialize a DataFrame to store image names, preselect status, and notes
-    data1 = {'Image': image_names, 'Preselect': [0] * len(image_names), 'Note': [''] * len(image_names), 'Path':['']* len(image_names),'No': list(range(1, len(image_names) + 1)) }
+    data1 = {'Image': image_names, 'Preselect': [0] * len(image_names),  'Preselect_2': [0] * len(image_names), 'Note': [''] * len(image_names), 'Path':['']* len(image_names),'No': list(range(1, len(image_names) + 1)) }
 
     # Check if 'df' is not in session state, and if not, store it
     if 'df' not in st.session_state:
@@ -100,6 +100,12 @@ def map_detail(subfolder_path):
 
 
     for i, v in enumerate(sel_df['Image']):
+        if sel_df.loc[i, 'Preselect_2']==1:
+            print('previous item detected', sel_df.loc[i, 'No'])
+        #else:
+
+
+
         img_path = os.path.join(subfolder_path, v)
         #img = Image.open(img_path)            
         #if st.session_state.df.loc[i, 'Preselect'] == 1:
@@ -117,7 +123,7 @@ def map_detail(subfolder_path):
             control=True
         )
         img_overlay.add_to(p)
-        
+    st.session_state.df[st.session_state.df['Preselect_2']] = st.session_state.df[st.session_state.df['Preselect']] 
 
     # try to deselect. Doesn't work
     st.session_state.df.loc[st.session_state.df['Preselect'] == 1, 'Preselect'] = 0
