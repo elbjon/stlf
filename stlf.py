@@ -107,7 +107,7 @@ def map_detail(subfolder_path):
         #st.write(sel_df.loc[i, 'Preselect_2'])
 
 
-        if sel_df.iloc[i, 2]!=1:
+        if sel_df.loc[i, 'Preselect_2']==0:
             img_path = os.path.join(subfolder_path, v)
             #img = Image.open(img_path)            
             #if st.session_state.df.loc[i, 'Preselect'] == 1:
