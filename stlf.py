@@ -95,6 +95,7 @@ def map_detail(subfolder_path):
 #overlays
 #################################################
     # smaller df
+    
     sel_df = st.session_state.df[st.session_state.df['Preselect'] == 1].copy()
 
 
@@ -106,7 +107,7 @@ def map_detail(subfolder_path):
         bounds=[[st.session_state['loc_chosen'][0]-0.15,st.session_state['loc_chosen'][1]-0.4],[st.session_state['loc_chosen'][0]+1.3,st.session_state['loc_chosen'][1]+1.7]]
         #st.write(str(bounds))
         img_overlay = folium.raster_layers.ImageOverlay(
-            name=f"Image {i}",
+            name=f"Image {sel_df.loc[i, 'No']}",
             image=img_path,
             bounds=bounds,
             opacity=0.6,
@@ -117,7 +118,7 @@ def map_detail(subfolder_path):
         )
         img_overlay.add_to(p)
 
-    # try to deselect
+    # try to deselect. Doesn't work
     st.session_state.df.loc[st.session_state.df['Preselect'] == 1, 'Preselect'] = 0
 ################################################
 
