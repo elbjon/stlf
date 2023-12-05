@@ -79,14 +79,14 @@ def map_location_chosen():
 
     return p
 
-def add_image_overlay(p, img_path):
-    bounds=[st.session_state['loc_chosen'][0]+1.85,st.session_state['loc_chosen'][1]+1.7] #take from control flow or session state?
+def add_image_overlay(p, img_path, bounds=[[51.85, 9.6], [53.3, 11.70]]):
+    bounds=[[st.session_state['loc_chosen'][0]-0.15,st.session_state['loc_chosen'][1]-0.4],[st.session_state['loc_chosen'][0]+1.3,st.session_state['loc_chosen'][1]+1.7]]
 
     img_overlay = folium.raster_layers.ImageOverlay(
         name=f"Image",
         image=img_path,
         bounds=bounds,
-        opacity=0.6,
+        opacity=1,
         show=True,
         interactive=False,
         cross_origin=False,
