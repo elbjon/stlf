@@ -97,7 +97,7 @@ def map_detail(subfolder_path):
     # smaller df
     
     sel_df = st.session_state.df[st.session_state.df['Preselect'] == 1].copy()
-    #st.write(sel_df)
+    st.write(sel_df)
 
     for i, v in enumerate(sel_df['Image']):
         st.write(sel_df.loc[i, 'Preselect_2'])
