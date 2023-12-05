@@ -79,9 +79,9 @@ def map_location_chosen():
 
     return p
 
-def add_image_overlay(p, img_path, bounds=[[51.85, 9.6], [53.3, 11.70]]):
+def add_image_overlay(p, img_path):
     bounds=[[st.session_state['loc_chosen'][0]-0.15,st.session_state['loc_chosen'][1]-0.4],[st.session_state['loc_chosen'][0]+1.3,st.session_state['loc_chosen'][1]+1.7]]
-
+    st.write(bounds)
     img_overlay = folium.raster_layers.ImageOverlay(
         name=f"Image",
         image=img_path,
