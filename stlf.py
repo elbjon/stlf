@@ -157,7 +157,9 @@ def map_detail(subfolder_path):
 
             #add layer to layer list
             prev_overlays_list.append(img_overlay)
-            keeper.add_to(p)
+
+            if keeper:
+                keeper.add_to(p)
 
 
 
