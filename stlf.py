@@ -118,7 +118,7 @@ def map_detail(subfolder_path):
             bounds=[[st.session_state['loc_chosen'][0]-0.15,st.session_state['loc_chosen'][1]-0.4],[st.session_state['loc_chosen'][0]+1.3,st.session_state['loc_chosen'][1]+1.7]]
             #st.write(str(bounds))
             img_overlay = folium.raster_layers.ImageOverlay(
-            name=f"BILDS {name_no}",
+            name=f"Current Image {name_no}",
             image=img_path,
             bounds=bounds,
             opacity=0.6,
