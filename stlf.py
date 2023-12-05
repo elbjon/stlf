@@ -15,11 +15,11 @@ def prepare_data(selected_subfolder):
     image_names = [f.name for f in os.scandir(subfolder_path) if f.is_file() and f.name.endswith(('.jpg', '.png'))]
 
     # Initialize a DataFrame to store image names, preselect status, and notes
-    data = {'Image': image_names, 'Preselect': [0] * len(image_names), 'Note': [''] * len(image_names), 'Path':['']* len(image_names),'No': list(range(1, len(image_names) + 1)) }
+    data1 = {'Image': image_names, 'Preselect': [0] * len(image_names), 'Note': [''] * len(image_names), 'Path':['']* len(image_names),'No': list(range(1, len(image_names) + 1)) }
 
     # Check if 'df' is not in session state, and if not, store it
     if 'df' not in st.session_state:
-        st.session_state['df'] = pd.DataFrame(data)
+        st.session_state['df'] = pd.DataFrame(data1)
 
     return subfolder_path, image_names
 
@@ -49,7 +49,7 @@ def map_overview():
     m = create_map(location=[30, 30])
     add_base_layers(m)
     st.write('Choose your area of interest by clicking')
-    map = st_folium(m, height=800, width=1600)
+    map = st_folium(m, height=800, width=1400)
 
     data = None
     if map.get("last_clicked"):
