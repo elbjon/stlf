@@ -92,6 +92,24 @@ def add_image_overlay(p, img_path, bounds=[[51.85, 9.6], [53.3, 11.70]]):
     )
     img_overlay.add_to(p)
 
+def add_images_to_sidebar(subfolder_path):
+    for i, v in enumerate(st.session_state.df['Image']):
+        img_path = os.path.join(subfolder_path, v)
+
+        if st.session_state.df.loc[i, 'Preselect'] == 1:
+            add_image_overlay(p, img_path)
+            st.session_state.df.loc[i, 'Preselect'] = 0  # Reset preselect status
+
+        img = Image.open(img_path)
+        st.sidebar.image(img, use_column_width=True)
+
+        selected = st.sidebar.checkbox(f"Select Image {st.session_state.df.loc[i, 'No']}",
+                                       key=f"select
+            selected_{st.session_state.df.loc[i, 'No']}", value=st.session_state.df.loc[i, 'Preselect'])
+        st.session_state.df.loc[i, 'Preselect'] = int(selected)
+
+    st_folium(p, height=800, width=1400)
+
 def main():
     st.set_page_config(layout="wide")
     st.title("Localizing Aerial Images")
@@ -108,24 +126,7 @@ def main():
         map_overview()
     else:
         p = map_location_chosen()
-
-        # Add images to sidebar
-        for i, v in enumerate(st.session_state.df['Image']):
-            img_path = os.path.join(subfolder_path, v)
-
-            if st.session_state.df.loc[i, 'Preselect'] == 1:
-                add_image_overlay(p, img_path)
-                st.session_state.df.loc[i, 'Preselect'] = 0  # Reset preselect status
-
-            img = Image.open(img_path)
-            st.sidebar.image(img, use_column_width=True)
-
-            selected = st.sidebar.checkbox(f"Select Image {st.session_state.df.loc[i, 'No']}",
-                                           key=f"select
-                selected_{st.session_state.df.loc[i, 'No']}", value=st.session_state.df.loc[i, 'Preselect'])
-            st.session_state.df.loc[i, 'Preselect'] = int(selected)
-
-        st_folium(p, height=800, width=1400)
+        add_images_to_sidebar(subfolder_path)
 
 if __name__ == "__main__":
     main()
