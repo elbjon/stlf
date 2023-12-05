@@ -109,7 +109,7 @@ def map_detail(subfolder_path):
         #st.write(sel_df.loc[i, 'Preselect_2'])
         name_no = sel_df.loc[i, 'No']
 
-        if sel_df.loc[i, 'Preselect_2']!=1:
+        if sel_df.loc[i, 'Preselect_2']==0:
             img_path = os.path.join(subfolder_path, v)
             #img = Image.open(img_path)            
             #if st.session_state.df.loc[i, 'Preselect'] == 1:
@@ -131,6 +131,7 @@ def map_detail(subfolder_path):
             img_overlay.add_to(p)
 
         else:
+            st.write('preselect != 0')
             
             #make grouplayer
             
@@ -163,6 +164,7 @@ def map_detail(subfolder_path):
 
         #add layers from layerlist to map
         if prev_overlays_list != []:
+            st.write('list is not empty')
             for overlay in prev_overlays_list:
                 st.write(overlay)
                 overlay.add_to(p)
