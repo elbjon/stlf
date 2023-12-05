@@ -192,7 +192,8 @@ def main():
         map_overview()
     else:
         p = map_detail(subfolder_path)
-       
+        
+        populate_side(p, subfolder_path)
         
 
         ###########
