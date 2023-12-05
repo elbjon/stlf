@@ -97,14 +97,14 @@ def map_detail(subfolder_path):
     # smaller df
     
     sel_df = st.session_state.df[st.session_state.df['Preselect'] == 1].copy()
-    sel_df = sel_df.reset_index(drop=True)
+    sel_df = sel_df.reset_index()
     st.write(sel_df)
 
     #create/clean list of previous overlays
     prev_overlays_list=[]
     for i, v in enumerate(sel_df['Image']):
         #I cannot put this in a function because it wouldn't work anymore then. This are the restrictions of Streamlit and Folium 
-
+    
         #st.write(i)
         #st.write(sel_df.loc[i, 'Preselect_2'])
 
@@ -119,7 +119,7 @@ def map_detail(subfolder_path):
             bounds=[[st.session_state['loc_chosen'][0]-0.15,st.session_state['loc_chosen'][1]-0.4],[st.session_state['loc_chosen'][0]+1.3,st.session_state['loc_chosen'][1]+1.7]]
             #st.write(str(bounds))
             img_overlay = folium.raster_layers.ImageOverlay(
-            name=f"Image {i}",
+            name=f"Image {sel_df.loc[i, 'No']}",
             image=img_path,
             bounds=bounds,
             opacity=0.6,
@@ -143,7 +143,7 @@ def map_detail(subfolder_path):
             bounds=[[st.session_state['loc_chosen'][0]-0.15,st.session_state['loc_chosen'][1]-0.4],[st.session_state['loc_chosen'][0]+1.3,st.session_state['loc_chosen'][1]+1.7]]
             #st.write(str(bounds))
             img_overlay = folium.raster_layers.ImageOverlay(
-                name=f"Image {i}",
+                name=f"Image {sel_df.loc[i, 'No']}"
                 image=img_path,
                 bounds=bounds,
                 opacity=0.6,
@@ -232,6 +232,7 @@ def add_image_overlay(p, img_path):
 def main():
     st.set_page_config(layout="wide")
     st.title("Localizing Aerial Images")
+    
 
     selected_subfolder = 'img/52N13E' #you know what to do
     subfolder_path, image_names = prepare_data(selected_subfolder)
