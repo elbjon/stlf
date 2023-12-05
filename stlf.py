@@ -149,7 +149,7 @@ def populate_side(subfolder_path):
                 #add_image_overlay(p, img_path)
                 st.write('now add image overlay would have been called in populate_side()')
                 
-                #st.session_state.df.loc[i, 'Preselect'] = 0  # Reset preselect status
+                st.session_state.df.loc[i, 'Preselect'] = 0  # Reset preselect status
 
 ##########################
 
