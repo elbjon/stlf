@@ -69,9 +69,8 @@ def map_detail():
     p = create_map(location=st.session_state['loc_chosen'])
     folium.TileLayer("OpenStreetMap", name='OpenStreetMap').add_to(p)
     folium.TileLayer("cartodb positron", show=False).add_to(p)
-    p.add_child(folium.LatLngPopup())
-    Geocoder().add_to(p)
-    folium.LayerControl().add_to(p)
+    
+    
 
     # Add additional layers as needed
     folium.TileLayer(
@@ -92,7 +91,7 @@ def map_detail():
 
     Geocoder().add_to(p)
     folium.LayerControl().add_to(p)
-
+    folium_static(p, height=800, width=1400)
     return p
 
 
@@ -161,7 +160,7 @@ def main():
        
 
 
-        folium_static(p, height=800, width=1400)
+        
 
 if __name__ == "__main__":
     main()
