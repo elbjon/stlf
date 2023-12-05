@@ -117,6 +117,7 @@ def map_detail(subfolder_path):
             control=True
         )
         img_overlay.add_to(p)
+        
 
     # try to deselect. Doesn't work
     st.session_state.df.loc[st.session_state.df['Preselect'] == 1, 'Preselect'] = 0
