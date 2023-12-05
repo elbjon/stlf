@@ -38,6 +38,14 @@ def get_pos(lat, lng):
     return lat, lng
 
 def map_overview():
+
+    ###sidebar
+    # Load and display the image
+    image = Image.open('heatmap_Screenshot.png')
+    st.sidebar.image(image, caption="Density of Photographic Reconnaissance Flights", use_column_width=True)
+
+
+    ###body
     st.write('no location chosen')
     m = create_map(location=[30, 30])
     add_base_layers(m)
@@ -52,7 +60,7 @@ def map_overview():
         st.write(data)
         st.session_state['loc_chosen'] = data
 
-    def populate_side():
+    def populate_side(subfolder_path):
 ####make this an individual function
         # Add images to sidebar
         for i, v in enumerate(st.session_state.df['Image']):
@@ -97,7 +105,7 @@ def map_detail():
 
 def add_image_overlay(p, img_path):
     bounds=[[st.session_state['loc_chosen'][0]-0.15,st.session_state['loc_chosen'][1]-0.4],[st.session_state['loc_chosen'][0]+1.3,st.session_state['loc_chosen'][1]+1.7]]
-    st.write(str(bounds))
+    #st.write(str(bounds))
     img_overlay = folium.raster_layers.ImageOverlay(
         name=f"Image",
         image=img_path,
@@ -125,6 +133,7 @@ def main():
     if st.session_state['loc_chosen'] == 0:
         map_overview()
     else:
+        populate_side(subfolder_path)
         p = map_detail()
 
 
