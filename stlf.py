@@ -96,7 +96,7 @@ def map_detail(subfolder_path):
 #################################################
     # smaller df
     
-    sel_df = st.session_state.df[st.session_state.df['Preselect'] == 1].copy()
+    sel_df = st.session_state.df[st.session_state.df['Preselect'] == 1 | (st.session_state.df['Preselect_2'] == 1)].copy()
     sel_df = sel_df.reset_index()
     st.write(sel_df)
 
