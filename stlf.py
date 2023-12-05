@@ -129,7 +129,9 @@ def map_detail(subfolder_path):
             img_overlay.add_to(p)
 
         else:
-
+            prev_overlays_list=[]
+            #make grouplayer
+            
             img_path = os.path.join(subfolder_path, v)
             #img = Image.open(img_path)            
             #if st.session_state.df.loc[i, 'Preselect'] == 1:
@@ -148,7 +150,14 @@ def map_detail(subfolder_path):
                 cross_origin=False,
                 control=True
             )
-            img_overlay.add_to(p)
+            #add layer to layergroup
+
+            #add layer to layer list
+            prev_overlays_list.append(img_overlay)
+
+        #add layers from layerlist to map
+        for overlay in prev_overlays_list:
+            overlay.add_to(p)
 
 
 
