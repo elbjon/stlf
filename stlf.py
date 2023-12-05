@@ -26,12 +26,8 @@ def prepare_data(selected_subfolder):
 def create_map(location):
     return folium.Map(location=location, tiles=None, zoom_start=3)
 
-def add_base_layers(m):
-    folium.TileLayer("OpenStreetMap", name='OpenStreetMap').add_to(m)
-    folium.TileLayer("cartodb positron", show=False).add_to(m)
-    m.add_child(folium.LatLngPopup())
-    Geocoder().add_to(m)
-    folium.LayerControl().add_to(m)
+
+
 
 def get_pos(lat, lng):
     return lat, lng
@@ -47,7 +43,14 @@ def map_overview():
     ###body
     st.write('no location chosen')
     m = create_map(location=[30, 30])
-    add_base_layers(m)
+
+    folium.TileLayer("OpenStreetMap", name='OpenStreetMap').add_to(m)
+    folium.TileLayer("cartodb positron", show=False).add_to(m)
+    m.add_child(folium.LatLngPopup())
+    Geocoder().add_to(m)
+    folium.LayerControl().add_to(m)
+
+
     st.write('Choose your area of interest by clicking')
     map = st_folium(m, height=800, width=1400)
 
@@ -64,7 +67,11 @@ def map_overview():
 def map_detail():
     st.write('location chosen')
     p = create_map(location=st.session_state['loc_chosen'])
-    add_base_layers(p)
+    folium.TileLayer("OpenStreetMap", name='OpenStreetMap').add_to(p)
+    folium.TileLayer("cartodb positron", show=False).add_to(p)
+    p.add_child(folium.LatLngPopup())
+    Geocoder().add_to(p)
+    folium.LayerControl().add_to(p)
 
     # Add additional layers as needed
     folium.TileLayer(
@@ -154,7 +161,7 @@ def main():
        
 
 
-        st_folium(p, height=800, width=1400)
+        folium_static(p, height=800, width=1400)
 
 if __name__ == "__main__":
     main()
