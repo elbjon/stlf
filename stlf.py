@@ -101,8 +101,8 @@ def map_detail(subfolder_path):
 
     for i, v in enumerate(sel_df['Image']):
         
-        if sel_df.loc[i, 'Preselect_2']==1:
-            print('previous item detected', sel_df.loc[i, 'No'])
+        #if sel_df.loc[i, 'Preselect_2']==1:
+        #    print('previous item detected', sel_df.loc[i, 'No'])
         #else:
 
 
