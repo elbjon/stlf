@@ -131,7 +131,7 @@ def main():
     st.set_page_config(layout="wide")
     st.title("Localizing Aerial Images")
 
-    selected_subfolder = 'img/52N10E' #you know what to do
+    selected_subfolder = 'img/52N13E' #you know what to do
     subfolder_path, image_names = prepare_data(selected_subfolder)
 
         # List all subfolders in the 'img' directory
