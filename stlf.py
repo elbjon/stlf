@@ -98,7 +98,8 @@ def map_detail(subfolder_path):
     
     sel_df = st.session_state.df[st.session_state.df['Preselect'] == 1 | (st.session_state.df['Preselect_2'] == 1)].copy()
     sel_df = sel_df.reset_index()
-    st.write(sel_df)
+
+    
 
     #create/clean list of previous overlays
     prev_overlays_list=[]
@@ -168,8 +169,11 @@ def map_detail(subfolder_path):
 
     st.session_state.df.loc[:, 'Preselect_2'] = st.session_state.df['Preselect'].values
 
-    # try to deselect. Doesn't work
+    # try to deselect
     st.session_state.df.loc[st.session_state.df['Preselect'] == 1, 'Preselect'] = 0
+    
+    #print from df where sel_df, print name/name_No and URL to original jpeg ####BUT NOW START WITH IMAG PROCESSING!!!
+    st.write(sel_df) 
 ################################################
 
 
