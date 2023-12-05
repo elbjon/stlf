@@ -97,9 +97,10 @@ def map_detail(subfolder_path):
     # smaller df
     
     sel_df = st.session_state.df[st.session_state.df['Preselect'] == 1].copy()
-
+    #st.write(sel_df)
 
     for i, v in enumerate(sel_df['Image']):
+        
         if sel_df.loc[i, 'Preselect_2']==1:
             print('previous item detected', sel_df.loc[i, 'No'])
         #else:
