@@ -154,7 +154,7 @@ def main():
        
 
 
-        folium_static(p, height=800, width=1400)
+        st_folium(p, height=800, width=1400)
 
 if __name__ == "__main__":
     main()
