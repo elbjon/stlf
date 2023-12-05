@@ -24,6 +24,7 @@ def prepare_data(selected_subfolder):
 
     return subfolder_path, image_names
 
+
 def create_map(location):
     return folium.Map(location=location, tiles=None, zoom_start=3)
 
