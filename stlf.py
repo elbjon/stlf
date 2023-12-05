@@ -95,10 +95,7 @@ def populate_side(p, subfolder_path):
         for i, v in enumerate(st.session_state.df['Image']):
             img_path = os.path.join(subfolder_path, v)
 
-            if st.session_state.df.loc[i, 'Preselect'] == 1:
-                add_image_overlay(p, img_path)
-                
-                st.session_state.df.loc[i, 'Preselect'] = 0  # Reset preselect status
+            
 
             img = Image.open(img_path)
             st.sidebar.image(img, use_column_width=True)
@@ -106,6 +103,10 @@ def populate_side(p, subfolder_path):
             selected = st.sidebar.checkbox(f"Select Image {st.session_state.df.loc[i, 'No']}", key=f"select selected_{st.session_state.df.loc[i, 'No']}", value=st.session_state.df.loc[i, 'Preselect'])
             st.session_state.df.loc[i, 'Preselect'] = int(selected)
             
+            if st.session_state.df.loc[i, 'Preselect'] == 1:
+                add_image_overlay(p, img_path)
+                
+                st.session_state.df.loc[i, 'Preselect'] = 0  # Reset preselect status
 
 
 
