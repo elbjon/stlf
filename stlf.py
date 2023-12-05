@@ -99,7 +99,9 @@ def map_detail(subfolder_path):
     sel_df = st.session_state.df[st.session_state.df['Preselect'] == 1].copy()
     sel_df = sel_df.reset_index(drop=True)
     st.write(sel_df)
-
+    
+    #create/clean list of previous overlays
+    prev_overlays_list=[]
     for i, v in enumerate(sel_df['Image']):
         #I cannot put this in a function because it wouldn't work anymore then. This are the restrictions of Streamlit and Folium 
 
@@ -129,7 +131,7 @@ def map_detail(subfolder_path):
             img_overlay.add_to(p)
 
         else:
-            prev_overlays_list=[]
+            
             #make grouplayer
             
             img_path = os.path.join(subfolder_path, v)
