@@ -3,7 +3,7 @@ import folium
 import streamlit as st
 import pandas as pd
 from PIL import Image
-from streamlit_folium import st_folium
+from streamlit_folium import st_folium, folium_static
 from folium.plugins import Geocoder
 
 def prepare_data(selected_subfolder):
@@ -154,7 +154,7 @@ def main():
        
 
 
-        st_folium(p, height=800, width=1400)
+        folium_static(p, height=800, width=1400)
 
 if __name__ == "__main__":
     main()
