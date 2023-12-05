@@ -123,7 +123,7 @@ def map_detail(subfolder_path):
             control=True
         )
         img_overlay.add_to(p)
-    st.session_state.df[st.session_state.df['Preselect_2']] = st.session_state.df[st.session_state.df['Preselect']] 
+    st.session_state.df.loc[:, 'Preselect_2'] = st.session_state.df['Preselect'].values
 
     # try to deselect. Doesn't work
     st.session_state.df.loc[st.session_state.df['Preselect'] == 1, 'Preselect'] = 0
