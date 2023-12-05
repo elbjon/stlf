@@ -41,7 +41,7 @@ def map_overview():
     st.write('no location chosen')
     m = create_map(location=[30, 30])
     add_base_layers(m)
-    st.write('Choose your general area of interest by clicking')
+    st.write('Choose your area of interest by clicking')
     map = st_folium(m, height=800, width=1600)
 
     data = None
@@ -79,12 +79,14 @@ def map_location_chosen():
 
     return p
 
-def add_image_overlay(p, img_path, bounds=[[51.85, 9.6], [53.3, 11.70]]):
+def add_image_overlay(p, img_path):
+    bounds=[st.session_state['loc_chosen'][0]+1.85,st.session_state['loc_chosen'][1]+1.7] #take from control flow or session state?
+
     img_overlay = folium.raster_layers.ImageOverlay(
         name=f"Image",
         image=img_path,
         bounds=bounds,
-        opacity=1,
+        opacity=0.6,
         show=True,
         interactive=False,
         cross_origin=False,
@@ -109,6 +111,8 @@ def main():
     else:
         p = map_location_chosen()
 
+
+####make this an individual function
         # Add images to sidebar
         for i, v in enumerate(st.session_state.df['Image']):
             img_path = os.path.join(subfolder_path, v)
