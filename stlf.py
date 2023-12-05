@@ -111,9 +111,7 @@ def map_detail(subfolder_path):
 
         if sel_df.loc[i, 'Preselect_2']==0:
             img_path = os.path.join(subfolder_path, v)
-            #img = Image.open(img_path)            
-            #if st.session_state.df.loc[i, 'Preselect'] == 1:
-            #st.write(img_path)
+            
 
 
             bounds=[[st.session_state['loc_chosen'][0]-0.15,st.session_state['loc_chosen'][1]-0.4],[st.session_state['loc_chosen'][0]+1.3,st.session_state['loc_chosen'][1]+1.7]]
@@ -128,19 +126,15 @@ def map_detail(subfolder_path):
             cross_origin=False,
             control=True
             )
-            keeper = img_overlay
+            img_overlay.add_to(p)
 
         else:
-            st.write('preselect != 0')
+            #st.write('preselect != 0')
             
-            #make grouplayer
+            
             
             img_path = os.path.join(subfolder_path, v)
-            #img = Image.open(img_path)            
-            #if st.session_state.df.loc[i, 'Preselect'] == 1:
-            #st.write(img_path)
-
-
+            
             bounds=[[st.session_state['loc_chosen'][0]-0.15,st.session_state['loc_chosen'][1]-0.4],[st.session_state['loc_chosen'][0]+1.3,st.session_state['loc_chosen'][1]+1.7]]
             #st.write(str(bounds))
             img_overlay = folium.raster_layers.ImageOverlay(
@@ -158,17 +152,15 @@ def map_detail(subfolder_path):
             #add layer to layer list
             prev_overlays_list.append(img_overlay)
 
-            if keeper:
-                keeper.add_to(p)
 
 
 
 
         #add layers from layerlist to map
         if prev_overlays_list != []:
-            st.write('list is not empty')
+            #st.write('list is not empty')
             for overlay in prev_overlays_list:
-                st.write(overlay)
+                #st.write(overlay)
                 overlay.add_to(p)
 
 
