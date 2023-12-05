@@ -3,201 +3,129 @@ import folium
 import streamlit as st
 import pandas as pd
 from PIL import Image
-from streamlit_folium import st_folium, folium_static
-from folium.plugins import Draw
-from folium.plugins import Geocoder
+from streamlit_folium import st_folium
+from folium.plugins import Geocoder, ImageOverlay
 
+def prepare_data(selected_subfolder):
+    # List all subfolders in the 'img' directory
+    subfolders = [f.path for f in os.scandir('img') if f.is_dir()]
 
+    subfolder_path = selected_subfolder
 
-#set layout to wide
-st.set_page_config(layout="wide")
+    # Get the list of image names in the selected subfolder
+    image_names = [f.name for f in os.scandir(subfolder_path) if f.is_file() and f.name.endswith(('.jpg', '.png'))]
 
+    # Initialize a DataFrame to store image names, preselect status, and notes
+    data = {'Image': image_names, 'Preselect': [0] * len(image_names), 'Note': [''] * len(image_names), 'Path':['']* len(image_names),'No': list(range(1, len(image_names) + 1)) }
 
-###########################################
-###PREPARATION###
-# List all subfolders in the 'img' directory
-subfolders = [f.path for f in os.scandir('img') if f.is_dir()]
+    # Check if 'df' is not in session state, and if not, store it
+    if 'df' not in st.session_state:
+        st.session_state['df'] = pd.DataFrame(data)
 
-#st.sidebar.markdown(scrollable_content, unsafe_allow_html=True)
-selected_subfolder = 'img/52N10E'
+    return subfolder_path, image_names
 
-subfolder_path = selected_subfolder #os.path.join('img', selected_subfolder)
+def create_map(location):
+    return folium.Map(location=location, tiles=None, zoom_start=3)
 
-# Get the list of image names in the selected subfolder
-image_names = [f.name for f in os.scandir(subfolder_path) if f.is_file() and f.name.endswith(('.jpg', '.png'))] # change accordingly
-
-# Initialize a DataFrame to store image names, preselect status, and notes
-dada = {'Image': image_names, 'Preselect': [0] * len(image_names), 'Note': [''] * len(image_names), 'Path':['']* len(image_names),'No': list(range(1, len(image_names) + 1)) }
-
-# Check if 'df' is not in session state, and if not, store it
-if 'df' not in st.session_state:
-    st.session_state['df'] = pd.DataFrame(dada)
-
-# Define Streamlit app layout
-st.title("Localizing Aerial Images")
-#############################################
-
-
-
-
-
-
-
-# Check if loc_chosen is not in session state, and if not, store it
-# Loc_chosen takes the Point of Interest#s coordinates from overview map to detail map. Also the switch from overview to detail map is triggered by it.
-if 'loc_chosen' not in st.session_state:
-    st.session_state['loc_chosen'] = 0
-
-#Check if no location is chosen
-if st.session_state['loc_chosen']==0:
-    st.write('no location chosen')
-    #Then go for map overview style
-    
-    # Sidebar Call 1
-
-    # Load and display the image
-    image = Image.open('heatmap_Screenshot.png')
-    st.sidebar.image(image, caption="Density of Photographic Reconnaissance Flights", use_column_width=True)
-
-
-    #Main Body Call 1
-    def get_pos(lat, lng):
-        return lat, lng
-
-    m = folium.Map(location=[30, 30], tiles=None, zoom_start=3)
-    folium.TileLayer("OpenStreetMap", name= 'OpenStreetMap').add_to(m)
-    folium.TileLayer("cartodb positron",show=False).add_to(m)
-    
+def add_base_layers(m):
+    folium.TileLayer("OpenStreetMap", name='OpenStreetMap').add_to(m)
+    folium.TileLayer("cartodb positron", show=False).add_to(m)
     m.add_child(folium.LatLngPopup())
-    
-    # add search field
     Geocoder().add_to(m)
-
     folium.LayerControl().add_to(m)
 
-    st.write('Choose your general area of interest by clicking')
-    map = st_folium(m,height=800, width=1600,) 
+def get_pos(lat, lng):
+    return lat, lng
 
-    
+def map_overview():
+    st.write('no location chosen')
+    m = create_map(location=[30, 30])
+    add_base_layers(m)
+    st.write('Choose your general area of interest by clicking')
+    map = st_folium(m, height=800, width=1600)
 
     data = None
     if map.get("last_clicked"):
         data = get_pos(map["last_clicked"]["lat"], map["last_clicked"]["lng"])
 
     if data is not None:
-        st.write(data) # Writes to the app
-        #print(f'Is this the correct area? {data}')
-        #st.button('next')              
-
+        st.write(data)
         st.session_state['loc_chosen'] = data
 
-
-#Call2
-#=When loc_chosen is not 0
-else:
+def map_location_chosen():
     st.write('location chosen')
-    p = folium.Map(location=st.session_state['loc_chosen'], tiles=None, zoom_start=9)
-    folium.TileLayer("OpenStreetMap", name= 'OpenStreetMap').add_to(p)
-    folium.TileLayer("cartodb positron",show=False).add_to(p)
+    p = create_map(location=st.session_state['loc_chosen'])
+    add_base_layers(p)
+
+    # Add additional layers as needed
     folium.TileLayer(
-                tiles = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-                attr = 'Esri',
-                name = 'Satellite Image',
-                show=False,
-                overlay = False,
-                control = True
-            ).add_to(p)
+        tiles='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+        attr='Esri',
+        name='Satellite Image',
+        show=False,
+        overlay=False,
+        control=True
+    ).add_to(p)
 
     folium.TileLayer(
-        tiles = 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
-        name = 'Topographic Map',
+        tiles='https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
+        name='Topographic Map',
         attr='opentopomap.org',
         show=False,
-        ).add_to(p)
+    ).add_to(p)
 
-    # add search field
     Geocoder().add_to(p)
-
-    
-
     folium.LayerControl().add_to(p)
 
+    return p
 
+def add_image_overlay(p, img_path, bounds=[[51.85, 9.6], [53.3, 11.70]]):
+    img_overlay = ImageOverlay(
+        name=f"Image",
+        image=img_path,
+        bounds=bounds,
+        opacity=1,
+        show=True,
+        interactive=False,
+        cross_origin=False,
+        control=True
+    )
+    img_overlay.add_to(p)
 
+def main():
+    st.set_page_config(layout="wide")
+    st.title("Localizing Aerial Images")
 
-###PREP, originally###
+    selected_subfolder = 'img/52N10E'
+    subfolder_path, image_names = prepare_data(selected_subfolder)
 
-###add images to sidebar
-###########################
-    for i, v in enumerate(st.session_state.df['Image']):
-        #path for sidebar and overlay images
-        img_path = os.path.join(subfolder_path, v)        
+    # Check if loc_chosen is not in session state, and if not, store it
+    if 'loc_chosen' not in st.session_state:
+        st.session_state['loc_chosen'] = 0
 
-                    # Create ImageOverlay with a unique name based on counting variable
-        if st.session_state.df.loc[i, 'Preselect'] == 1:
-            st.write(st.session_state.df.loc[i, 'No'])
-            
+    # Check if no location is chosen
+    if st.session_state['loc_chosen'] == 0:
+        map_overview()
+    else:
+        p = map_location_chosen()
 
+        # Add images to sidebar
+        for i, v in enumerate(st.session_state.df['Image']):
+            img_path = os.path.join(subfolder_path, v)
 
-            img_overlay = folium.raster_layers.ImageOverlay(
-            name=f"Image{st.session_state.df.loc[i, 'No']}",
-            image=img_path,
-            bounds=[[51.85, 9.6], [53.3, 11.70]],  # Adjust the bounds accordingly
-            opacity=1,
-            show=True,
-            interactive=False,
-            cross_origin=False,
-            control=True
-            )
+            if st.session_state.df.loc[i, 'Preselect'] == 1:
+                add_image_overlay(p, img_path)
+                st.session_state.df.loc[i, 'Preselect'] = 0  # Reset preselect status
 
-            # Add ImageOverlay to the map 'p'
-            img_overlay.add_to(p)
-            #######################
+            img = Image.open(img_path)
+            st.sidebar.image(img, use_column_width=True)
 
-        
-        
-        ###actual sidebar images
-        #st.session_state.df.loc[i, 'Image'])
-        #st.sidebar.markdown(img_path)
-        img = Image.open(img_path)#.resize((150, 200))
-        
-        #save image path into df
-        st.session_state.df.loc[i, 'Path']= img_path
+            selected = st.sidebar.checkbox(f"Select Image {st.session_state.df.loc[i, 'No']}",
+                                           key=f"select
+                selected_{st.session_state.df.loc[i, 'No']}", value=st.session_state.df.loc[i, 'Preselect'])
+            st.session_state.df.loc[i, 'Preselect'] = int(selected)
 
-        ### Make the whole image a button
-        #butt = st.button(st.image(img))
-        #st.sidebar.image(butt, use_column_width=True) #, caption='Your Image'
-        
-        #show image in sidebar
+        st_folium(p, height=800, width=1400)
 
-        st.sidebar.image(img, use_column_width=True)
-
-        ### until the whole image is a button run this:
-        # Checkbox for image selection in the sidebar
-        selected = st.sidebar.checkbox(f"Select Image {st.session_state.df.loc[i, 'No']}", key=f"select_{st.session_state.df.loc[i, 'No']}", value=st.session_state.df.loc[i, 'Preselect'])
-        st.session_state.df.loc[i, 'Preselect'] = int(selected)
-
-        #check wether buttons are selected and write state into df
-    #####################
-        if selected:
-            st.session_state.df.loc[i, 'Preselect'] = 1
-            #st.write(st.session_state.df.loc[i, 'Image'])
-
-
-
-
-    st_folium(p,height=800, width=1400)    
-
-        #else:
-        #    st.session_state.df.loc[i, 'Preselect'] = 0
-        #col_images[col].image(img, use_column_width=True, caption=st.session_state.df.loc[i, 'Image'])
-
-            # Checkbox for image selection
-        #    selected = col_images[col].checkbox("Select", key=f"select_{i}")
-            #if selected:
-            #   st.session_state.df.loc[i, 'Preselect'] = 1
-    #map = st_folium(p, height=800, width=1600)
-
-    #st.write(st.session_state.df)
-
-
+if __name__ == "__main__":
+    main()
