@@ -120,9 +120,7 @@ def main():
             img = Image.open(img_path)
             st.sidebar.image(img, use_column_width=True)
 
-            selected = st.sidebar.checkbox(f"Select Image {st.session_state.df.loc[i, 'No']}",
-                                           key=f"select
-                selected_{st.session_state.df.loc[i, 'No']}", value=st.session_state.df.loc[i, 'Preselect'])
+            selected = st.sidebar.checkbox(f"Select Image {st.session_state.df.loc[i, 'No']}", key=f"select selected_{st.session_state.df.loc[i, 'No']}", value=st.session_state.df.loc[i, 'Preselect'])
             st.session_state.df.loc[i, 'Preselect'] = int(selected)
 
         st_folium(p, height=800, width=1400)
