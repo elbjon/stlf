@@ -99,7 +99,7 @@ def map_detail(subfolder_path):
     sel_df = st.session_state.df[st.session_state.df['Preselect'] == 1].copy()
     sel_df = sel_df.reset_index(drop=True)
     st.write(sel_df)
-    
+
     #create/clean list of previous overlays
     prev_overlays_list=[]
     for i, v in enumerate(sel_df['Image']):
@@ -157,9 +157,14 @@ def map_detail(subfolder_path):
             #add layer to layer list
             prev_overlays_list.append(img_overlay)
 
+
+
+
+
         #add layers from layerlist to map
-        for overlay in prev_overlays_list:
-            overlay.add_to(p)
+        if prev_overlays_list != []:
+            for overlay in prev_overlays_list:
+                overlay.add_to(p)
 
 
 
