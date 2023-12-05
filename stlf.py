@@ -101,22 +101,22 @@ def map_detail(subfolder_path):
     st.write(sel_df)
 
     for i, v in enumerate(sel_df['Image']):
+        #I cannot put this in a function because it wouldn't work anymore then. This are the restrictions of Streamlit and Folium 
 
-        st.write(i)
-        st.write(sel_df.loc[i, 'Preselect_2'])
-        #if sel_df.iloc[i, 2]==1:
-        #    print('placeh')#'previous item detected', sel_df.loc[i, 'No'])
-        #else:
+        #st.write(i)
+        #st.write(sel_df.loc[i, 'Preselect_2'])
 
 
+        if sel_df.iloc[i, 2]!=1:
+            img_path = os.path.join(subfolder_path, v)
+            #img = Image.open(img_path)            
+            #if st.session_state.df.loc[i, 'Preselect'] == 1:
+            #st.write(img_path)
 
-        img_path = os.path.join(subfolder_path, v)
-        #img = Image.open(img_path)            
-        #if st.session_state.df.loc[i, 'Preselect'] == 1:
-        st.write(img_path)
-        bounds=[[st.session_state['loc_chosen'][0]-0.15,st.session_state['loc_chosen'][1]-0.4],[st.session_state['loc_chosen'][0]+1.3,st.session_state['loc_chosen'][1]+1.7]]
-        #st.write(str(bounds))
-        img_overlay = folium.raster_layers.ImageOverlay(
+
+            bounds=[[st.session_state['loc_chosen'][0]-0.15,st.session_state['loc_chosen'][1]-0.4],[st.session_state['loc_chosen'][0]+1.3,st.session_state['loc_chosen'][1]+1.7]]
+            #st.write(str(bounds))
+            img_overlay = folium.raster_layers.ImageOverlay(
             name=f"Image {i}",
             image=img_path,
             bounds=bounds,
@@ -125,8 +125,34 @@ def map_detail(subfolder_path):
             interactive=False,
             cross_origin=False,
             control=True
-        )
-        img_overlay.add_to(p)
+            )
+            img_overlay.add_to(p)
+
+        else:
+
+            img_path = os.path.join(subfolder_path, v)
+            #img = Image.open(img_path)            
+            #if st.session_state.df.loc[i, 'Preselect'] == 1:
+            #st.write(img_path)
+
+
+            bounds=[[st.session_state['loc_chosen'][0]-0.15,st.session_state['loc_chosen'][1]-0.4],[st.session_state['loc_chosen'][0]+1.3,st.session_state['loc_chosen'][1]+1.7]]
+            #st.write(str(bounds))
+            img_overlay = folium.raster_layers.ImageOverlay(
+                name=f"Image {i}",
+                image=img_path,
+                bounds=bounds,
+                opacity=0.6,
+                show=False,
+                interactive=False,
+                cross_origin=False,
+                control=True
+            )
+            img_overlay.add_to(p)
+
+
+
+
     st.session_state.df.loc[:, 'Preselect_2'] = st.session_state.df['Preselect'].values
 
     # try to deselect. Doesn't work
