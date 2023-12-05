@@ -162,9 +162,10 @@ def map_detail(subfolder_path):
 
 
         #add layers from layerlist to map
-        #if prev_overlays_list != []:
-         #   for overlay in prev_overlays_list:
-          #      overlay.add_to(p)
+        if prev_overlays_list != []:
+            for overlay in prev_overlays_list:
+                st.write(overlay)
+                overlay.add_to(p)
 
 
 
