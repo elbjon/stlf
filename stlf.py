@@ -60,7 +60,7 @@ def map_overview():
         st.write(data)
         st.session_state['loc_chosen'] = data
 
-    def populate_side(subfolder_path):
+def populate_side(subfolder_path):
 ####make this an individual function
         # Add images to sidebar
         for i, v in enumerate(st.session_state.df['Image']):
