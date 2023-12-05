@@ -7,8 +7,7 @@ from streamlit_folium import st_folium
 from folium.plugins import Geocoder
 
 def prepare_data(selected_subfolder):
-    # List all subfolders in the 'img' directory
-    subfolders = [f.path for f in os.scandir('img') if f.is_dir()]
+
 
     subfolder_path = selected_subfolder
 
@@ -60,21 +59,7 @@ def map_overview():
         st.write(data)
         st.session_state['loc_chosen'] = data
 
-def populate_side(subfolder_path):
-####make this an individual function
-        # Add images to sidebar
-        for i, v in enumerate(st.session_state.df['Image']):
-            img_path = os.path.join(subfolder_path, v)
 
-            if st.session_state.df.loc[i, 'Preselect'] == 1:
-                add_image_overlay(p, img_path)
-                st.session_state.df.loc[i, 'Preselect'] = 0  # Reset preselect status
-
-            img = Image.open(img_path)
-            st.sidebar.image(img, use_column_width=True)
-
-            selected = st.sidebar.checkbox(f"Select Image {st.session_state.df.loc[i, 'No']}", key=f"select selected_{st.session_state.df.loc[i, 'No']}", value=st.session_state.df.loc[i, 'Preselect'])
-            st.session_state.df.loc[i, 'Preselect'] = int(selected)
 
 def map_detail():
     st.write('location chosen')
@@ -103,6 +88,28 @@ def map_detail():
 
     return p
 
+
+def populate_side(p, subfolder_path):
+
+        # Add images to sidebar
+        for i, v in enumerate(st.session_state.df['Image']):
+            img_path = os.path.join(subfolder_path, v)
+
+            if st.session_state.df.loc[i, 'Preselect'] == 1:
+                add_image_overlay(p, img_path)
+                
+                st.session_state.df.loc[i, 'Preselect'] = 0  # Reset preselect status
+
+            img = Image.open(img_path)
+            st.sidebar.image(img, use_column_width=True)
+
+            selected = st.sidebar.checkbox(f"Select Image {st.session_state.df.loc[i, 'No']}", key=f"select selected_{st.session_state.df.loc[i, 'No']}", value=st.session_state.df.loc[i, 'Preselect'])
+            st.session_state.df.loc[i, 'Preselect'] = int(selected)
+            
+
+
+
+
 def add_image_overlay(p, img_path):
     bounds=[[st.session_state['loc_chosen'][0]-0.15,st.session_state['loc_chosen'][1]-0.4],[st.session_state['loc_chosen'][0]+1.3,st.session_state['loc_chosen'][1]+1.7]]
     #st.write(str(bounds))
@@ -125,6 +132,10 @@ def main():
     selected_subfolder = 'img/52N10E' #you know what to do
     subfolder_path, image_names = prepare_data(selected_subfolder)
 
+        # List all subfolders in the 'img' directory
+    #subfolders = [f.path for f in os.scandir('img') if f.is_dir()]
+
+
     # Check if loc_chosen is not in session state, and if not, store it
     if 'loc_chosen' not in st.session_state:
         st.session_state['loc_chosen'] = 0
@@ -133,10 +144,12 @@ def main():
     if st.session_state['loc_chosen'] == 0:
         map_overview()
     else:
-        populate_side(subfolder_path)
         p = map_detail()
+        populate_side(p, subfolder_path)
+        
 
-
+        ###########
+       
 
 
         st_folium(p, height=800, width=1400)
