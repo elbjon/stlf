@@ -4,7 +4,7 @@ import streamlit as st
 import pandas as pd
 from PIL import Image
 from streamlit_folium import st_folium
-from folium.plugins import Geocoder, ImageOverlay
+from folium.plugins import Geocoder
 
 def prepare_data(selected_subfolder):
     # List all subfolders in the 'img' directory
@@ -80,7 +80,7 @@ def map_location_chosen():
     return p
 
 def add_image_overlay(p, img_path, bounds=[[51.85, 9.6], [53.3, 11.70]]):
-    img_overlay = ImageOverlay(
+    img_overlay = folium.raster_layers.ImageOverlay(
         name=f"Image",
         image=img_path,
         bounds=bounds,
