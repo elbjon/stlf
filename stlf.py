@@ -107,7 +107,7 @@ def map_detail(subfolder_path):
     
         #st.write(i)
         #st.write(sel_df.loc[i, 'Preselect_2'])
-
+        name_no = sel_df.loc[i, 'No']
 
         if sel_df.loc[i, 'Preselect_2']==0:
             img_path = os.path.join(subfolder_path, v)
@@ -119,7 +119,7 @@ def map_detail(subfolder_path):
             bounds=[[st.session_state['loc_chosen'][0]-0.15,st.session_state['loc_chosen'][1]-0.4],[st.session_state['loc_chosen'][0]+1.3,st.session_state['loc_chosen'][1]+1.7]]
             #st.write(str(bounds))
             img_overlay = folium.raster_layers.ImageOverlay(
-            name=f"Image {sel_df.loc[i, 'No']}",
+            name=f"BILDS {name_no}",
             image=img_path,
             bounds=bounds,
             opacity=0.6,
@@ -143,7 +143,7 @@ def map_detail(subfolder_path):
             bounds=[[st.session_state['loc_chosen'][0]-0.15,st.session_state['loc_chosen'][1]-0.4],[st.session_state['loc_chosen'][0]+1.3,st.session_state['loc_chosen'][1]+1.7]]
             #st.write(str(bounds))
             img_overlay = folium.raster_layers.ImageOverlay(
-                name=f"Image {sel_df.loc[i, 'No']}"
+                name=f"Image {name_no}",
                 image=img_path,
                 bounds=bounds,
                 opacity=0.6,
@@ -151,7 +151,7 @@ def map_detail(subfolder_path):
                 interactive=False,
                 cross_origin=False,
                 control=True
-            )
+                )
             #add layer to layergroup
 
             #add layer to layer list
