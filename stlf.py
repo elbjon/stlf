@@ -131,7 +131,7 @@ def map_detail(subfolder_path):
     return p
 
 
-def populate_side(p, subfolder_path):
+def populate_side(subfolder_path):
 
         # Add images to sidebar
         for i, v in enumerate(st.session_state.df['Image']):
@@ -191,9 +191,10 @@ def main():
     if st.session_state['loc_chosen'] == 0:
         map_overview()
     else:
-        p = map_detail(subfolder_path)
+        populate_side(subfolder_path)
+        map_detail(subfolder_path) #this is p which was used to call populate_side()
         
-        populate_side(p, subfolder_path)
+        
         
 
         ###########
