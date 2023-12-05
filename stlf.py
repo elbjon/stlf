@@ -128,7 +128,7 @@ def map_detail(subfolder_path):
             cross_origin=False,
             control=True
             )
-            img_overlay.add_to(p)
+            keeper = img_overlay
 
         else:
             st.write('preselect != 0')
@@ -157,7 +157,7 @@ def map_detail(subfolder_path):
 
             #add layer to layer list
             prev_overlays_list.append(img_overlay)
-
+            keeper.add_to(p)
 
 
 
