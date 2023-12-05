@@ -106,7 +106,7 @@ def map_detail(subfolder_path):
         bounds=[[st.session_state['loc_chosen'][0]-0.15,st.session_state['loc_chosen'][1]-0.4],[st.session_state['loc_chosen'][0]+1.3,st.session_state['loc_chosen'][1]+1.7]]
         #st.write(str(bounds))
         img_overlay = folium.raster_layers.ImageOverlay(
-            name=f"Image",
+            name=f"Image {i}",
             image=img_path,
             bounds=bounds,
             opacity=0.6,
@@ -116,6 +116,9 @@ def map_detail(subfolder_path):
             control=True
         )
         img_overlay.add_to(p)
+
+    # try to deselect
+    st.session_state.df.loc[st.session_state.df['Preselect'] == 1, 'Preselect'] = 0
 ################################################
 
 
@@ -145,11 +148,11 @@ def populate_side(subfolder_path):
             selected = st.sidebar.checkbox(f"Select Image {st.session_state.df.loc[i, 'No']}", key=f"select selected_{st.session_state.df.loc[i, 'No']}", value=st.session_state.df.loc[i, 'Preselect'])
             st.session_state.df.loc[i, 'Preselect'] = int(selected)
             
-            if st.session_state.df.loc[i, 'Preselect'] == 1:
+            #if st.session_state.df.loc[i, 'Preselect'] == 1:
                 #add_image_overlay(p, img_path)
-                st.write('now add image overlay would have been called in populate_side()')
+                #st.write('now add image overlay would have been called in populate_side()')
                 
-                st.session_state.df.loc[i, 'Preselect'] = 0  # Reset preselect status
+                #st.session_state.df.loc[i, 'Preselect'] = 0  # Reset preselect status
 
 ##########################
 
