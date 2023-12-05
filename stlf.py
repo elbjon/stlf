@@ -172,8 +172,8 @@ def map_detail(subfolder_path):
     # try to deselect
     st.session_state.df.loc[st.session_state.df['Preselect'] == 1, 'Preselect'] = 0
     
-    #print from df where sel_df, print name/name_No and URL to original jpeg ####BUT NOW START WITH IMAG PROCESSING!!!
-    st.write(sel_df) 
+   
+
 ################################################
 
 
@@ -183,6 +183,8 @@ def map_detail(subfolder_path):
     #show map, USE folium_static, st_folium not working!!!
     folium_static(p, height=800, width=1400)
 
+#print from df where sel_df, print name/name_No and URL to original jpeg ####BUT NOW START WITH IMAG PROCESSING!!!
+    st.write(sel_df) 
     
 
     # no return needed, map printing done here. delete return when everything is running
