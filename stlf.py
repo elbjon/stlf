@@ -16,10 +16,16 @@ def prepare_data(selected_subfolder):
 
     # Initialize a DataFrame to store image names, preselect status, and notes
     data1 = {'Image': image_names, 'Preselect': [0] * len(image_names),  'Preselect_2': [0] * len(image_names), 'Note': [''] * len(image_names), 'Path':['']* len(image_names),'No': list(range(1, len(image_names) + 1)) }
+    # Add a 'URL' column with the specified format
+    
 
     # Check if 'df' is not in session state, and if not, store it
     if 'df' not in st.session_state:
         st.session_state['df'] = pd.DataFrame(data1)
+        st.session_state.df['URL'] = st.session_state.df.apply(lambda row: f'<a href="https://www.Image.com">{row["Image"]}\'{row["No"]}</a>', axis=1)
+        st.write(st.session_state.df)
+
+        
 
     return subfolder_path, image_names
 
