@@ -94,16 +94,16 @@ def map_detail(subfolder_path):
 
 
     folium.Marker(
-        [52, 10], popup="38,46", tooltip="HELLOHELLO"
+        [38,46], popup="38,46", tooltip="HELLOHELLO"
     ).add_to(p)
     folium.Marker(
-        [53, 10], popup="39, 46", tooltip="HELLOHELLO"
+        [39, 46], popup="39, 46", tooltip="HELLOHELLO"
     ).add_to(p)
     folium.Marker(
-        [53, 11], popup="39, 47", tooltip="HELLOHELLO"
+        [39, 47], popup="39, 47", tooltip="HELLOHELLO"
     ).add_to(p)
     folium.Marker(
-        [52, 11], popup="38, 47", tooltip="HELLOHELLO"
+        [38, 47], popup="38, 47", tooltip="HELLOHELLO"
     ).add_to(p)
 
 
