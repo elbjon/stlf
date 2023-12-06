@@ -243,8 +243,14 @@ def main():
     if st.session_state['loc_chosen'] == 0:
         map_overview()
     else:
-        populate_side(subfolder_path)
-        map_detail(subfolder_path) #this is p which was used to call populate_side()
+        
+        #wait a round to let the subfolder_path be set
+        if 'counting' not in st.session_state:
+            st.session_state['counting'] = 0
+        else:
+        
+            populate_side(subfolder_path)
+            map_detail(subfolder_path) #this is p which was used to call populate_side()
         
         ###########  
 
