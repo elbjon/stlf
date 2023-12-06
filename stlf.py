@@ -47,7 +47,7 @@ def map_overview():
     st.sidebar.image(image, caption="Density of Photographic Reconnaissance Flights", use_column_width=True)
 
     ###body
-    st.write('no location chosen')
+    #st.write('no location chosen')
     m = create_map(location=[30, 30])
 
     folium.TileLayer("OpenStreetMap", name='OpenStreetMap').add_to(m)
