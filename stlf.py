@@ -101,18 +101,18 @@ def map_detail(subfolder_path):
     ).add_to(p)
 
 
-    folium.Marker(
-        [38,46], popup="38,46", tooltip="HELLOHELLO"
-    ).add_to(p)
-    folium.Marker(
-        [39, 46], popup="39, 46", tooltip="HELLOHELLO"
-    ).add_to(p)
-    folium.Marker(
-        [39, 47], popup="39, 47", tooltip="HELLOHELLO"
-    ).add_to(p)
-    folium.Marker(
-        [38, 47], popup="38, 47", tooltip="HELLOHELLO"
-    ).add_to(p)
+    #folium.Marker(
+    #    [38,46], popup="38,46", tooltip="HELLOHELLO"
+    #).add_to(p)
+    #folium.Marker(
+    #    [39, 46], popup="39, 46", tooltip="HELLOHELLO"
+    #).add_to(p)
+    #folium.Marker(
+    #    [39, 47], popup="39, 47", tooltip="HELLOHELLO"
+    #).add_to(p)
+    #folium.Marker(
+    #    [38, 47], popup="38, 47", tooltip="HELLOHELLO"
+    #).add_to(p)
 
 
     Geocoder().add_to(p)
