@@ -60,7 +60,7 @@ def map_overview():
         st.write(data)
         st.session_state['loc_chosen'] = data
         
-XXXXXXX
+#XXXXXXX
 
 
 
