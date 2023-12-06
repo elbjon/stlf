@@ -230,7 +230,7 @@ def populate_side(subfolder_path):
 
 def add_image_overlay(p, img_path):
     st.write(img_path)
-    bounds=[[st.session_state['loc_chosen'][0]-0.15,st.session_state['loc_chosen'][1]-0.4],[st.session_state['loc_chosen'][0]+1.3,st.session_state['loc_chosen'][1]+1.7]]
+    bounds=[[st.session_state['loc_chosen'][0]-0.15,st.session_state['loc_chosen'][1]-0.85],[st.session_state['loc_chosen'][0]+1.3,st.session_state['loc_chosen'][1]+1.25]]
     st.write(str(bounds))
     img_overlay = folium.raster_layers.ImageOverlay(
         name=f"Image",
