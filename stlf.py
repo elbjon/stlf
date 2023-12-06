@@ -92,6 +92,21 @@ def map_detail(subfolder_path):
         show=False,
     ).add_to(p)
 
+
+    folium.Marker(
+        [52, 10], popup="38,46", tooltip="HELLOHELLO"
+    ).add_to(p)
+    folium.Marker(
+        [53, 10], popup="39, 46", tooltip="HELLOHELLO"
+    ).add_to(p)
+    folium.Marker(
+        [53, 11], popup="39, 47", tooltip="HELLOHELLO"
+    ).add_to(p)
+    folium.Marker(
+        [52, 11], popup="38, 47", tooltip="HELLOHELLO"
+    ).add_to(p)
+
+
     Geocoder().add_to(p)
 
 #overlays
