@@ -55,7 +55,7 @@ def map_overview():
     #das geht schöner...
     if map.get("last_clicked"):
         data = get_pos(map["last_clicked"]["lat"], map["last_clicked"]["lng"])
-    print(data,data[0],int(data[1]))
+        print(data,data[0],int(data[1]))
     if data is not None:
         st.write(data)
         st.session_state['loc_chosen'] = data
