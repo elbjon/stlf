@@ -56,8 +56,6 @@ def map_overview():
     if map.get("last_clicked"):
         data = get_pos(map["last_clicked"]["lat"], map["last_clicked"]["lng"])
         print(data,data[0],int(data[1]))
-        if 'selected_subfolder' not in st.session_state:
-            st.session_state['selected_subfolder'] = 0
         
     if data is not None:
         st.write(data)
@@ -68,9 +66,7 @@ def map_overview():
 
 
 
-        #image_path = os.path.join(f'img//{}{}', file)
-        #selected_subfolder = 'img/52N13E' #you know what to do
-        subfolder_path, image_names = prepare_data(st.session_state['selected_subfolder'])
+       
 
 
 def map_detail(subfolder_path):
@@ -237,6 +233,12 @@ def main():
     st.set_page_config(layout="wide")
     st.title("Localizing Aerial Images")
 
+
+     #image_path = os.path.join(f'img//{}{}', file)
+    selected_subfolder = 'img/52N13E' #you know what to do
+    subfolder_path, image_names = prepare_data(selected_subfolder)
+
+
     # Check if loc_chosen is not in session state, and if not, store it
     if 'loc_chosen' not in st.session_state:
         st.session_state['loc_chosen'] = 0
@@ -245,13 +247,8 @@ def main():
     if st.session_state['loc_chosen'] == 0:
         map_overview()
     else:
-        
-        #wait a round to let the subfolder_path be set
-        if 'subfolder_path' in st.session_state:
-            
-        
-            populate_side(st.session_state['subfolder_path'])
-            map_detail(st.session_state['subfolder_path']) #this is p which was used to call populate_side()
+        populate_side(subfolder_path)
+        map_detail(subfolder_path) #this is p which was used to call populate_side()
         
         ###########  
 
