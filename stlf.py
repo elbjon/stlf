@@ -24,8 +24,8 @@ def prepare_data(selected_subfolder):
     if 'df' not in st.session_state:
         st.session_state['df'] = pd.DataFrame(data1)
         st.session_state.df['URL'] = st.session_state.df.apply(lambda row: f'<a href="https://www.Image.com">{row["Image"]}\'{row["No"]}</a>', axis=1)
-        st.write(st.session_state.df)
-        st.dataframe(st.session_state.df.style.format({'URL': lambda x: f'<a href="{x}">{x}</a>'}), unsafe_allow_html=True)
+        #st.write(st.session_state.df)
+        #st.dataframe(st.session_state.df.style.format({'URL': lambda x: f'<a href="{x}">{x}</a>'}), unsafe_allow_html=True)
 
         
 
@@ -206,7 +206,7 @@ def map_detail(subfolder_path):
 
 #print from df where sel_df, print name/name_No and URL to original jpeg ####BUT NOW START WITH IMAG PROCESSING!!!
     st.write(sel_df)
-    st.dataframe(st.session_state.sel_df.style.format({'URL': lambda x: f'<a href="{x}">{x}</a>'}), unsafe_allow_html=True) 
+    st.dataframe(sel_df.style.format({'URL': lambda x: f'<a href="{x}">{x}</a>'}), unsafe_allow_html=True) 
     
 
     # no return needed, map printing done here. delete return when everything is running
