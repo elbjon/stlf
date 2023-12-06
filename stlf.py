@@ -64,7 +64,7 @@ def map_overview():
 
 
 
-        image_path = os.path.join(f'img//{}{}', file)
+        #image_path = os.path.join(f'img//{}{}', file)
         selected_subfolder = 'img/52N13E' #you know what to do
         subfolder_path, image_names = prepare_data(selected_subfolder)
 
