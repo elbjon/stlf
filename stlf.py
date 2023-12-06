@@ -217,7 +217,8 @@ def map_detail(subfolder_path):
     
     
         st.markdown( f"[URL_IMG_{row['No']}](www.url.com)")
-        st.markdown(f'Image {row['No']}, {row['Image']}')
+        st.markdown(f'{row['Image']}')
+
 
     # no return needed, map printing done here. delete return when everything is running
     return p
