@@ -205,7 +205,7 @@ def map_detail(subfolder_path):
     folium_static(p, height=800, width=1400)
 
 #print from df where sel_df, print name/name_No and URL to original jpeg ####BUT NOW START WITH IMAG PROCESSING!!!
-    st.write(sel_df)
+    #st.write(sel_df)
 
 
 #ÖÖÖÖÖÖÖÖÖÖÖ MAKE A loop
@@ -216,8 +216,8 @@ def map_detail(subfolder_path):
     #print(f"Row {index + 1}: Column1 = {row['Column1']}, Column2 = {row['Column2']}, Column3 = {row['Column3']}")
     
     
-        st.markdown( f"[URL_IMG_{row['No']}](www.url.com)")
-        st.markdown(f"{row['Image']}")
+        st.markdown(f"{row['Image']}", f"[URL_IMG_{row['No']}](www.url.com)")
+    
 
 
     # no return needed, map printing done here. delete return when everything is running
