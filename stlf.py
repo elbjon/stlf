@@ -206,6 +206,8 @@ def map_detail(subfolder_path):
 
 #print from df where sel_df, print name/name_No and URL to original jpeg ####BUT NOW START WITH IMAG PROCESSING!!!
     st.write(sel_df)
+    # Display the DataFrame in Streamlit with clickable links
+    st.markdown(sel_df.to_markdown(index=False, render_links=True), unsafe_allow_html=True)
     st.dataframe(sel_df.style.format({'URL': lambda x: f'<a href="{x}">{x}</a>'}), unsafe_allow_html=True) 
     
 
