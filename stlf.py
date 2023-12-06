@@ -268,7 +268,7 @@ def add_image_overlay(p, img_path):
 
 def main():
     st.set_page_config(layout="wide")
-    st.title("Localizing Aerial Images")
+    st.title("Aerial Image Search")
 
 
      #image_path = os.path.join(f'img//{}{}', file)
