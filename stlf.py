@@ -128,7 +128,7 @@ def map_detail(subfolder_path):
             img_path = os.path.join(subfolder_path, v)
 
             ###This was just thought a sa quick temporary solution. It cannot work as the degre squares have different sizes. Larger at the equator, the smallest at the poles
-            bounds=[[st.session_state['loc_chosen'][0]-0.4,st.session_state['loc_chosen'][1]-0.85],[st.session_state['loc_chosen'][0]+0.90,st.session_state['loc_chosen'][1]+1.25]]
+            bounds=[[st.session_state['loc_chosen'][0]-0.3,st.session_state['loc_chosen'][1]-0.85],[st.session_state['loc_chosen'][0]+0.90,st.session_state['loc_chosen'][1]+1.25]]
             #st.write(str(bounds))
             img_overlay = folium.raster_layers.ImageOverlay(
             name=f"Current Image {name_no}",
@@ -149,7 +149,7 @@ def map_detail(subfolder_path):
             
             img_path = os.path.join(subfolder_path, v)
             
-            bounds=[[st.session_state['loc_chosen'][0]-0.4,st.session_state['loc_chosen'][1]-0.85],[st.session_state['loc_chosen'][0]+0.90,st.session_state['loc_chosen'][1]+1.25]]
+            bounds=[[st.session_state['loc_chosen'][0]-0.3,st.session_state['loc_chosen'][1]-0.85],[st.session_state['loc_chosen'][0]+0.90,st.session_state['loc_chosen'][1]+1.25]]
             #st.write(str(bounds))
             img_overlay = folium.raster_layers.ImageOverlay(
                 name=f"Image {name_no}",
