@@ -5,7 +5,7 @@ import pandas as pd
 from PIL import Image
 from streamlit_folium import st_folium, folium_static
 from folium.plugins import Geocoder
-from IPython.core.display import display, HTML #????
+
 
 def prepare_data(selected_subfolder):
 
