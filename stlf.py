@@ -206,9 +206,9 @@ def map_detail(subfolder_path):
 
 #print from df where sel_df, print name/name_No and URL to original jpeg ####BUT NOW START WITH IMAG PROCESSING!!!
     st.write(sel_df)
-    # Display the DataFrame in Streamlit with clickable links
-    st.markdown(sel_df.to_markdown(index=False, render_links=True), unsafe_allow_html=True)
-    st.dataframe(sel_df.style.format({'URL': lambda x: f'<a href="{x}">{x}</a>'}), unsafe_allow_html=True) 
+
+
+#ÖÖÖÖÖÖÖÖÖÖÖ MAKE A loop
     
 
     # no return needed, map printing done here. delete return when everything is running
@@ -260,7 +260,9 @@ def add_image_overlay(p, img_path):
 def main():
     st.set_page_config(layout="wide")
     st.title("Localizing Aerial Images")
-
+    link_text 'blablaURL' 
+    url = 'www.test.de'
+    st.markdown(f"[{link_text}]({url})")
 
      #image_path = os.path.join(f'img//{}{}', file)
     selected_subfolder = r'USA_A_F_Step_2/38N_46E' #'img/52N13E' #you know what to do "C:\Users\Administrator\Documents\GitHub\stlf\USA_A_F_Step_2\38N_46E"
