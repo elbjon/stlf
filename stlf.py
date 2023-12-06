@@ -23,22 +23,20 @@ def prepare_data(selected_subfolder):
 
     return subfolder_path, image_names
 
+
 def create_map(location):
     return folium.Map(location=location, tiles=None, zoom_start=3)
-
-
 
 
 def get_pos(lat, lng):
     return lat, lng
 
-def map_overview():
 
+def map_overview():
     ###sidebar
     # Load and display the image
     image = Image.open('heatmap_Screenshot.png')
     st.sidebar.image(image, caption="Density of Photographic Reconnaissance Flights", use_column_width=True)
-
 
     ###body
     st.write('no location chosen')
@@ -50,18 +48,25 @@ def map_overview():
     Geocoder().add_to(m)
     folium.LayerControl().add_to(m)
 
-
     st.write('Choose your area of interest by clicking')
     map = st_folium(m, height=800, width=1400)
 
     data = None
+    #das geht schöner...
     if map.get("last_clicked"):
         data = get_pos(map["last_clicked"]["lat"], map["last_clicked"]["lng"])
-
+    print(data,data[0],int(data[1]))
     if data is not None:
         st.write(data)
         st.session_state['loc_chosen'] = data
+        
+XXXXXXX
 
+
+
+        image_path = os.path.join(f'img//{}{}', file)
+        selected_subfolder = 'img/52N13E' #you know what to do
+        subfolder_path, image_names = prepare_data(selected_subfolder)
 
 
 def map_detail(subfolder_path):
@@ -70,8 +75,6 @@ def map_detail(subfolder_path):
     folium.TileLayer("OpenStreetMap", name='OpenStreetMap').add_to(p)
     folium.TileLayer("cartodb positron", show=False).add_to(p)
     
-    
-
     # Add additional layers as needed
     folium.TileLayer(
         tiles='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
@@ -91,15 +94,11 @@ def map_detail(subfolder_path):
 
     Geocoder().add_to(p)
 
-
 #overlays
 #################################################
-    # smaller df
-    
+    # smaller df    
     sel_df = st.session_state.df[st.session_state.df['Preselect'] == 1 | (st.session_state.df['Preselect_2'] == 1)].copy()
-    sel_df = sel_df.reset_index()
-
-    
+    sel_df = sel_df.reset_index()    
 
     #create/clean list of previous overlays
     prev_overlays_list=[]
@@ -112,9 +111,6 @@ def map_detail(subfolder_path):
 
         if sel_df.loc[i, 'Preselect_2']==0:
             img_path = os.path.join(subfolder_path, v)
-            
-
-
             bounds=[[st.session_state['loc_chosen'][0]-0.15,st.session_state['loc_chosen'][1]-0.4],[st.session_state['loc_chosen'][0]+1.3,st.session_state['loc_chosen'][1]+1.7]]
             #st.write(str(bounds))
             img_overlay = folium.raster_layers.ImageOverlay(
@@ -197,8 +193,6 @@ def populate_side(subfolder_path):
         for i, v in enumerate(st.session_state.df['Image']):
             img_path = os.path.join(subfolder_path, v)
 
-            
-
             img = Image.open(img_path)
             st.sidebar.image(img, use_column_width=True)
 
@@ -238,14 +232,6 @@ def add_image_overlay(p, img_path):
 def main():
     st.set_page_config(layout="wide")
     st.title("Localizing Aerial Images")
-    
-
-    selected_subfolder = 'img/52N13E' #you know what to do
-    subfolder_path, image_names = prepare_data(selected_subfolder)
-
-        # List all subfolders in the 'img' directory
-    #subfolders = [f.path for f in os.scandir('img') if f.is_dir()]
-
 
     # Check if loc_chosen is not in session state, and if not, store it
     if 'loc_chosen' not in st.session_state:
@@ -258,14 +244,8 @@ def main():
         populate_side(subfolder_path)
         map_detail(subfolder_path) #this is p which was used to call populate_side()
         
-        
-        
+        ###########  
 
-        ###########
-       
-
-
-        
 
 if __name__ == "__main__":
     main()
