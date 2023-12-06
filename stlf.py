@@ -260,7 +260,7 @@ def add_image_overlay(p, img_path):
 def main():
     st.set_page_config(layout="wide")
     st.title("Localizing Aerial Images")
-    link_text 'blablaURL' 
+    link_text = 'blablaURL' 
     url = 'www.test.de'
     st.markdown(f"[{link_text}]({url})")
 
