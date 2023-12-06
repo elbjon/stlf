@@ -56,6 +56,8 @@ def map_overview():
     if map.get("last_clicked"):
         data = get_pos(map["last_clicked"]["lat"], map["last_clicked"]["lng"])
         print(data,data[0],int(data[1]))
+        if 'selected_subfolder' not in st.session_state:
+            st.session_state['selected_subfolder'] = 0
         
     if data is not None:
         st.write(data)
@@ -67,8 +69,8 @@ def map_overview():
 
 
         #image_path = os.path.join(f'img//{}{}', file)
-        selected_subfolder = 'img/52N13E' #you know what to do
-        subfolder_path, image_names = prepare_data(selected_subfolder)
+        #selected_subfolder = 'img/52N13E' #you know what to do
+        subfolder_path, image_names = prepare_data(st.session_state['selected_subfolder'])
 
 
 def map_detail(subfolder_path):
@@ -245,12 +247,11 @@ def main():
     else:
         
         #wait a round to let the subfolder_path be set
-        if 'counting' not in st.session_state:
-            st.session_state['counting'] = 0
-        else:
+        if 'subfolder_path' in st.session_state:
+            
         
-            populate_side(subfolder_path)
-            map_detail(subfolder_path) #this is p which was used to call populate_side()
+            populate_side(st.session_state['subfolder_path'])
+            map_detail(st.session_state['subfolder_path']) #this is p which was used to call populate_side()
         
         ###########  
 
