@@ -216,7 +216,7 @@ def map_detail(subfolder_path):
     #print(f"Row {index + 1}: Column1 = {row['Column1']}, Column2 = {row['Column2']}, Column3 = {row['Column3']}")
     
     
-        st.markdown(f"{row['Image']}", f"[URL_IMG_{row['No']}](www.url.com)")
+        st.markdown( f"[Image No {row['No']}_URL](www.url.com)")
     
 
 
