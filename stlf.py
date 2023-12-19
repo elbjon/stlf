@@ -45,9 +45,9 @@ def zeropoint_coord(data):
     for i, v in enumerate(data):
         st.write(i,v)
         if v >= 0:
-            return_data[i] =int(v)
+            return_data = return_data + (int(v))
         else:
-            return_data[i]=int(v)-1
+            return_data = return_data + (int(v-1))
         st.write('MOST IMPORTANT: ',data[i], 'becomes: ', return_data[i])
    
     #st.session_state['loc_chosen'] = int(data)
