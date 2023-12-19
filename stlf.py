@@ -40,6 +40,11 @@ def get_pos(lat, lng):
     st.write('test3')    
     return lat, lng
 
+def zeropoint_coord(data):
+    for i, v in enumerate(len(data)):
+        print(i,v)
+
+    #st.session_state['loc_chosen'] = int(data)
 
 def map_overview():
     ###sidebar
@@ -80,11 +85,7 @@ def map_overview():
     #    st.session_state['loc_chosen'] = data
     #    #print('2',data,data[0],int(data[1]))
 
-    def zeropoint_coord(data):
-        for i, v in enumerate(len(data)):
-            print(i,v)
 
-        #st.session_state['loc_chosen'] = int(data)
         
 
         
