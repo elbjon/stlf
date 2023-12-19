@@ -101,6 +101,14 @@ def map_overview():
         #baba = (map["last_clicked"]["lat"], map["last_clicked"]["lng"])
         #zeropoint_coord(data)
 
+
+        for i, v in enumerate(data):
+            if v >= 0:
+                return_string = return_string + str(int(v))
+                if i==0: 
+                    return_string = return_string +'N_'
+
+
         st.session_state['loc_chosen'] = data
 
         
