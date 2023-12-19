@@ -36,9 +36,9 @@ def create_map(location):
     return folium.Map(location=location, tiles=None, zoom_start=3)
 
 
-#def get_pos(lat, lng):
-#    st.write('test3')
-#    return lat, lng
+def get_pos(lat, lng):
+    st.write('test3')
+    return lat, lng
 
 
 def map_overview():
@@ -64,14 +64,14 @@ def map_overview():
     #das geht schöner...
     if map.get("last_clicked"):
         st.write('test')
-        #data = get_pos(map["last_clicked"]["lat"], map["last_clicked"]["lng"])
-        data = [map["last_clicked"]["lat"], map["last_clicked"]["lng"]]
+        data = get_pos(map["last_clicked"]["lat"], map["last_clicked"]["lng"])
+        #data = [map["last_clicked"]["lat"], map["last_clicked"]["lng"]]
         st.session_state['loc_chosen'] = data
         st.write('hallo',data,data[0],int(data[1]))
         
     if data is not None:
         st.write('test2')
-        st.write('hallo', data)
+        st.write('hallo2', data)
         st.session_state['loc_chosen'] = data
         #print('2',data,data[0],int(data[1]))
         
