@@ -40,7 +40,7 @@ def get_pos(lat, lng):
     return lat, lng
 
 def zeropoint_coord(data):
-    return_data = []
+    #return_data = []
     return_string ='' #subfolder
     
     for i, v in enumerate(data):
@@ -50,12 +50,12 @@ def zeropoint_coord(data):
                 return_string = return_string +'N_'
             else:
                 return_string = return_string +'W_'
-        else:
-            return_string = return_string + str(int(data[0])*-1)
-            if i==0: 
-                return_string = return_string +'S_'
-            else:
-                return_string = return_string +'E_'
+        #else:
+        #    return_string = return_string + str(int(data[0])*-1)
+        #    if i==0: 
+        #        return_string = return_string +'S_'
+        #    else:
+        #        return_string = return_string +'E_'
     st.write(return_string)
 
     #for i, v in enumerate(data):
@@ -101,14 +101,7 @@ def map_overview():
         #baba = (map["last_clicked"]["lat"], map["last_clicked"]["lng"])
         #zeropoint_coord(data)
         
-        #zeropoint code test:
-        return_string=''
-        for i, v in enumerate(data):
-            if v >= 0:
-                return_string = return_string + str(int(v))
-                if i==0: 
-                    return_string = return_string +'N_'
-        st.write(return_string)
+
 
         st.session_state['loc_chosen'] = data
 
