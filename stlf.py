@@ -58,6 +58,12 @@ def zeropoint_coord(data):
             else:
                 return_string = return_string +'E'
     st.write(return_string)
+    #return ##change program logic, main()... 
+    
+    #Replace dependency from loc_chosen with call of next function after map clicking/(Button click?)
+    #Check wether folder exists
+    #calculate offset/do new geo-referencing matching to all longitudes, measurements for offset at equator and close to one pole, then divide by number of longitudes effected. Et Voila-> offset for each longitude!
+
 
     #for i, v in enumerate(data):
                 
@@ -177,7 +183,7 @@ def map_detail(subfolder_path):
         if sel_df.loc[i, 'Preselect_2']==0:
             img_path = os.path.join(subfolder_path, v)
 
-            ###This was just thought a sa quick temporary solution. It cannot work as the degre squares have different sizes. Larger at the equator, the smallest at the poles
+            ###This was just thought as a quick temporary solution. It cannot work as the degre squares have different sizes. Larger at the equator, the smallest at the poles
             bounds=[[st.session_state['loc_chosen'][0]-0.25,st.session_state['loc_chosen'][1]-0.95],[st.session_state['loc_chosen'][0]+0.95,st.session_state['loc_chosen'][1]+1.05]]
             #st.write(str(bounds))
             img_overlay = folium.raster_layers.ImageOverlay(
