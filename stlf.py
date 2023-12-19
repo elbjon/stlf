@@ -98,7 +98,7 @@ def map_overview():
         data = get_pos(map["last_clicked"]["lat"], map["last_clicked"]["lng"])
         st.write('map clicked_1', data)
         #baba = (map["last_clicked"]["lat"], map["last_clicked"]["lng"])
-        #zeropoint_coord(data)
+        zeropoint_coord(data)
         
 
 
