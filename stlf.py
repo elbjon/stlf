@@ -41,10 +41,15 @@ def get_pos(lat, lng):
     return lat, lng
 
 def zeropoint_coord(data):
+    return_data = ()
     for i, v in enumerate(data):
         st.write(i,v)
-    st.write(type(data))
-    st.write(len(data))
+        if v >= 0:
+            return_data[i] =int(v)
+        else:
+            return_data[i]=int(v)-1
+        st.write('MOST IMPORTANT: ',data[i], 'becomes: ', return_data[i])
+   
     #st.session_state['loc_chosen'] = int(data)
 
 def map_overview():
