@@ -44,9 +44,9 @@ def zeropoint_coord(data):
     return_data = []
     return_string ='' #subfolder
     if data[0] >= 0:
-        return_string = return_string + str(data[0])+'N_'
+        return_string = return_string + str(int(data[0]))+'N_'
     else:
-        return_string = return_string + str(data[0])+'S_'
+        return_string = return_string + str(int(data[0]))+'S_'
     st.write(return_string)
 
     #for i, v in enumerate(data):
