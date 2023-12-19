@@ -37,7 +37,6 @@ def create_map(location):
 
     #makes lat lng easy reading tuple data
 def get_pos(lat, lng):
-    st.write('test3')    
     return lat, lng
 
 def zeropoint_coord(data):
