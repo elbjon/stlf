@@ -41,8 +41,8 @@ def get_pos(lat, lng):
     return lat, lng
 
 def zeropoint_coord(data):
-#    for i, v in enumerate(len(data)):
-#        print(i,v)
+    for i, v in enumerate(len(data)):
+        st.write(i,v)
     st.write(type(data))
     st.write(len(data))
     #st.session_state['loc_chosen'] = int(data)
@@ -79,7 +79,7 @@ def map_overview():
         baba = (map["last_clicked"]["lat"], map["last_clicked"]["lng"])
         zeropoint_coord(data)
 
-        st.session_state['loc_chosen'] = int(data)
+        st.session_state['loc_chosen'] = data
         st.write('data: ', data, 'baba: ', baba)
 
         #st.write('hallo',data,data[0],int(data[1]))
