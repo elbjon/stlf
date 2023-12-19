@@ -35,9 +35,9 @@ def prepare_data(selected_subfolder):
 def create_map(location):
     return folium.Map(location=location, tiles=None, zoom_start=3)
 
-
+    #makes lat lng easy reading tuple data
 def get_pos(lat, lng):
-    st.write('test3')
+    st.write('test3')    
     return lat, lng
 
 
@@ -70,11 +70,11 @@ def map_overview():
         st.write('hallo',data,data[0],int(data[1]))
         st.write('data is o f type: ', type(data))
         
-    if data is not None:
-        st.write('test2')
-        st.write('hallo2', data)
-        st.session_state['loc_chosen'] = data
-        #print('2',data,data[0],int(data[1]))
+    #if data is not None:
+    #    st.write('test2')
+    #    st.write('hallo2', data)
+    #    st.session_state['loc_chosen'] = data
+    #    #print('2',data,data[0],int(data[1]))
         
 #XXXXXXX
 
