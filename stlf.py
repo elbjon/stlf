@@ -66,7 +66,7 @@ def map_overview():
         st.write('map clicked_1', data)
         data = get_pos(map["last_clicked"]["lat"], map["last_clicked"]["lng"])
         baba = (map["last_clicked"]["lat"], map["last_clicked"]["lng"])
-        zeropoint_coord()
+        zeropoint_coord(data)
 
         st.session_state['loc_chosen'] = int(data)
         st.write('data: ', data, 'baba: ', baba)
