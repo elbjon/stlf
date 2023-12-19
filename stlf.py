@@ -104,7 +104,7 @@ def map_overview():
 
 
         baba = (map["last_clicked"]["lat"], map["last_clicked"]["lng"])
-        zeropoint_coord(data)
+        #zeropoint_coord(data)
 
         st.session_state['loc_chosen'] = data
         st.write('data: ', data, 'baba: ', baba)
