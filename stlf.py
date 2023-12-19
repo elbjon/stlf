@@ -63,7 +63,7 @@ def map_overview():
     data = None
     #das geht schöner...
     if map.get("last_clicked"):
-        st.write('map clicked_1')
+        st.write('map clicked_1', data)
         data = get_pos(map["last_clicked"]["lat"], map["last_clicked"]["lng"])
         baba = (map["last_clicked"]["lat"], map["last_clicked"]["lng"])
         st.session_state['loc_chosen'] = data
