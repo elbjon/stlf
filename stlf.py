@@ -41,7 +41,7 @@ def get_pos(lat, lng):
     return lat, lng
 
 def zeropoint_coord(data):
-    for i, v in enumerate(len(data)):
+    for i, v in enumerate(data):
         st.write(i,v)
     st.write(type(data))
     st.write(len(data))
