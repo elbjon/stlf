@@ -46,7 +46,7 @@ def zeropoint_coord(data):
     if data[0] >= 0:
         return_string = return_string + str(int(data[0]))+'N_'
     else:
-        return_string = return_string + str(int(data[0]))+'S_'
+        return_string = return_string + str(int(data[0])*-1)+'S_'
     st.write(return_string)
 
     #for i, v in enumerate(data):
