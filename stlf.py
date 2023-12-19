@@ -43,14 +43,14 @@ def get_pos(lat, lng):
 def zeropoint_coord(data):
     return_data = []
     for i, v in enumerate(data):
-        st.write(i,v)
+        st.write(i,v, len(data))
         if v >= 0:
             return_data.append(int(v))
         else:
             return_data.append(int(v-1))
-        st.write('MOST IMPORTANT: ',data[i], 'becomes: ', return_data[i])
-        data=tuple(return_data)
-        st.write('tuple data', data)
+        st.write('MOST IMPORTANT: ',v, 'becomes: ', return_data[i])
+        #data=tuple(return_data)
+        #st.write('tuple data', data)
    
     #st.session_state['loc_chosen'] = int(data)
 
