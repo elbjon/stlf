@@ -108,7 +108,7 @@ def map_overview():
                 return_string = return_string + str(int(v))
                 if i==0: 
                     return_string = return_string +'N_'
-
+        st.write(return_string)
 
         st.session_state['loc_chosen'] = data
 
