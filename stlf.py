@@ -96,21 +96,14 @@ def map_overview():
     data = None
     #das geht schöner...
     if map.get("last_clicked"):
-        st.write('map clicked_1', data)
+        
         data = get_pos(map["last_clicked"]["lat"], map["last_clicked"]["lng"])
-
-        st.write(type(data))
-        st.write(len(data))
-
-
-        baba = (map["last_clicked"]["lat"], map["last_clicked"]["lng"])
+        st.write('map clicked_1', data)
+        #baba = (map["last_clicked"]["lat"], map["last_clicked"]["lng"])
         #zeropoint_coord(data)
 
         st.session_state['loc_chosen'] = data
-        st.write('data: ', data, 'baba: ', baba)
 
-        #st.write('hallo',data,data[0],int(data[1]))
-        #st.write('data is o f type: ', type(data))
         
     #if data is not None:
     #    st.write('test2')
