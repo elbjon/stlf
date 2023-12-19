@@ -43,10 +43,20 @@ def get_pos(lat, lng):
 def zeropoint_coord(data):
     return_data = []
     return_string ='' #subfolder
-    if data[0] >= 0:
-        return_string = return_string + str(int(data[0]))+'N_'
-    else:
-        return_string = return_string + str(int(data[0])*-1)+'S_'
+    
+    for i, v in enumerate(data):
+        if v >= 0:
+            return_string = return_string + str(int(v))
+            if i==0: 
+                return_string = return_string +'N_'
+            else:
+                return_string = return_string +'W_'
+        else:
+            return_string = return_string + str(int(data[0])*-1)
+            if i==0: 
+                return_string = return_string +'S_'
+            else:
+                return_string = return_string +'E_'
     st.write(return_string)
 
     #for i, v in enumerate(data):
