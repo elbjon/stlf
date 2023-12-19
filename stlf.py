@@ -43,7 +43,7 @@ def zeropoint_coord(data):
     #return_data = []
     return_string ='' #subfolder
 
-    ########### Wo bleibt die Eleganz und Effizienz?
+    ########### Wo bleiben Eleganz und Effizienz?
     for i, v in enumerate(data):
         if v >= 0:
             return_string = return_string + str(int(v))
@@ -54,22 +54,16 @@ def zeropoint_coord(data):
         else:
             return_string = return_string + str(int(data[0]*-1))
             if i==0: 
-                return_string = return_string +'S_'
+                return_string = return_string +'S'
             else:
-                return_string = return_string +'E_'
+                return_string = return_string +'E'
     st.write(return_string)
 
     #for i, v in enumerate(data):
                 
         
         
-    #    if v >= 0:
-    #        return_data.append(int(v))
-    #    else:
-    #        return_data.append(int(v-1))
-    #    st.write('MOST IMPORTANT: ',v, 'becomes: ', return_data[i])
-    #    data=tuple(return_data)
-    #    st.write('tuple data', data)
+
    
     #st.session_state['loc_chosen'] = int(data)
 
