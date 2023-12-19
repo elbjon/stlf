@@ -52,7 +52,7 @@ def zeropoint_coord(data):
             else:
                 return_string = return_string +'W_'
         else:
-            return_string = return_string + str(int(v*-1))
+            return_string = return_string + str(int(v*))
             if i==0: 
                 return_string = return_string +'S'
             else:
