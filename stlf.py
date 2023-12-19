@@ -68,6 +68,7 @@ def map_overview():
         #data = [map["last_clicked"]["lat"], map["last_clicked"]["lng"]]
         st.session_state['loc_chosen'] = data
         st.write('hallo',data,data[0],int(data[1]))
+        st.write('data is o f type: ', type(data))
         
     if data is not None:
         st.write('test2')
