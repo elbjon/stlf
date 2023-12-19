@@ -100,8 +100,9 @@ def map_overview():
         st.write('map clicked_1', data)
         #baba = (map["last_clicked"]["lat"], map["last_clicked"]["lng"])
         #zeropoint_coord(data)
-
-
+        
+        #zeropoint code test:
+        return_string=''
         for i, v in enumerate(data):
             if v >= 0:
                 return_string = return_string + str(int(v))
