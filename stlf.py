@@ -66,7 +66,9 @@ def map_overview():
         st.write('map clicked_1', data)
         data = get_pos(map["last_clicked"]["lat"], map["last_clicked"]["lng"])
         baba = (map["last_clicked"]["lat"], map["last_clicked"]["lng"])
-        st.session_state['loc_chosen'] = data
+        zeropoint_coord()
+
+        st.session_state['loc_chosen'] = int(data)
         st.write('data: ', data, 'baba: ', baba)
 
         #st.write('hallo',data,data[0],int(data[1]))
@@ -77,7 +79,17 @@ def map_overview():
     #    st.write('hallo2', data)
     #    st.session_state['loc_chosen'] = data
     #    #print('2',data,data[0],int(data[1]))
+
+    def zeropoint_coord(data):
+        for i, v in enumerate(len(data)):
+            print(i,v)
+
+        #st.session_state['loc_chosen'] = int(data)
         
+
+        
+
+
 #XXXXXXX
 
 
