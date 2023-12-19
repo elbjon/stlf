@@ -59,8 +59,7 @@ def zeropoint_coord(data):
     st.write(return_string)
 
     #for i, v in enumerate(data):
-        
-        
+                
         
         
     #    if v >= 0:
