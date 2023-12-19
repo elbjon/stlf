@@ -63,7 +63,7 @@ def map_overview():
     #das geht schöner...
     if map.get("last_clicked"):
         data = get_pos(map["last_clicked"]["lat"], map["last_clicked"]["lng"])
-        print(data,data[0],int(data[1]))
+        print('hallo',data,data[0],int(data[1]))
         
     if data is not None:
         st.write(data)
@@ -126,7 +126,7 @@ def map_detail(subfolder_path):
     #create/clean list of previous overlays
     prev_overlays_list=[]
     for i, v in enumerate(sel_df['Image']):
-        #I cannot put this in a function because it wouldn't work anymore then. This are the restrictions of Streamlit and Folium 
+        #I cannot put this into a function because it wouldn't work anymore due to the restrictions of Streamlit and Folium 
     
         #st.write(i)
         #st.write(sel_df.loc[i, 'Preselect_2'])
@@ -220,7 +220,7 @@ def map_detail(subfolder_path):
     
 
 
-    # no return needed, map printing done here. delete return when everything is running
+    # no return needed, map plotting done here. delete return when everything is running
     return p
 
 
