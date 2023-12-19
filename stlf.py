@@ -68,7 +68,7 @@ def map_overview():
     if data is not None:
         st.write(data)
         st.session_state['loc_chosen'] = data
-        print('2',data,data[0],int(data[1]))
+        #print('2',data,data[0],int(data[1]))
         
 #XXXXXXX
 
