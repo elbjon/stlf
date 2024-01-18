@@ -285,10 +285,10 @@ def map_detail(subfolder_path):
 def populate_side(subfolder_path):
         
         st.button("load images", type="primary")
+        
         if st.button('Say hello'):
             st.write('Why hello there')
-        else:
-            st.write('Goodbye')
+        
 
             # Add images to sidebar
             for i, v in enumerate(st.session_state.df['Image']):
@@ -305,6 +305,8 @@ def populate_side(subfolder_path):
                     #st.write('now add image overlay would have been called in populate_side()')
                     
                     #st.session_state.df.loc[i, 'Preselect'] = 0  # Reset preselect status
+        else:
+            st.write('Goodbye')
 
 ##########################
 
