@@ -282,11 +282,10 @@ def map_detail(subfolder_path):
 
 
 def populate_side(subfolder_path):
+
         
-        st.sidebar.button("load images", type="primary")
-        
-        if st.button('Say hello'):
-            st.write('Why hello there')
+        if st.sidebar.button('if location is correct, click here for loading the images', type="primary"):
+            st.write('loading...')
         
 
             # Add images to sidebar
@@ -305,7 +304,7 @@ def populate_side(subfolder_path):
                     
                     #st.session_state.df.loc[i, 'Preselect'] = 0  # Reset preselect status
         else:
-            st.write('Goodbye')
+            st.write('choose a location on the map, then hit the button')
 
 ##########################
 
