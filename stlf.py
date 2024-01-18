@@ -102,7 +102,6 @@ def map_overview():
         #prepare data first:
         subfolder_path = r'USA_A_F_Step_2/38N_46E' #'img/52N13E' #you know what to do "C:\Users\Administrator\Documents\GitHub\stlf\USA_A_F_Step_2\38N_46E"
 
-        st.button("Reset", type="primary")
 
         populate_side(subfolder_path)
         map_detail(subfolder_path) 
@@ -284,7 +283,7 @@ def map_detail(subfolder_path):
 
 def populate_side(subfolder_path):
         
-        st.button("load images", type="primary")
+        st.sidebar.button("load images", type="primary")
         
         if st.button('Say hello'):
             st.write('Why hello there')
