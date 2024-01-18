@@ -103,6 +103,9 @@ def map_overview():
         
         data = get_pos(map["last_clicked"]["lat"], map["last_clicked"]["lng"])
         st.write('map clicked_1', data)
+        #############
+########Start prepare_data() and map_detail() here!!! (and add a back button or ask if location is okay)
+        #############
         #baba = (map["last_clicked"]["lat"], map["last_clicked"]["lng"])
         zeropoint_coord(data)
         
