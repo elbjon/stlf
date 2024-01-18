@@ -6,7 +6,7 @@ from PIL import Image
 from streamlit_folium import st_folium, folium_static
 from folium.plugins import Geocoder
 ### Erledigen:
-### change to one map?
+### change to one map!!!! Make the overlay stuff a function on its own.
 ### keep zoom and map focus when (re)loading a map 
 ### program logic
 ### load and process real data, not exemplary images (two steps? 1 all preprocessed images, 2. load and preprocess new images)
@@ -285,7 +285,7 @@ def populate_side(subfolder_path):
 
         
         if st.sidebar.button('if location is correct, click here for loading the images', type="primary"):
-            st.write('loading...')
+            st.sidebar.write('loading...')
         
 
             # Add images to sidebar
@@ -304,7 +304,7 @@ def populate_side(subfolder_path):
                     
                     #st.session_state.df.loc[i, 'Preselect'] = 0  # Reset preselect status
         else:
-            st.write('choose a location on the map, then hit the button')
+            st.sidebar.write('click a location on the map, then hit the button')
 
 ##########################
 
