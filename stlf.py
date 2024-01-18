@@ -10,6 +10,13 @@ from folium.plugins import Geocoder
 ### keep zoom and map focus when (re)loading a map 
 ### program logic
 ### load and process real data, not exemplary images (two steps? 1 all preprocessed images, 2. load and preprocess new images)
+#vorherige to do liste:
+    ##change program logic, main()... 
+    
+    #Replace dependency from loc_chosen with call of next function after map clicking/(Button click?)
+    #Check wether folder exists
+    #calculate offset/do new geo-referencing matching to all longitudes, measurements for offset at equator and close to one pole, then divide by number of longitudes effected. Et Voila-> offset for each longitude!
+
 
 def prepare_data(selected_subfolder):
 
@@ -61,20 +68,7 @@ def zeropoint_coord(data):
             else:
                 return_string = return_string +'E'
     st.write(return_string)
-    #return ##change program logic, main()... 
-    
-    #Replace dependency from loc_chosen with call of next function after map clicking/(Button click?)
-    #Check wether folder exists
-    #calculate offset/do new geo-referencing matching to all longitudes, measurements for offset at equator and close to one pole, then divide by number of longitudes effected. Et Voila-> offset for each longitude!
 
-
-    #for i, v in enumerate(data):
-                
-        
-        
-
-   
-    #st.session_state['loc_chosen'] = int(data)
 
 def map_overview():
     ###sidebar
@@ -102,12 +96,14 @@ def map_overview():
     if map.get("last_clicked"):
         
         data = get_pos(map["last_clicked"]["lat"], map["last_clicked"]["lng"])
+        st.session_state['loc_chosen'] = data
+
         st.write('map clicked_1', data)
         #prepare data first:
         subfolder_path = r'USA_A_F_Step_2/38N_46E' #'img/52N13E' #you know what to do "C:\Users\Administrator\Documents\GitHub\stlf\USA_A_F_Step_2\38N_46E"
     
         populate_side(subfolder_path)
-        map_detail(subfolder_path) #this is p which was used to call populate_side()
+        map_detail(subfolder_path) 
         #############
 ########Start prepare_data() and map_detail() here!!! (and add a back button or ask if location is okay)
         #############
@@ -116,7 +112,6 @@ def map_overview():
         
 
 
-        st.session_state['loc_chosen'] = data
 
         
     #if data is not None:
