@@ -5,11 +5,17 @@ import pandas as pd
 from PIL import Image
 from streamlit_folium import st_folium, folium_static
 from folium.plugins import Geocoder
-
+### Erledigen:
+### change to one map?
+### keep zoom and map focus when (re)loading a map 
+### program logic
+### load and process real data, not exemplary images (two steps? 1 all preprocessed images, 2. load and preprocess new images)
 
 def prepare_data(selected_subfolder):
 
-
+    #temporär. Mache Abfrage, ob Subfolder exists, else look for info (existance plus download links) in main dataframe(the one not used yet in this program)
+    #download and process and store images (ggfs in batches...) ##look for nice work in progress bar or the like in streamlit
+    #ggfs. Fehlermeldung-> Try again.
     subfolder_path = selected_subfolder
 
     # Get the list of image names in the selected subfolder
@@ -26,9 +32,6 @@ def prepare_data(selected_subfolder):
         st.session_state.df['URL'] = st.session_state.df.apply(lambda row: f'<a href="https://www.Image.com">{row["Image"]}\'{row["No"]}</a>', axis=1)
         #st.write(st.session_state.df)
         #st.dataframe(st.session_state.df.style.format({'URL': lambda x: f'<a href="{x}">{x}</a>'}), unsafe_allow_html=True)
-
-        
-
     return subfolder_path, image_names
 
 
@@ -75,14 +78,15 @@ def zeropoint_coord(data):
 
 def map_overview():
     ###sidebar
-    # Load and display the image
+    # Load and display the sidebar image
     image = Image.open('heatmap_Screenshot.png')
     st.sidebar.image(image, caption="Density of Photographic Reconnaissance Flights", use_column_width=True)
 
     ###body
-    #st.write('no location chosen')
+    #create map object via call map method
     m = create_map(location=[30, 30])
 
+    #add attributes to the map: Layers, popup, adress search, layercontrol
     folium.TileLayer("OpenStreetMap", name='OpenStreetMap').add_to(m)
     folium.TileLayer("cartodb positron", show=False).add_to(m)
     m.add_child(folium.LatLngPopup())
@@ -90,7 +94,8 @@ def map_overview():
     folium.LayerControl().add_to(m)
 
     st.write('Choose your area of interest by clicking')
-    map = st_folium(m, height=800, width=1400)
+    # show map
+    map = st_folium(m, height=800, width=1400) 
 
     data = None
     #das geht schöner...
@@ -297,7 +302,7 @@ def populate_side(subfolder_path):
 
 
 
-
+#just keepin' it as a reminder that a function would be nicer
 def add_image_overlay(p, img_path):
     st.write(img_path)
     bounds=[[st.session_state['loc_chosen'][0]-0.15,st.session_state['loc_chosen'][1]-0.85],[st.session_state['loc_chosen'][0]+1.3,st.session_state['loc_chosen'][1]+1.25]]
@@ -315,11 +320,13 @@ def add_image_overlay(p, img_path):
     img_overlay.add_to(p)
 
 def main():
+
+    #streamlit page configuration
     st.set_page_config(layout="wide")
     st.title("Aerial Image Search")
 
 
-     #image_path = os.path.join(f'img//{}{}', file)
+    #select subfolder. Not here. Move to method...
     selected_subfolder = r'USA_A_F_Step_2/38N_46E' #'img/52N13E' #you know what to do "C:\Users\Administrator\Documents\GitHub\stlf\USA_A_F_Step_2\38N_46E"
     subfolder_path, image_names = prepare_data(selected_subfolder)
 
