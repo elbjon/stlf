@@ -103,6 +103,11 @@ def map_overview():
         
         data = get_pos(map["last_clicked"]["lat"], map["last_clicked"]["lng"])
         st.write('map clicked_1', data)
+        #prepare data first:
+        subfolder_path = r'USA_A_F_Step_2/38N_46E' #'img/52N13E' #you know what to do "C:\Users\Administrator\Documents\GitHub\stlf\USA_A_F_Step_2\38N_46E"
+    
+        populate_side(subfolder_path)
+        map_detail(subfolder_path) #this is p which was used to call populate_side()
         #############
 ########Start prepare_data() and map_detail() here!!! (and add a back button or ask if location is okay)
         #############
@@ -333,17 +338,19 @@ def main():
     selected_subfolder = r'USA_A_F_Step_2/38N_46E' #'img/52N13E' #you know what to do "C:\Users\Administrator\Documents\GitHub\stlf\USA_A_F_Step_2\38N_46E"
     subfolder_path, image_names = prepare_data(selected_subfolder)
 
+    map_overview()
 
-    # Check if loc_chosen is not in session state, and if not, store it
-    if 'loc_chosen' not in st.session_state:
-        st.session_state['loc_chosen'] = 0
-
-    # Check if no location is chosen
-    if st.session_state['loc_chosen'] == 0:
-        map_overview()
-    else:
-        populate_side(subfolder_path)
-        map_detail(subfolder_path) #this is p which was used to call populate_side()
+### old logic:
+#    # Check if loc_chosen is not in session state, and if not, store it
+#    if 'loc_chosen' not in st.session_state:
+#        st.session_state['loc_chosen'] = 0
+#
+#    # Check if no location is chosen
+#    if st.session_state['loc_chosen'] == 0:
+#        
+#    else:
+#        populate_side(subfolder_path)
+#        map_detail(subfolder_path) #this is p which was used to call populate_side()
         
         ###########  
 
