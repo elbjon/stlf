@@ -283,22 +283,28 @@ def map_detail(subfolder_path):
 
 
 def populate_side(subfolder_path):
+        
+        st.button("load images", type="primary")
+        if st.button('Say hello'):
+            st.write('Why hello there')
+        else:
+            st.write('Goodbye')
 
-        # Add images to sidebar
-        for i, v in enumerate(st.session_state.df['Image']):
-            img_path = os.path.join(subfolder_path, v)
+            # Add images to sidebar
+            for i, v in enumerate(st.session_state.df['Image']):
+                img_path = os.path.join(subfolder_path, v)
 
-            img = Image.open(img_path)
-            st.sidebar.image(img, use_column_width=True)
+                img = Image.open(img_path)
+                st.sidebar.image(img, use_column_width=True)
 
-            selected = st.sidebar.checkbox(f"Select Image {st.session_state.df.loc[i, 'No']}", key=f"select selected_{st.session_state.df.loc[i, 'No']}", value=st.session_state.df.loc[i, 'Preselect'])
-            st.session_state.df.loc[i, 'Preselect'] = int(selected)
-            
-            #if st.session_state.df.loc[i, 'Preselect'] == 1:
-                #add_image_overlay(p, img_path)
-                #st.write('now add image overlay would have been called in populate_side()')
+                selected = st.sidebar.checkbox(f"Select Image {st.session_state.df.loc[i, 'No']}", key=f"select selected_{st.session_state.df.loc[i, 'No']}", value=st.session_state.df.loc[i, 'Preselect'])
+                st.session_state.df.loc[i, 'Preselect'] = int(selected)
                 
-                #st.session_state.df.loc[i, 'Preselect'] = 0  # Reset preselect status
+                #if st.session_state.df.loc[i, 'Preselect'] == 1:
+                    #add_image_overlay(p, img_path)
+                    #st.write('now add image overlay would have been called in populate_side()')
+                    
+                    #st.session_state.df.loc[i, 'Preselect'] = 0  # Reset preselect status
 
 ##########################
 
