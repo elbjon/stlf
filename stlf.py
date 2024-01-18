@@ -83,7 +83,7 @@ def map_overview():
     #add attributes to the map: Layers, popup, adress search, layercontrol
     folium.TileLayer("OpenStreetMap", name='OpenStreetMap').add_to(m)
     folium.TileLayer("cartodb positron", show=False).add_to(m)
-    m.add_child(folium.LatLngPopup('hello'))
+    m.add_child(folium.LatLngPopup())
     Geocoder().add_to(m)
     folium.LayerControl().add_to(m)
 
