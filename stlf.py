@@ -83,7 +83,7 @@ def map_overview():
     #add attributes to the map: Layers, popup, adress search, layercontrol
     folium.TileLayer("OpenStreetMap", name='OpenStreetMap').add_to(m)
     folium.TileLayer("cartodb positron", show=False).add_to(m)
-    m.add_child(folium.LatLngPopup())
+    m.add_child(folium.LatLngPopup('hello'))
     Geocoder().add_to(m)
     folium.LayerControl().add_to(m)
 
@@ -101,7 +101,9 @@ def map_overview():
         st.write('map clicked_1', data)
         #prepare data first:
         subfolder_path = r'USA_A_F_Step_2/38N_46E' #'img/52N13E' #you know what to do "C:\Users\Administrator\Documents\GitHub\stlf\USA_A_F_Step_2\38N_46E"
-    
+
+        st.button("Reset", type="primary")
+
         populate_side(subfolder_path)
         map_detail(subfolder_path) 
         #############
