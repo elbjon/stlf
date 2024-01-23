@@ -11,6 +11,10 @@ from folium.plugins import Geocoder
 ### GEOLOCATION!!! Äquator, Pol, einer dazwischen? dazwischen prozentual angleichen 
 ### DONE: program logic
 ### load and process real data, not exemplary images (two steps? 1 all preprocessed images, 2. load and preprocess new images)
+### Detailkarte scheint neu geladen zu werden, wenn ein anderer Overlay ausgewählt wird (muss das sein? kann man nicht elemente zu Karte hinzufügen [wohl nicht] oder Elemente schon auf Karte laden, aber nicht anzeigen (weder overlay control noch als overlay selbst...)) 
+### Werden die Bilder in der Sidebar komplett neu geladen bei Auswahl eines Bildes? Vergleichen mit Aufruf von populate und detailmap in overviewmap
+
+
 #vorherige to do liste:
     ##change program logic, main()... 
     
