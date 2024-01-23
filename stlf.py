@@ -98,7 +98,8 @@ def map_overview():
         
         data = get_pos(map["last_clicked"]["lat"], map["last_clicked"]["lng"])
         st.session_state['loc_chosen'] = data
-
+        st.write('session state:, ',  st.session_state['loc_chosen'])
+        st.write('session state length:, ',  len(st.session_state['loc_chosen']))
         st.write('map clicked_1', data)
         #prepare data first:
         subfolder_path = r'USA_A_F_Step_2/38N_46E' #'img/52N13E' #you know what to do "C:\Users\Administrator\Documents\GitHub\stlf\USA_A_F_Step_2\38N_46E"
@@ -117,7 +118,7 @@ def map_overview():
         
     if 'loc_chosen' in st.session_state:
         st.write('loc_chosen is not None', len(st.session_state['loc_chosen']))
-        st.write(st.session_state['loc_chosen'])
+        st.write(st.session_state['loc_chosen'], 'test')
         populate_side(subfolder_path)
         map_detail(subfolder_path)
 
