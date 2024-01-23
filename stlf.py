@@ -103,8 +103,7 @@ def map_overview():
         subfolder_path = r'USA_A_F_Step_2/38N_46E' #'img/52N13E' #you know what to do "C:\Users\Administrator\Documents\GitHub\stlf\USA_A_F_Step_2\38N_46E"
 
 
-        populate_side(subfolder_path)
-        map_detail(subfolder_path) 
+ 
         #############
 ########Start prepare_data() and map_detail() here!!! (and add a back button or ask if location is okay)
         #############
@@ -115,8 +114,9 @@ def map_overview():
 
 
         
-    #if data is not None:
-
+    if data is not None:
+        populate_side(subfolder_path)
+        map_detail(subfolder_path)
 
     #    st.write('test2')
     #    st.write('hallo2', data)
