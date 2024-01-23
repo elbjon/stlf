@@ -115,6 +115,7 @@ def map_overview():
 
         
     if ['loc_chosen'] in st.session_state:
+        st.write('loc_chosen exists in session state')
         populate_side(subfolder_path)
         map_detail(subfolder_path)
 
