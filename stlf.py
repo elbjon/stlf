@@ -115,7 +115,7 @@ def map_overview():
 
         
     if 'loc_chosen' is not None:
-        st.write('loc_chosen exists in session state')
+        st.write('loc_chosen is not None')
         populate_side(subfolder_path)
         map_detail(subfolder_path)
 
@@ -294,22 +294,22 @@ def populate_side(subfolder_path):
         else:
             st.sidebar.write('click at a location on the map, then hit the button')
         
-        if st.session_state['button_clicked'] == 1:
-            # Add images to sidebar
-            for i, v in enumerate(st.session_state.df['Image']):
-                img_path = os.path.join(subfolder_path, v)
+    if st.session_state['button_clicked'] == 1:
+        # Add images to sidebar
+        for i, v in enumerate(st.session_state.df['Image']):
+            img_path = os.path.join(subfolder_path, v)
 
-                img = Image.open(img_path)
-                st.sidebar.image(img, use_column_width=True)
+            img = Image.open(img_path)
+            st.sidebar.image(img, use_column_width=True)
 
-                selected = st.sidebar.checkbox(f"Select Image {st.session_state.df.loc[i, 'No']}", key=f"select selected_{st.session_state.df.loc[i, 'No']}", value=st.session_state.df.loc[i, 'Preselect'])
-                st.session_state.df.loc[i, 'Preselect'] = int(selected)
+            selected = st.sidebar.checkbox(f"Select Image {st.session_state.df.loc[i, 'No']}", key=f"select selected_{st.session_state.df.loc[i, 'No']}", value=st.session_state.df.loc[i, 'Preselect'])
+            st.session_state.df.loc[i, 'Preselect'] = int(selected)
+            
+            #if st.session_state.df.loc[i, 'Preselect'] == 1:
+                #add_image_overlay(p, img_path)
+                #st.write('now add image overlay would have been called in populate_side()')
                 
-                #if st.session_state.df.loc[i, 'Preselect'] == 1:
-                    #add_image_overlay(p, img_path)
-                    #st.write('now add image overlay would have been called in populate_side()')
-                    
-                    #st.session_state.df.loc[i, 'Preselect'] = 0  # Reset preselect status
+                #st.session_state.df.loc[i, 'Preselect'] = 0  # Reset preselect status
 
 
 ##########################
