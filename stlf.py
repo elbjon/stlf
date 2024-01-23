@@ -343,7 +343,8 @@ def main():
     st.title("Aerial Image Search")
 
     #set initial variable states:
-    st.session_state['button_clicked'] = 0
+    if 'button_clicked' not in st.session_state: 
+        st.session_state['button_clicked'] = 0
 
 
     #select subfolder. Not here. Move to method...
