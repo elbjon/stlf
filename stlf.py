@@ -114,7 +114,7 @@ def map_overview():
 
 
         
-    if data is not None:
+    if st.session_state['loc_chosen'] is not None:
         populate_side(subfolder_path)
         map_detail(subfolder_path)
 
