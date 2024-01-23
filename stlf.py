@@ -285,13 +285,16 @@ def map_detail(subfolder_path):
 
 
 def populate_side(subfolder_path):
+    if st.session_state['button_clicked'] == 0:
 
         
-        if st.sidebar.button('if location is correct, click here for loading the images', type="primary") or st.session_state['button_clicked'] ==1:
+        if st.sidebar.button('if location is correct, click here for loading the images', type="primary") or st.session_state['button_clicked'] == 0:
             st.session_state['button_clicked']=1
             st.sidebar.write('loading...')
+        else:
+            st.sidebar.write('click at a location on the map, then hit the button')
         
-
+        if st.session_state['button_clicked'] == 1:
             # Add images to sidebar
             for i, v in enumerate(st.session_state.df['Image']):
                 img_path = os.path.join(subfolder_path, v)
@@ -307,8 +310,7 @@ def populate_side(subfolder_path):
                     #st.write('now add image overlay would have been called in populate_side()')
                     
                     #st.session_state.df.loc[i, 'Preselect'] = 0  # Reset preselect status
-        else:
-            st.sidebar.write('click a location on the map, then hit the button')
+
 
 ##########################
 
@@ -339,6 +341,9 @@ def main():
     #streamlit page configuration
     st.set_page_config(layout="wide")
     st.title("Aerial Image Search")
+
+    #set initial variable states:
+    st.session_state['button_clicked'] = 0
 
 
     #select subfolder. Not here. Move to method...
