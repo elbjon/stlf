@@ -288,8 +288,8 @@ def populate_side(subfolder_path):
     if st.session_state['button_clicked'] == 0:
 
         
-        if st.sidebar.button('if location is correct, click here for loading the images', type="primary") or st.session_state['button_clicked'] == 0:
-            st.session_state['button_clicked']=1
+        if st.sidebar.button('if location is correct, click here for loading the images', type="primary"):
+            st.session_state['button_clicked'] = 1
             st.sidebar.write('loading...')
         else:
             st.sidebar.write('click at a location on the map, then hit the button')
