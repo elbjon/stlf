@@ -97,7 +97,7 @@ def map_overview():
     map = st_folium(m, height=800, width=1400) 
     st.write(folium.Map)
     st.write(map,'test1')
-    st.write('test2', map.get_bounds)    
+    st.write('test2', folium.Map.get_bounds(map))    
     #data = None
     #das geht schöner...
     if map.get("last_clicked"):
@@ -260,7 +260,7 @@ def map_detail(subfolder_path):
     folium.LayerControl().add_to(p)
 
     #make map look alike to the overview map 
-    p.fit_bounds([[52.193636, -2.221575], [52.636878, -1.139759]])
+    p.fit_bounds([[0, 0], [52.636878, -1.139759]])
 
     #show map, USE folium_static, st_folium not working!!!
     folium_static(p, height=800, width=1400)
