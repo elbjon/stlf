@@ -7,8 +7,9 @@ from streamlit_folium import st_folium, folium_static
 from folium.plugins import Geocoder
 ### Erledigen:
 ### change to one map!!!! Make the overlay stuff a function on its own.
-### keep zoom and map focus when (re)loading a map 
-### program logic
+### keep zoom and map focus when (re)loading a map
+### GEOLOCATION!!! Äquator, Pol, einer dazwischen? dazwischen prozentual angleichen 
+### DONE: program logic
 ### load and process real data, not exemplary images (two steps? 1 all preprocessed images, 2. load and preprocess new images)
 #vorherige to do liste:
     ##change program logic, main()... 
@@ -114,7 +115,7 @@ def map_overview():
 
 
         
-    if 'loc_chosen' is not None:
+    if 'loc_chosen' in st.session_state:
         st.write('loc_chosen is not None')
         populate_side(subfolder_path)
         map_detail(subfolder_path)
