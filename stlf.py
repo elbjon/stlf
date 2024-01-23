@@ -95,7 +95,7 @@ def map_overview():
     st.write('Choose your area of interest by clicking')
     # show map
     map = st_folium(m, height=800, width=1400) 
-    st.write(folium.Map)
+    #st.write(folium.Map)
     st.write(map,'test1')
     #st.write('test2', map.get_bounds(map))    
     #data = None
