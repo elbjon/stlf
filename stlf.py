@@ -96,8 +96,8 @@ def map_overview():
     # show map
     map = st_folium(m, height=800, width=1400) 
     st.write(folium.Map)
-    st.write(folium.Map.get_name)
-    st.write(folium.Map.get_bounds)    
+    st.write(map,'test1')
+    st.write(map.get_bounds)    
     #data = None
     #das geht schöner...
     if map.get("last_clicked"):
