@@ -365,7 +365,7 @@ def main():
     if 'loc_chosen' in st.session_state:
 #        #st.write('loc_chosen is not None', len(st.session_state['loc_chosen']))
 #        #st.write(st.session_state['loc_chosen'], 'test')
-        populate_side(subfolder_path)
+        populate_side(subfolder_path) ### sollte nicht jedesmal bilder neu laden!
         map_detail(subfolder_path)
 
 ### old logic:
