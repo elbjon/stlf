@@ -263,8 +263,8 @@ def map_detail(subfolder_path):
     p.fit_bounds([[0, 0], [10, 10]])
 
     #show map, USE folium_static, st_folium not working!!!
-    folium_static(p, height=800, width=1400)
-    st.write(p)
+    pap = folium_static(p, height=800, width=1400)
+    st.write(pap)
 
 #print from df where sel_df, print name/name_No and URL to original jpeg ####BUT NOW START WITH IMAG PROCESSING!!!
     #st.write(sel_df)
