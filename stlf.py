@@ -91,7 +91,7 @@ def map_overview():
     # show map
     map = st_folium(m, height=800, width=1400) 
 
-    data = None
+    #data = None
     #das geht schöner...
     if map.get("last_clicked"):
         
@@ -116,6 +116,8 @@ def map_overview():
 
         
     #if data is not None:
+
+
     #    st.write('test2')
     #    st.write('hallo2', data)
     #    st.session_state['loc_chosen'] = data
