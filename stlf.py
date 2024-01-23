@@ -114,7 +114,7 @@ def map_overview():
 
 
         
-    if st.session_state['loc_chosen'] is not None:
+    if ['loc_chosen'] in st.session_state:
         populate_side(subfolder_path)
         map_detail(subfolder_path)
 
@@ -286,7 +286,8 @@ def map_detail(subfolder_path):
 def populate_side(subfolder_path):
 
         
-        if st.sidebar.button('if location is correct, click here for loading the images', type="primary"):
+        if st.sidebar.button('if location is correct, click here for loading the images', type="primary") or st.session_state['button_clicked'] ==1:
+            st.session_state['button_clicked']=1
             st.sidebar.write('loading...')
         
 
