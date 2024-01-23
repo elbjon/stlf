@@ -260,10 +260,11 @@ def map_detail(subfolder_path):
     folium.LayerControl().add_to(p)
 
     #make map look alike to the overview map 
-    p.fit_bounds([[0, 0], [52.636878, -1.139759]])
+    p.fit_bounds([[0, 0], [10, 10]])
 
     #show map, USE folium_static, st_folium not working!!!
     folium_static(p, height=800, width=1400)
+    st.write(p)
 
 #print from df where sel_df, print name/name_No and URL to original jpeg ####BUT NOW START WITH IMAG PROCESSING!!!
     #st.write(sel_df)
