@@ -350,8 +350,8 @@ def main():
 
     #select subfolder. Not here. Move to method...
     selected_subfolder = r'USA_A_F_Step_2/38N_46E' #'img/52N13E' #you know what to do "C:\Users\Administrator\Documents\GitHub\stlf\USA_A_F_Step_2\38N_46E"
-    subfolder_path, image_names = prepare_data(selected_subfolder)
-
+    #subfolder_path, image_names = prepare_data(selected_subfolder)
+    prepare_data(selected_subfolder)
     map_overview()
 
 ### old logic:
