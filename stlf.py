@@ -6,7 +6,7 @@ from PIL import Image
 from streamlit_folium import st_folium, folium_static
 from folium.plugins import Geocoder
 ### Erledigen:
-### change to one map!!!! Make the overlay stuff a function on its own.
+### change to one map!!!! Make the overlay stuff a function on its own. ### no, let it as it is
 ### keep zoom and map focus when (re)loading a map
 ### GEOLOCATION!!! Äquator, Pol, einer dazwischen? dazwischen prozentual angleichen 
 ### DONE: program logic
@@ -353,7 +353,7 @@ def main():
     selected_subfolder = r'USA_A_F_Step_2/38N_46E' #'img/52N13E' #you know what to do "C:\Users\Administrator\Documents\GitHub\stlf\USA_A_F_Step_2\38N_46E"
     subfolder_path, image_names = prepare_data(selected_subfolder)
     #prepare_data(selected_subfolder)
-    map_overview()
+    
 
     ### Delete after testing new position        
     if 'loc_chosen' in st.session_state:
@@ -361,6 +361,8 @@ def main():
 #        #st.write(st.session_state['loc_chosen'], 'test')
         populate_side(subfolder_path) ### sollte nicht jedesmal bilder neu laden!
         map_detail(subfolder_path)
+    else:
+        map_overview()
 
 ### old logic:
 #    # Check if loc_chosen is not in session state, and if not, store it
